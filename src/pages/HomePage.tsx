@@ -17,6 +17,7 @@ import { MediaFrame } from '../components/MediaFrame';
 import { VideoShowcase } from '../components/VideoShowcase';
 import { Reveal } from '../components/Reveal';
 import { PartnerMarquee } from '../components/PartnerMarquee';
+import { CountUp } from '../components/CountUp';
 
 const HERO_IMG = '/src/assets/images/hero_oceanic_architecture_1795099364980.jpg';
 const HERO_VIDEO = '/blueocean-showcase.mp4';
@@ -208,7 +209,7 @@ export const HomePage: React.FC = () => {
                   {t.hero.stat1Label}
                 </div>
                 <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
-                  {t.hero.stat1Value}
+                  <CountUp end={4.85} decimals={2} suffix="% APY" durationMs={1400} />
                 </div>
               </div>
               <div className="pt-2 sm:pt-0 lg:pl-8">
@@ -216,7 +217,7 @@ export const HomePage: React.FC = () => {
                   {t.hero.stat2Label}
                 </div>
                 <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                  {t.hero.stat2Value}
+                  <CountUp end={5.1} decimals={2} suffix="% APY" durationMs={1550} />
                 </div>
               </div>
               <div className="pt-4 sm:pt-0 lg:pl-8">
@@ -224,15 +225,15 @@ export const HomePage: React.FC = () => {
                   {t.hero.stat3Label}
                 </div>
                 <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#921B2D] dark:text-[#EC5D72]">
-                  {t.hero.stat3Value}
+                  <CountUp end={5.0} decimals={1} prefix="$" suffix="M" durationMs={1650} />
                 </div>
               </div>
               <div className="pt-4 sm:pt-0 lg:pl-8">
                 <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
                   {t.hero.stat4Label}
                 </div>
-                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                  {t.hero.stat4Value}
+                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                  <CountUp end={243} suffix="K+" durationMs={1850} />
                 </div>
               </div>
             </div>
@@ -432,14 +433,29 @@ export const HomePage: React.FC = () => {
 
       {/* SECTION 5: ATTRIBUTABLE CLIENT PROOF */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
-        <Reveal className="max-w-2xl mb-10">
-          <h2 className="font-display text-3xl font-semibold text-[#081A33] dark:text-white">
-            {t.home.testimonialsTitle}
-          </h2>
-          <p className="mt-2 text-base text-[#445A75] dark:text-[#AFC3D8]">
-            {t.home.testimonialsSub}
-          </p>
-        </Reveal>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <Reveal className="max-w-2xl">
+            <h2 className="font-display text-3xl font-semibold text-[#081A33] dark:text-white">
+              {t.home.testimonialsTitle}
+            </h2>
+            <p className="mt-2 text-base text-[#445A75] dark:text-[#AFC3D8]">
+              {t.home.testimonialsSub}
+            </p>
+          </Reveal>
+
+          <Reveal delayMs={80} className="shrink-0">
+            <GlassCard className="px-6 py-4 flex items-center gap-5">
+              <div>
+                <div className="font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                  <CountUp end={243000} suffix="+" useGrouping durationMs={2100} />
+                </div>
+                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC] mt-0.5">
+                  {t.hero.stat4Label} · 42+ Countries
+                </div>
+              </div>
+            </GlassCard>
+          </Reveal>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {testimonials.map((item, idx) => (

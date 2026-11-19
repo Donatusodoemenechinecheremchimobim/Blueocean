@@ -6,6 +6,7 @@ import { GlassCard } from '../components/GlassCard';
 import { MediaFrame } from '../components/MediaFrame';
 import { PartnerMarquee } from '../components/PartnerMarquee';
 import { Reveal } from '../components/Reveal';
+import { CountUp } from '../components/CountUp';
 
 const HQ_IMG = '/src/assets/images/business_treasury_hq_1795099381602.jpg';
 const WEALTH_IMG = '/src/assets/images/wealth_coastal_pavilion_1795099365607.jpg';
@@ -149,27 +150,27 @@ export const AboutPage: React.FC = () => {
         <GlassCard className="p-6 sm:p-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:divide-x divide-[#0A2342]/10 dark:divide-white/10">
             <div>
-              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Countries Connected</div>
+              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Global Customers</div>
               <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
-                42+
+                <CountUp end={243} suffix="K+" durationMs={1850} />
+              </div>
+            </div>
+            <div className="lg:pl-6">
+              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Countries Connected</div>
+              <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#0A1D37] dark:text-white">
+                <CountUp end={42} suffix="+" durationMs={1450} />
               </div>
             </div>
             <div className="lg:pl-6">
               <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Supported Currencies</div>
-              <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                38
-              </div>
-            </div>
-            <div className="lg:pl-6">
-              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Reserve Ratio</div>
               <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#921B2D] dark:text-[#EE6478]">
-                100% Liquid
+                <CountUp end={38} durationMs={1450} />
               </div>
             </div>
             <div className="lg:pl-6">
-              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Multilingual Support</div>
+              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Liquid Reserve Ratio</div>
               <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                24/7 · 6 Lang
+                <CountUp end={100} suffix="%" durationMs={1550} />
               </div>
             </div>
           </div>
