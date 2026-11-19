@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
               {t.footer.tagline}
             </p>
             <div className="text-xs font-mono tabular-nums text-[#5C6F87] dark:text-[#8BA4C2]">
-              ABA Routing: 021000842 · SWIFT: BLOCU33XXX
+              SWIFT/BIC: BLOCGB2LXXX · Global IBAN &amp; Multi-Rail Clearing
             </div>
           </div>
 
@@ -180,7 +180,7 @@ export const Footer: React.FC = () => {
           <p>{t.footer.fdicNotice}</p>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2">
             <span>{t.footer.rights}</span>
-            <span>New York · Boston · San Francisco · Chicago</span>
+            <span>London · Frankfurt · Singapore · New York · São Paulo</span>
           </div>
         </div>
       </div>

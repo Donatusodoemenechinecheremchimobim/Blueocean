@@ -34,14 +34,14 @@ export const PersonalBankingPage: React.FC = () => {
       legacy: '$12 – $25 / month',
     },
     {
-      feature: 'Nationwide Fee-Free ATMs',
-      blueOcean: '55,000+ Allpoint® + Rebates',
-      legacy: 'Branch network only',
+      feature: 'Worldwide Fee-Free ATMs',
+      blueOcean: '55,000+ Global ATMs + Fee Rebates',
+      legacy: 'Local branch network only',
     },
     {
-      feature: 'Early Direct Deposit',
-      blueOcean: 'Up to 2 days early',
-      legacy: 'Standard settlement',
+      feature: 'Multi-Currency & Early Payouts',
+      blueOcean: '38+ Currencies · Instant Clearing',
+      legacy: '3% FX markup · 3–5 day wires',
     },
     {
       feature: 'Overdraft Penalty Fees',
@@ -49,9 +49,9 @@ export const PersonalBankingPage: React.FC = () => {
       legacy: '$35 per occurrence',
     },
     {
-      feature: 'FDIC Deposit Coverage',
-      blueOcean: 'Up to $5,000,000 via Sweep',
-      legacy: '$250,000 standard cap',
+      feature: 'Partner Bank Deposit Shield',
+      blueOcean: 'Up to $5,000,000 Multi-Jurisdiction',
+      legacy: 'Single-country cap',
     },
   ];
 

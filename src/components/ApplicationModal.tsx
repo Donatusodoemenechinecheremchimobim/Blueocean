@@ -65,7 +65,7 @@ export const ApplicationModal: React.FC = () => {
                   {modal.mode === 'advisor' ? t.modal.titleAdvisor : t.modal.titleAccount}
                 </h2>
                 <p className="mt-1 text-xs text-[#5C6F87] dark:text-[#9EB4CC]">
-                  BlueOcean Bank, N.A. · Member FDIC · 256-Bit Encrypted Onboarding
+                  BlueOcean International Bank · 42+ Countries · 256-Bit Encrypted Onboarding
                 </p>
               </div>
               <button

@@ -21,60 +21,60 @@ interface Corridor {
 
 const CORRIDORS: Corridor[] = [
   {
-    id: 'us',
-    region: 'North America',
-    hubs: 'New York · Boston · San Francisco · Toronto',
-    currencies: 'USD · CAD · MXN',
-    settlement: 'Same-Day Fedwire & Instant FedNow®',
-    summary:
-      'Direct U.S. national banking charter rails with 55,000+ fee-free ATMs and automated multi-bank FDIC deposit sweep protection.',
-  },
-  {
     id: 'eu',
-    region: 'European Union & UK',
-    hubs: 'Frankfurt · Amsterdam · London · Madrid · Lisbon',
-    currencies: 'EUR · GBP · CHF',
-    settlement: 'SEPA Instant & Faster Payments',
+    region: 'Europe & UK',
+    hubs: 'London · Frankfurt · Amsterdam · Zurich · Madrid',
+    currencies: 'EUR · GBP · CHF · SEK',
+    settlement: 'SEPA Instant & UK Faster Payments',
     summary:
-      'Local euro and sterling settlement corridors engineered for remote professionals, exporters, and dual-continent families.',
-  },
-  {
-    id: 'latam',
-    region: 'Latin America & Atlantic',
-    hubs: 'Miami Gateway · São Paulo · Bogotá · Buenos Aires',
-    currencies: 'USD · BRL · COP',
-    settlement: 'Real-Time USD Treasury & Local FX',
-    summary:
-      'USD-denominated stability with transparent interbank conversion spreads and Portuguese/Spanish 24/7 customer support.',
+      'Local euro, sterling, and franc settlement corridors engineered for international professionals, exporters, and borderless families across Europe and the UK.',
   },
   {
     id: 'apac',
-    region: 'Global Trade Frontier',
+    region: 'Asia-Pacific & Middle East',
     hubs: 'Singapore · Tokyo · Sydney · Dubai',
     currencies: 'SGD · JPY · AUD · AED',
     settlement: '24/7 SWIFT GPI & Multi-Currency Wallets',
     summary:
-      'Hold, convert, and disburse across 38 currencies inside one unified Customer Portal with real-time settlement tracking.',
+      'Hold, convert, and disburse across 38 currencies inside one unified Customer Portal with real-time clearing visibility and interbank FX spreads.',
+  },
+  {
+    id: 'americas',
+    region: 'Americas & Atlantic',
+    hubs: 'New York · Toronto · São Paulo · Mexico City',
+    currencies: 'USD · CAD · BRL · MXN',
+    settlement: 'FedNow · Wire · Regional Instant Rails',
+    summary:
+      'Full cross-border USD, CAD, and LatAm liquidity—so North and South American customers bank seamlessly alongside European and APAC peers.',
+  },
+  {
+    id: 'global',
+    region: 'Global Expat & Remote',
+    hubs: '42+ Approved International Corridors',
+    currencies: '38 Currencies · Zero Hidden FX Markup',
+    settlement: 'Multi-Rail Instant Smart Routing',
+    summary:
+      'One global IBAN & multi-rail account with 55,000+ fee-free ATMs worldwide, instant virtual cards, and 24/7 multilingual specialists.',
   },
 ];
 
 export const AboutPage: React.FC = () => {
   const { navigate, openModal } = useApp();
-  const [selectedCorridor, setSelectedCorridor] = useState<string>('us');
+  const [selectedCorridor, setSelectedCorridor] = useState<string>('eu');
   const active = CORRIDORS.find((c) => c.id === selectedCorridor) ?? CORRIDORS[0];
 
   const milestones = [
     {
       year: '2021',
-      title: 'Chartered for Borderless Online Banking',
+      title: 'Built for Borderless Online Banking',
       detail:
-        'Founded by U.S. banking engineers and treasury veterans to eliminate opaque branch fees and slow international settlement.',
+        'Founded by international banking engineers and global treasury specialists to eliminate opaque branch fees and slow cross-border wires.',
     },
     {
       year: '2023',
-      title: 'Multi-Bank $5M FDIC Sweep Architecture',
+      title: 'Multi-Jurisdiction $5M Sweep Architecture',
       detail:
-        'Launched automated overnight liquidity distribution across 20 U.S. program banks, giving everyday customers institutional safety.',
+        'Launched automated overnight liquidity distribution across 20 regulated international partner banks, delivering institutional safety worldwide.',
     },
     {
       year: '2025',
@@ -86,7 +86,7 @@ export const AboutPage: React.FC = () => {
       year: '2026',
       title: 'BlueOcean Next-Gen Customer Portal',
       detail:
-        'Unified real-time Fedwire, machined Titanium & Crimson metal cards, savings vaults, and biometric passkeys in one seamless digital bank.',
+        'Unified real-time SWIFT GPI, SEPA Instant, FedNow, machined Titanium & Crimson metal cards, savings vaults, and biometric passkeys in one digital bank.',
     },
   ];
 
@@ -111,7 +111,7 @@ export const AboutPage: React.FC = () => {
               An online bank engineered for people and companies who live beyond one border.
             </h1>
             <p className="text-base text-[#3D536E] dark:text-[#B9CBE0] leading-relaxed">
-              BlueOcean Bank, N.A. pairs the regulatory rigor of an American FDIC-insured bank with the speed, clarity, and multi-currency reach of a modern international online platform.
+              BlueOcean International Bank operates on the global online banking frontier—combining multi-jurisdiction deposit safeguards with instant 38-currency accounts for customers across Europe, the UK, Asia-Pacific, Latin America, and North America.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <button
@@ -136,9 +136,9 @@ export const AboutPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={HQ_IMG}
-            alt="BlueOcean Bank architectural glass headquarters"
+            alt="BlueOcean International Bank architectural glass hub"
             aspectClass="aspect-[4/3] lg:h-full"
-            caption="Headquartered in New York with regional settlement hubs spanning Europe and the Americas."
+            caption="Global digital clearing hubs spanning London, Frankfurt, Singapore, New York, and São Paulo."
             priority
           />
         </div>
@@ -264,7 +264,7 @@ export const AboutPage: React.FC = () => {
                   <div>
                     <div className="font-semibold text-white">Conservative Reserve Custody</div>
                     <p className="mt-0.5 text-xs leading-relaxed">
-                      Customer deposits are never lent into speculative assets—backed by U.S. Treasuries and FDIC sweep networks.
+                      Customer deposits are never lent into speculative assets—backed 1:1 by G10 sovereign treasury bills and regulated international partner bank sweep networks.
                     </p>
                   </div>
                 </div>

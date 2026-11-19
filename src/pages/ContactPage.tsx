@@ -7,10 +7,10 @@ import { Reveal } from '../components/Reveal';
 
 const OFFICES = [
   {
-    city: 'New York — Global HQ',
-    address: '425 Hudson River Plaza, Suite 2800, New York, NY 10014',
-    hours: '24/7 Digital & Wire Operations',
-    phone: '+1 (212) 555-0184',
+    city: 'London — Global Clearing Hub',
+    address: '22 Bishopsgate, Level 31, London EC2N 4BQ, UK',
+    hours: '24/7 Digital & FX Operations',
+    phone: '+44 20 7946 0842',
   },
   {
     city: 'Frankfurt — EU Corridor Desk',
@@ -19,35 +19,35 @@ const OFFICES = [
     phone: '+49 69 5550 1920',
   },
   {
-    city: 'London — UK & FX Settlement',
-    address: '22 Bishopsgate, Level 31, London EC2N 4BQ, UK',
-    hours: 'Mon–Sat · 07:00–22:00 GMT',
-    phone: '+44 20 7946 0842',
+    city: 'Singapore — APAC & Trade Desk',
+    address: '10 Marina Boulevard, Tower 2, Singapore 018983',
+    hours: '24/7 Asia-Pacific Settlement',
+    phone: '+65 6555 0194',
   },
   {
-    city: 'Miami — Americas & LatAm Desk',
-    address: '801 Brickell Avenue, Floor 19, Miami, FL 33131',
-    hours: '24/7 Bilingual ES / PT / EN Desk',
-    phone: '+1 (305) 555-0197',
+    city: 'New York — Americas Desk',
+    address: '425 Hudson River Plaza, Suite 2800, New York, NY 10014',
+    hours: '24/7 EN / ES / PT Customer Desk',
+    phone: '+1 (212) 555-0184',
   },
 ];
 
 const FAQS = [
   {
-    q: 'Can international residents or global companies open a BlueOcean online account?',
-    a: 'Yes. BlueOcean supports U.S. residents, verified international professionals, and multi-entity operating companies across 42+ approved corridors with digital KYC verification.',
+    q: 'Who can open a BlueOcean international online banking account?',
+    a: 'BlueOcean welcomes individual customers, expats, and global operating companies across 42+ approved countries across Europe, the UK, Asia-Pacific, Latin America, and North America via digital verification.',
   },
   {
     q: 'How fast do international wire transfers and multi-currency payouts settle?',
-    a: 'Domestic Fedwire and SEPA Instant settle within seconds to same-day. Cross-border SWIFT GPI transfers across 38 currencies include real-time tracking inside the Customer Portal.',
+    a: 'SEPA Instant, UK Faster Payments, and FedNow settle within seconds. Cross-border SWIFT GPI transfers across 38 currencies include real-time settlement tracking inside the Customer Portal.',
   },
   {
     q: 'How do I report a lost Titanium card or suspected unauthorized activity?',
-    a: 'Freeze your card immediately in one tap inside the Customer Portal, or contact our 24/7 Fraud Operations Desk directly at +1 (800) 555-0199 for instant virtual replacement.',
+    a: 'Freeze your card immediately in one tap inside the Customer Portal, or contact our 24/7 Global Fraud Operations Desk directly at +44 20 7946 0899 / +1 (800) 555-0199 for instant virtual replacement.',
   },
   {
-    q: 'Are deposits protected by FDIC insurance?',
-    a: 'Yes. Standard FDIC coverage protects up to $250,000 per depositor directly, with extended pass-through sweep coverage up to $5,000,000 across our U.S. program bank network.',
+    q: 'How are deposits protected across international jurisdictions?',
+    a: 'Eligible balances receive up to $5,000,000 in combined pass-through deposit protection across our network of 20 regulated partner banks spanning EU DGS, UK FSCS, and U.S. FDIC corridors.',
   },
 ];
 
@@ -120,7 +120,7 @@ export const ContactPage: React.FC = () => {
                   24/7 Global Customer Line
                 </h2>
                 <p className="font-mono tabular-nums text-sm text-[#0A5C99] dark:text-[#78C7F6] mt-0.5">
-                  +1 (800) 555-0184 · Intl +1 (212) 555-0184
+                  +44 20 7946 0842 · +1 (212) 555-0184
                 </p>
                 <p className="text-xs text-[#5C6F87] dark:text-[#96AFCB] mt-1">
                   Average human answer time under 45 seconds.
@@ -251,7 +251,7 @@ export const ContactPage: React.FC = () => {
                     <option>Titanium, Oceanic &amp; Crimson Cards</option>
                     <option>Mortgages &amp; Lending Desk</option>
                     <option>Private Wealth Advisory</option>
-                    <option>Security, FDIC &amp; Fraud Protection</option>
+                    <option>Security, Deposit Protection &amp; Fraud Ops</option>
                   </select>
                 </div>
 

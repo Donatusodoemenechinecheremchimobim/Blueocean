@@ -23,36 +23,36 @@ const PORTFOLIOS: Record<
     targetRange: '5.2% – 6.8% Annualized',
     fee: '0.35% Fiduciary Advisory',
     description:
-      'Prioritizes principal preservation and tax-advantaged U.S. Treasury & Municipal bond ladders with low volatility.',
+      'Prioritizes principal preservation and tax-efficient G10 Sovereign & Treasury bond ladders with low multi-currency volatility.',
     allocations: [
-      { label: 'U.S. Treasury & Municipal Ladders', pct: 62, color: 'bg-[#0A5C99]' },
-      { label: 'Investment-Grade Corporate Credit', pct: 18, color: 'bg-[#2995D9]' },
-      { label: 'Dividend Quality Equities', pct: 12, color: 'bg-[#921B2D]' },
-      { label: 'Liquid Treasury Sweep Cash', pct: 8, color: 'bg-[#8799B0]' },
+      { label: 'G10 Sovereign & Treasury Ladders', pct: 62, color: 'bg-[#0A5C99]' },
+      { label: 'Global Investment-Grade Credit', pct: 18, color: 'bg-[#2995D9]' },
+      { label: 'Dividend Quality Global Equities', pct: 12, color: 'bg-[#921B2D]' },
+      { label: 'Liquid Multi-Currency Sweep Cash', pct: 8, color: 'bg-[#8799B0]' },
     ],
   },
   balanced: {
     targetRange: '7.4% – 9.6% Annualized',
     fee: '0.45% Fiduciary Advisory',
     description:
-      'Combines tax-loss harvested U.S. & Developed Direct Indexing with high-grade fixed income and real-asset ballast.',
+      'Combines tax-efficient global direct indexing across Europe, North America, and APAC with high-grade sovereign fixed income.',
     allocations: [
-      { label: 'Tax-Managed Direct Index Equities', pct: 48, color: 'bg-[#0A5C99]' },
-      { label: 'U.S. Treasury & Municipal Bonds', pct: 32, color: 'bg-[#2995D9]' },
+      { label: 'Tax-Managed Global Direct Equities', pct: 48, color: 'bg-[#0A5C99]' },
+      { label: 'Sovereign & Investment-Grade Bonds', pct: 32, color: 'bg-[#2995D9]' },
       { label: 'Private Credit & Real Assets', pct: 14, color: 'bg-[#921B2D]' },
-      { label: 'Liquid Treasury Sweep Cash', pct: 6, color: 'bg-[#8799B0]' },
+      { label: 'Liquid Multi-Currency Sweep Cash', pct: 6, color: 'bg-[#8799B0]' },
     ],
   },
   growth: {
     targetRange: '9.2% – 12.1% Annualized',
     fee: '0.50% Fiduciary Advisory',
     description:
-      'Long-horizon capital appreciation anchored in global public equities, private institutional co-investments, and active tax alpha.',
+      'Long-horizon capital appreciation anchored in global public equities, international private co-investments, and active currency hedging.',
     allocations: [
       { label: 'Global Direct Index Equities', pct: 66, color: 'bg-[#0A5C99]' },
       { label: 'Institutional Private Equity & Credit', pct: 18, color: 'bg-[#921B2D]' },
-      { label: 'Short-Duration U.S. Treasuries', pct: 12, color: 'bg-[#2995D9]' },
-      { label: 'Liquid Treasury Sweep Cash', pct: 4, color: 'bg-[#8799B0]' },
+      { label: 'Short-Duration Sovereign Bills', pct: 12, color: 'bg-[#2995D9]' },
+      { label: 'Liquid Multi-Currency Sweep Cash', pct: 4, color: 'bg-[#8799B0]' },
     ],
   },
 };
@@ -109,7 +109,7 @@ export const PrivateWealthPage: React.FC = () => {
             src={WEALTH_IMG}
             alt="BlueOcean minimalist coastal glass and brushed titanium private wealth pavilion"
             aspectClass="aspect-[16/10] lg:h-full"
-            caption="Private fiduciary offices serving families, executives, and endowments nationwide."
+            caption="Global fiduciary advisory offices serving families, executives, and endowments across Europe, the Americas, UK, and APAC."
             priority
           />
         </div>

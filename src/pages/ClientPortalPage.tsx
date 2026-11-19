@@ -220,7 +220,7 @@ export const ClientPortalPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/14 text-xs text-[#CFE2F4]">
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
-                <span>Up to $5,000,000 FDIC sweep insurance active</span>
+                <span>Up to $5,000,000 multi-jurisdiction deposit protection</span>
               </div>
               <div className="flex items-start gap-2">
                 <Globe2 className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
@@ -385,7 +385,7 @@ export const ClientPortalPage: React.FC = () => {
           <div className="rounded-2xl bg-gradient-to-r from-[#071D38] via-[#0B305C] to-[#0E4479] text-white p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/14 shadow-xl">
             <div>
               <div className="text-xs text-[#9CC5E8]">
-                {t.portal.totalLiquidity} · FDIC Insured Sweep Active
+                {t.portal.totalLiquidity} · Global Multi-Currency Sweep Active
               </div>
               <div className="mt-1 font-mono tabular-nums text-3xl sm:text-4xl font-semibold">
                 {formatCurrency(totalLiquidity)}
@@ -402,11 +402,11 @@ export const ClientPortalPage: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleCopyRouting('021000842')}
+                onClick={() => handleCopyRouting('BLOCGB2LXXX')}
                 className="inline-flex items-center gap-1.5 px-3.5 h-10 rounded-xl bg-white/12 hover:bg-white/20 text-white font-mono text-xs whitespace-nowrap transition-colors cursor-pointer"
               >
                 <Copy className="w-3.5 h-3.5" />
-                <span>ABA 021000842</span>
+                <span>SWIFT BLOCGB2LXXX</span>
               </button>
             </div>
           </div>

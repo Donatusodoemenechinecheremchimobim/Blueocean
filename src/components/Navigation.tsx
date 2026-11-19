@@ -455,7 +455,7 @@ export const Navigation: React.FC = () => {
                     {t.nav.divisionsHeading}
                   </span>
                   <p className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB]">
-                    BlueOcean Bank, N.A. · Member FDIC
+                    BlueOcean International Bank · 42+ Countries
                   </p>
                 </div>
                 <button

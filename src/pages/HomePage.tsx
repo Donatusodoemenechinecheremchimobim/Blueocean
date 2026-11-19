@@ -98,23 +98,23 @@ export const HomePage: React.FC = () => {
   const testimonials = [
     {
       quote:
-        'Moving our $3.2M operating reserve into BlueOcean Treasury Sweep generated $163,200 in annualized yield while expanding our FDIC protection across partner banks.',
+        'Moving our $3.2M operating reserve into BlueOcean Treasury Sweep generated $163,200 in annualized yield while protecting deposits across regulated European and North American partner banks.',
       name: 'David Halvorsen',
-      role: 'Chief Financial Officer · Northstar Logistics LLC',
+      role: 'Chief Financial Officer · Northstar Logistics · Zurich & New York',
       outcome: '+$163.2K Annualized Treasury Return',
     },
     {
       quote:
-        'We locked a 15-year coastal jumbo refinance in 68 hours with zero origination surprises and transparent line-by-line closing terms inside the digital portal.',
+        'We locked a 15-year cross-border property refinance in 68 hours with zero origination surprises and transparent line-by-line closing terms inside the digital portal.',
       name: 'Dr. Elena Rostova',
-      role: 'Cardiothoracic Surgeon · Boston, MA',
+      role: 'Cardiothoracic Surgeon · London, UK',
       outcome: 'Closed in 14 Business Days',
     },
     {
       quote:
-        'Managing personal savings vaults, family cards, and international euro wires from one calm glassmorphic interface replaced three separate legacy bank logins.',
+        'Managing personal savings vaults, family metal cards, and instant EUR, GBP, and USD transfers from one calm glassmorphic interface replaced three separate legacy bank logins.',
       name: 'Marcus & Sofia Delgado',
-      role: 'Architectural Studio Principals · Austin, TX',
+      role: 'Architectural Studio Principals · Madrid & São Paulo',
       outcome: '4.85% APY on Everyday Liquidity',
     },
   ];
@@ -305,7 +305,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 space-y-6">
               <div className="text-xs font-medium text-[#8ECBF6]">
-                Federal Reserve Direct Rails · ISO 27001 · SOC 2 Type II
+                SWIFT GPI · SEPA Instant · FedNow · ISO 27001 · SOC 2 Type II
               </div>
               <h2
                 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-white leading-tight"
@@ -320,11 +320,11 @@ export const HomePage: React.FC = () => {
               <ul className="space-y-3 text-sm text-[#DCEAF7]">
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Direct pass-through FDIC coverage up to $5,000,000 across 20 U.S. program banks</span>
+                  <span>Multi-jurisdiction deposit protection up to $5,000,000 across 20 regulated international partner banks</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Hardware passkey authentication with biometric wire verification</span>
+                  <span>Hardware passkey authentication with biometric cross-border transfer verification</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
@@ -421,7 +421,7 @@ export const HomePage: React.FC = () => {
                   +{formatCurrency(extraYield, 0)}
                 </div>
                 <div className="mt-2 text-xs text-[#6B414A] dark:text-[#D5A3AC]">
-                  Compared to 0.45% FDIC national avg
+                  Compared to 0.45% traditional legacy bank avg
                 </div>
               </div>
             </div>

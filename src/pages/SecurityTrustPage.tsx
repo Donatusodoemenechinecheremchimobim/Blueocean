@@ -16,13 +16,13 @@ const SAFEGUARDS = [
   },
   {
     id: 'sweep',
-    title: 'Multi-Bank $5,000,000 FDIC Insured Deposit Sweep',
-    detail: 'Automatically distributes balances across 20 FDIC-insured U.S. program institutions.',
+    title: 'Multi-Jurisdiction $5,000,000 Partner Bank Sweep Shield',
+    detail: 'Automatically distributes balances across 20 regulated international partner banks spanning EU DGS, UK FSCS, and U.S. FDIC corridors.',
   },
   {
     id: 'wire',
-    title: 'Dual-Approval Outbound Fedwire Verification',
-    detail: 'Requires out-of-band biometric confirmation on any wire exceeding your custom threshold.',
+    title: 'Dual-Approval Outbound Cross-Border Wire Verification',
+    detail: 'Requires out-of-band biometric confirmation on any SWIFT GPI, SEPA, or Fedwire release exceeding your custom threshold.',
   },
   {
     id: 'virtual',
@@ -110,10 +110,10 @@ export const SecurityTrustPage: React.FC = () => {
         <GlassCard className="p-7 space-y-3">
           <Landmark className="w-6 h-6 text-[#0A5C99] dark:text-[#78C7F6]" />
           <h2 className="font-display text-xl font-semibold text-[#0A1D37] dark:text-white">
-            Up to $5,000,000 FDIC Coverage
+            Up to $5,000,000 Multi-Jurisdiction Shield
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Balances beyond the standard $250,000 direct FDIC limit sweep automatically into our 20-bank insured deposit network with unified daily reporting.
+            Eligible deposits sweep automatically across our 20-bank international partner network (including EU DGS, UK FSCS, and U.S. FDIC institutions) with unified daily reporting.
           </p>
         </GlassCard>
 
@@ -123,7 +123,7 @@ export const SecurityTrustPage: React.FC = () => {
             Zero-Trust Passkey Custody
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Hardware security keys and device biometrics safeguard every session, wire release, and card limit modification.
+            Hardware security keys and device biometrics safeguard every session, cross-border transfer release, and card limit modification.
           </p>
         </GlassCard>
 
@@ -133,7 +133,7 @@ export const SecurityTrustPage: React.FC = () => {
             Zero Liability Fraud Guarantee
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Clients are never held financially responsible for verified unauthorized card charges or electronic transfers, backed by 24/7 U.S. specialists.
+            Customers are never held financially responsible for verified unauthorized card charges or electronic transfers, backed by 24/7 multilingual global specialists.
           </p>
         </GlassCard>
       </section>

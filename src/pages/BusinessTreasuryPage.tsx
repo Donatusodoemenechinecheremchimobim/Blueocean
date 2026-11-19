@@ -60,9 +60,9 @@ export const BusinessTreasuryPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={HQ_IMG}
-            alt="BlueOcean contemporary American commercial treasury headquarters glass atrium"
+            alt="BlueOcean international commercial treasury glass headquarters"
             aspectClass="aspect-[4/3] lg:h-full"
-            caption="Dedicated U.S. commercial treasury teams in New York, Chicago, and San Francisco."
+            caption="Dedicated international treasury desks in London, Frankfurt, Singapore, and New York."
             priority
           />
         </div>
@@ -81,7 +81,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.operatingDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#5C6F87] dark:text-[#96AFCB]">
-            Fedwire · Same-Day ACH · Dual Approval
+            SEPA Instant · SWIFT GPI · Fedwire · Dual Approval
           </div>
         </GlassCard>
 
@@ -96,7 +96,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.treasuryDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#8FD1FA]">
-            5.10% APY · T-Bill Ladder · $5M FDIC
+            5.10% APY · G10 Sovereign Bills · $5M Shield
           </div>
         </GlassCard>
 

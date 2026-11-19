@@ -170,7 +170,7 @@ const INITIAL_STATE: PersistedBankingState = {
     {
       id: 'tx-1004',
       date: '2026-11-15',
-      merchant: 'U.S. Treasury 4-Week T-Bill Maturity',
+      merchant: 'G10 Sovereign 4-Week T-Bill Maturity',
       category: 'Treasury',
       accountId: 'acc-treasury',
       type: 'credit',
@@ -225,7 +225,7 @@ const INITIAL_STATE: PersistedBankingState = {
     {
       id: 'tx-1009',
       date: '2026-11-08',
-      merchant: 'Four Seasons Hotel Boston',
+      merchant: 'Claridge’s Hotel London',
       category: 'Travel',
       accountId: 'acc-checking',
       type: 'debit',
