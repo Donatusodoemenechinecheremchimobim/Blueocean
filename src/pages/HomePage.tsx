@@ -98,24 +98,24 @@ export const HomePage: React.FC = () => {
   const testimonials = [
     {
       quote:
-        'Moving our $3.2M operating reserve into BlueOcean Treasury Sweep generated $163,200 in annualized yield while protecting deposits across regulated European and North American partner banks.',
+        'Moving our $3.2M operating reserve into BlueOcean Treasury Sweep generated $163,200 in annualized yield while keeping funds liquid and protected across our European and North American partner bank network.',
       name: 'David Halvorsen',
       role: 'Chief Financial Officer · Northstar Logistics · Zurich & New York',
       outcome: '+$163.2K Annualized Treasury Return',
     },
     {
       quote:
-        'We locked a 15-year cross-border property refinance in 68 hours with zero origination surprises and transparent line-by-line closing terms inside the digital portal.',
+        'We locked a 15-year cross-border property refinance in 68 hours with zero origination surprises and saved over $420 per month compared to our previous high-street lender.',
       name: 'Dr. Elena Rostova',
       role: 'Cardiothoracic Surgeon · London, UK',
       outcome: 'Closed in 14 Business Days',
     },
     {
       quote:
-        'Managing personal savings vaults, family metal cards, and instant EUR, GBP, and USD transfers from one calm glassmorphic interface replaced three separate legacy bank logins.',
+        'Consolidating our personal savings, business expenses, and monthly EUR, GBP, and USD supplier wires into BlueOcean eliminated over $1,900 a year in foreign exchange spreads and wire fees.',
       name: 'Marcus & Sofia Delgado',
       role: 'Architectural Studio Principals · Madrid & São Paulo',
-      outcome: '4.85% APY on Everyday Liquidity',
+      outcome: '$1,900+ Saved Annually on FX & Wires',
     },
   ];
 
