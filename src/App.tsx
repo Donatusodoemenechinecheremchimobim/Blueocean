@@ -16,6 +16,8 @@ import { CardsRewardsPage } from './pages/CardsRewardsPage';
 import { LoansMortgagesPage } from './pages/LoansMortgagesPage';
 import { PrivateWealthPage } from './pages/PrivateWealthPage';
 import { SecurityTrustPage } from './pages/SecurityTrustPage';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
 import { ClientPortalPage } from './pages/ClientPortalPage';
 
 const PageRouter: React.FC = () => {
@@ -35,6 +37,10 @@ const PageRouter: React.FC = () => {
         return <PrivateWealthPage />;
       case 'security':
         return <SecurityTrustPage />;
+      case 'about':
+        return <AboutPage />;
+      case 'contact':
+        return <ContactPage />;
       case 'portal':
         return <ClientPortalPage />;
       case 'home':

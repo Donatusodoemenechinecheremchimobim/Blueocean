@@ -25,8 +25,11 @@ export interface TranslationDictionary {
     loans: string;
     wealth: string;
     security: string;
+    about: string;
+    contact: string;
     more: string;
     portal: string;
+    dockPortal: string;
     openAccount: string;
     divisionsHeading: string;
     languageLabel: string;
@@ -258,8 +261,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Loans',
       wealth: 'Private Wealth',
       security: 'Security & FDIC',
+      about: 'About Us',
+      contact: 'Contact Us',
       more: 'More',
-      portal: 'Client Portal',
+      portal: 'Customer Portal',
+      dockPortal: 'Portal',
       openAccount: 'Open Account',
       divisionsHeading: 'Banking Divisions',
       languageLabel: 'Language',
@@ -274,12 +280,12 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Skip intro',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Member FDIC · Equal Housing Lender',
-      title: 'Precision American banking built for clarity and permanence.',
+      kicker: 'BlueOcean Bank, N.A. · Global Online Banking · Member FDIC',
+      title: 'Borderless online banking built for clarity and global trust.',
       description:
-        'High-yield personal deposits, institutional commercial treasury, machined titanium cards, and up to $5,000,000 in FDIC sweep protection—unified inside one transparent digital platform.',
+        'Open, manage, and move your money across borders from one modern online bank—engineered for instant international transfers, multi-currency accounts, 24/7 digital security, and everyday financial clarity.',
       primaryCta: 'Open an Account',
-      secondaryCta: 'Enter Client Portal',
+      secondaryCta: 'Enter Customer Portal',
       stat1Label: 'High-Yield Savings',
       stat1Value: '4.85% APY',
       stat2Label: 'Treasury Sweep',
@@ -308,7 +314,7 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       ctaTitle: 'Move your banking to calmer, higher-yield waters.',
       ctaDesc: 'Open a BlueOcean account in under four minutes with instant virtual card issuance and zero opening minimums.',
       ctaPrimary: 'Open Account Today',
-      ctaSecondary: 'Explore Demo Client Portal',
+      ctaSecondary: 'Explore Customer Portal',
     },
     personal: {
       kicker: 'Personal Banking · Member FDIC',
@@ -416,9 +422,9 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       reportFraud: 'Contact 24/7 Security Desk',
     },
     portal: {
-      loginTitle: 'BlueOcean Client Portal',
+      loginTitle: 'BlueOcean Customer Portal',
       loginSubtitle: 'Sign in with your credentials or explore the preloaded live banking workspace.',
-      emailLabel: 'Client Email',
+      emailLabel: 'Customer Email',
       passwordLabel: 'Passcode',
       signInCta: 'Sign In Securely',
       demoQuickCta: 'One-Click Demo Access',
@@ -500,8 +506,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Kredite',
       wealth: 'Private Banking',
       security: 'Sicherheit & FDIC',
+      about: 'Über uns',
+      contact: 'Kontakt',
       more: 'Mehr',
       portal: 'Kundenportal',
+      dockPortal: 'Portal',
       openAccount: 'Konto eröffnen',
       divisionsHeading: 'Geschäftsbereiche',
       languageLabel: 'Sprache',
@@ -516,10 +525,10 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Überspringen',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Mitglied FDIC · US-Einlagensicherung',
-      title: 'Präzises amerikanisches Banking für Klarheit und Beständigkeit.',
+      kicker: 'BlueOcean Bank, N.A. · Internationales Online-Banking · FDIC',
+      title: 'Grenzenloses Online-Banking für Klarheit und globales Vertrauen.',
       description:
-        'Hochverzinsliche Privatkonten, institutionelles Treasury-Management, gefräste Titankarten und bis zu 5.000.000 $ FDIC-Sweep-Schutz auf einer transparenten digitalen Plattform.',
+        'Eröffnen, verwalten und bewegen Sie Ihr Geld weltweit über eine moderne Online-Bank – mit internationalen Sofortüberweisungen, Mehrwährungskonten und digitaler 24/7-Sicherheit.',
       primaryCta: 'Konto eröffnen',
       secondaryCta: 'Zum Kundenportal',
       stat1Label: 'Tagesgeldzins',
@@ -742,8 +751,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Кредиты',
       wealth: 'Капитал',
       security: 'Безопасность',
+      about: 'О банке',
+      contact: 'Контакты',
       more: 'Ещё',
-      portal: 'Клиент-портал',
+      portal: 'Портал клиента',
+      dockPortal: 'Портал',
       openAccount: 'Открыть счёт',
       divisionsHeading: 'Подразделения банка',
       languageLabel: 'Язык',
@@ -758,10 +770,10 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Пропустить',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Участник FDIC · Лицензированный банк США',
-      title: 'Точный американский онлайн-банк для ясности и надёжности.',
+      kicker: 'BlueOcean Bank, N.A. · Международный онлайн-банк · FDIC',
+      title: 'Онлайн-банк без границ для ясности и глобального доверия.',
       description:
-        'Высокодоходные вклады, корпоративное казначейство, фрезерованные титановые карты и страховое покрытие FDIC до $5 000 000 в единой прозрачной цифровой системе.',
+        'Открывайте счета, управляйте сбережениями и переводите средства по всему миру из одного современного онлайн-банка с мультивалютными счетами и круглосуточной цифровой защитой.',
       primaryCta: 'Открыть счёт',
       secondaryCta: 'Войти в портал',
       stat1Label: 'Накопительный счёт',
@@ -900,7 +912,7 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       reportFraud: 'Связаться с центром безопасности 24/7',
     },
     portal: {
-      loginTitle: 'Клиент-портал BlueOcean',
+      loginTitle: 'Портал клиента BlueOcean',
       loginSubtitle: 'Войдите по данным клиента или откройте готовый интерактивный демо-кабинет.',
       emailLabel: 'Электронная почта',
       passwordLabel: 'Пароль',
@@ -984,8 +996,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Leningen',
       wealth: 'Vermogen',
       security: 'Veiligheid & FDIC',
+      about: 'Over ons',
+      contact: 'Contact',
       more: 'Meer',
       portal: 'Klantportaal',
+      dockPortal: 'Portaal',
       openAccount: 'Rekening openen',
       divisionsHeading: 'Bankdivisies',
       languageLabel: 'Taal',
@@ -1000,10 +1015,10 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Overslaan',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Lid FDIC · Amerikaanse Bankvergunning',
-      title: 'Nauwkeurig Amerikaans bankieren voor helderheid en zekerheid.',
+      kicker: 'BlueOcean Bank, N.A. · Internationaal Online Bankieren · FDIC',
+      title: 'Grenzeloos online bankieren voor helderheid en vertrouwen.',
       description:
-        'Hoogrentend sparen, zakelijk treasurybeheer, gefreesde titanium kaarten en tot $5.000.000 FDIC-sweepdekking binnen één transparant digitaal platform.',
+        'Open, beheer en verplaats uw geld wereldwijd vanuit één moderne online bank—ontworpen voor snelle internationale overboekingen, meerdere valuta’s en 24/7 digitale beveiliging.',
       primaryCta: 'Rekening openen',
       secondaryCta: 'Naar klantportaal',
       stat1Label: 'Hoogrentend Sparen',
@@ -1226,8 +1241,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Préstamos',
       wealth: 'Banca Privada',
       security: 'Seguridad y FDIC',
+      about: 'Nosotros',
+      contact: 'Contacto',
       more: 'Más',
-      portal: 'Portal Cliente',
+      portal: 'Portal del Cliente',
+      dockPortal: 'Portal',
       openAccount: 'Abrir cuenta',
       divisionsHeading: 'Divisiones Bancarias',
       languageLabel: 'Idioma',
@@ -1242,10 +1260,10 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Saltar intro',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Miembro FDIC · Prestamista de Vivienda Equitativa',
-      title: 'Banca digital estadounidense diseñada para claridad y solidez.',
+      kicker: 'BlueOcean Bank, N.A. · Banca Online Internacional · FDIC',
+      title: 'Banca en línea sin fronteras creada para claridad y confianza.',
       description:
-        'Cuentas de ahorro de alto rendimiento, tesorería corporativa, tarjetas mecanizadas en titanio y protección FDIC de hasta $5,000,000 en una plataforma transparente.',
+        'Abre, administra y mueve tu dinero por todo el mundo desde un banco digital moderno—diseñado para transferencias internacionales al instante, cuentas multidivisa y seguridad 24/7.',
       primaryCta: 'Abrir una cuenta',
       secondaryCta: 'Entrar al Portal',
       stat1Label: 'Ahorro Alto Rendimiento',
@@ -1384,7 +1402,7 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       reportFraud: 'Contactar mesa de seguridad 24/7',
     },
     portal: {
-      loginTitle: 'Portal de Clientes BlueOcean',
+      loginTitle: 'Portal del Cliente BlueOcean',
       loginSubtitle: 'Inicia sesión o accede al entorno bancario interactivo precargado.',
       emailLabel: 'Correo electrónico',
       passwordLabel: 'Clave de acceso',
@@ -1468,8 +1486,11 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       loans: 'Crédito',
       wealth: 'Private Wealth',
       security: 'Segurança e FDIC',
+      about: 'Sobre Nós',
+      contact: 'Contato',
       more: 'Mais',
-      portal: 'Portal Cliente',
+      portal: 'Portal do Cliente',
+      dockPortal: 'Portal',
       openAccount: 'Abrir conta',
       divisionsHeading: 'Divisões Bancárias',
       languageLabel: 'Idioma',
@@ -1484,10 +1505,10 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
       skip: 'Pular introdução',
     },
     hero: {
-      kicker: 'BlueOcean Bank, N.A. · Membro FDIC · Banco Americano Licenciado',
-      title: 'Banco digital americano construído para clareza e solidez.',
+      kicker: 'BlueOcean Bank, N.A. · Banco Online Internacional · FDIC',
+      title: 'Banco online sem fronteiras criado para clareza e confiança global.',
       description:
-        'Poupança de alto rendimento, tesouraria corporativa, cartões em titânio escovado e proteção FDIC de até US$ 5.000.000 em uma plataforma transparente.',
+        'Abra, gerencie e movimente seu dinheiro pelo mundo em um único banco digital moderno—feito para transferências internacionais rápidas, contas multimoeda e proteção digital 24/7.',
       primaryCta: 'Abrir uma conta',
       secondaryCta: 'Entrar no Portal',
       stat1Label: 'Poupança Alto Rendimento',

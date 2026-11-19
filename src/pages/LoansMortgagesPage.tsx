@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Home, RefreshCw, Car, Briefcase } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { GlassCard } from '../components/GlassCard';
+import { Reveal } from '../components/Reveal';
 
 export const LoansMortgagesPage: React.FC = () => {
   const { t, openModal, formatCurrency } = useApp();
@@ -44,7 +45,7 @@ export const LoansMortgagesPage: React.FC = () => {
       icon: <Car className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       title: 'Auto & EV Financing',
       rate: 'From 5.29% APR',
-      desc: 'Direct dealer or private-party financing up to $180,000 with same-day funding approval inside the Client Portal.',
+      desc: 'Direct dealer or private-party financing up to $180,000 with same-day funding approval inside the Customer Portal.',
     },
     {
       icon: <Briefcase className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
@@ -56,25 +57,26 @@ export const LoansMortgagesPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 space-y-16">
-      {/* Header */}
+      {/* Glassmorphic Header */}
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-3xl space-y-4"
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
-          {t.loans.kicker}
-        </p>
-        <h1
-          className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
-          style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.35rem)', textWrap: 'balance' }}
-        >
-          {t.loans.title}
-        </h1>
-        <p className="text-base sm:text-lg text-[#435A75] dark:text-[#B4C8DE] leading-relaxed">
-          {t.loans.subtitle}
-        </p>
+        <GlassCard className="p-7 sm:p-10 max-w-4xl space-y-4">
+          <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+            {t.loans.kicker}
+          </p>
+          <h1
+            className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
+            style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.35rem)', textWrap: 'balance' }}
+          >
+            {t.loans.title}
+          </h1>
+          <p className="text-base sm:text-lg text-[#354E6B] dark:text-[#BDD0E4] leading-relaxed">
+            {t.loans.subtitle}
+          </p>
+        </GlassCard>
       </motion.section>
 
       {/* Interactive Mortgage & Amortization Calculator */}
@@ -243,6 +245,7 @@ export const LoansMortgagesPage: React.FC = () => {
       </section>
 
       {/* Lending Division Grid */}
+      <Reveal>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {loanProducts.map((prod) => (
           <GlassCard key={prod.title} className="p-7 flex flex-col justify-between">
@@ -265,6 +268,7 @@ export const LoansMortgagesPage: React.FC = () => {
           </GlassCard>
         ))}
       </section>
+      </Reveal>
     </div>
   );
 };

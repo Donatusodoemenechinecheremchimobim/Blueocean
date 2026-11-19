@@ -16,6 +16,7 @@ import { MetalCard3D } from '../components/MetalCard3D';
 import { MediaFrame } from '../components/MediaFrame';
 import { VideoShowcase } from '../components/VideoShowcase';
 import { Reveal } from '../components/Reveal';
+import { PartnerMarquee } from '../components/PartnerMarquee';
 
 const HERO_IMG = '/src/assets/images/hero_oceanic_architecture_1795099364980.jpg';
 const HERO_VIDEO = '/blueocean-showcase.mp4';
@@ -87,7 +88,7 @@ export const HomePage: React.FC = () => {
       id: 'security',
       index: '06',
       title: t.nav.security,
-      metric: 'Hardware Passkeys · 24/7 U.S. Fraud Ops',
+      metric: 'Hardware Passkeys · 24/7 Global Fraud Ops',
       desc: t.security.subtitle,
       icon: <ShieldCheck className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       span: 'lg:col-span-6',
@@ -119,53 +120,55 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-24 sm:space-y-28">
-      {/* SECTION 1: HERO SPLIT + FULL-WIDTH 4-COLUMN RATE STRIP */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          {/* Left Editorial Proposition */}
+    <div className="space-y-20 sm:space-y-28">
+      {/* SECTION 1: HERO SPLIT + 4-COLUMN RATE STRIP + PARTNER MARQUEE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-5 sm:pt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* Left Glassmorphic Editorial Proposition */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6 flex flex-col justify-center space-y-6"
+            className="lg:col-span-6 flex"
           >
-            <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#7CC8F8]">
-              {t.hero.kicker}
-            </p>
+            <GlassCard className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center space-y-5 sm:space-y-6 w-full">
+              <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#7CC8F8]">
+                {t.hero.kicker}
+              </p>
 
-            <h1
-              className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-[1.08] max-w-2xl"
-              style={{
-                fontSize: 'clamp(2.25rem, 4.1vw, 3.65rem)',
-                textWrap: 'balance',
-              }}
-            >
-              {t.hero.title}
-            </h1>
-
-            <p className="text-base sm:text-lg text-[#3D536E] dark:text-[#B9CBE0] leading-relaxed max-w-xl">
-              {t.hero.description}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <button
-                type="button"
-                onClick={() => openModal({ mode: 'account' })}
-                className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] active:scale-[0.98] text-white text-sm font-medium transition-all shadow-[0_12px_28px_-8px_rgba(146,27,45,0.55)] whitespace-nowrap shrink-0 cursor-pointer"
+              <h1
+                className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-[1.07]"
+                style={{
+                  fontSize: 'clamp(2.05rem, 3.85vw, 3.45rem)',
+                  textWrap: 'balance',
+                }}
               >
-                <span>{t.hero.primaryCta}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+                {t.hero.title}
+              </h1>
 
-              <button
-                type="button"
-                onClick={() => navigate('portal')}
-                className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-xl glass-panel hover:bg-white/90 dark:hover:bg-white/12 text-[#0A1D37] dark:text-white text-sm font-medium transition-all whitespace-nowrap shrink-0 cursor-pointer"
-              >
-                <span>{t.hero.secondaryCta}</span>
-              </button>
-            </div>
+              <p className="text-[15px] sm:text-base text-[#2E4662] dark:text-[#C0D3E8] leading-relaxed">
+                {t.hero.description}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap items-center gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() => openModal({ mode: 'account' })}
+                  className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] active:scale-[0.98] text-white text-sm font-medium transition-all shadow-[0_12px_28px_-8px_rgba(146,27,45,0.55)] whitespace-nowrap cursor-pointer"
+                >
+                  <span>{t.hero.primaryCta}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigate('portal')}
+                  className="inline-flex items-center justify-center gap-2 px-6 h-12 rounded-xl bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/16 border border-[#0A2342]/14 dark:border-white/16 text-[#0A1D37] dark:text-white text-sm font-medium transition-all whitespace-nowrap cursor-pointer"
+                >
+                  <span>{t.hero.secondaryCta}</span>
+                </button>
+              </div>
+            </GlassCard>
           </motion.div>
 
           {/* Right Architectural 3D Visual Carrier */}
@@ -175,12 +178,12 @@ export const HomePage: React.FC = () => {
             transition={{ duration: 0.72, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-6 relative flex flex-col"
           >
-            <div className="relative flex-1 min-h-[340px] lg:min-h-[450px]">
+            <div className="relative flex-1 min-h-[300px] sm:min-h-[380px] lg:min-h-[450px]">
               <VideoShowcase
                 src={HERO_VIDEO}
                 poster={HERO_IMG}
                 alt="BlueOcean Global Banking platform showcase film"
-                className="w-full h-full min-h-[340px] lg:min-h-[450px]"
+                className="w-full h-full min-h-[300px] sm:min-h-[380px] lg:min-h-[450px]"
               />
 
               {/* Floating Translucent Titanium Glass Preview */}
@@ -197,7 +200,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Full-Width 4-Column Institutional Metrics Strip below Hero Split */}
-        <Reveal delayMs={90} className="mt-14 lg:mt-16">
+        <Reveal delayMs={80} className="mt-10 lg:mt-14">
           <GlassCard className="p-6 sm:p-7">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 lg:divide-x divide-[#0A2342]/10 dark:divide-white/10">
               <div className="pt-2 sm:pt-0">
@@ -234,6 +237,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
           </GlassCard>
+        </Reveal>
+
+        {/* Infinite Rotating Banking & Fintech Ecosystem Partners */}
+        <Reveal delayMs={120} className="mt-6">
+          <PartnerMarquee />
         </Reveal>
       </section>
 
@@ -320,7 +328,7 @@ export const HomePage: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Instant virtual card generation and single-tap freeze inside the Client Portal</span>
+                  <span>Instant virtual card generation and single-tap freeze inside the Customer Portal</span>
                 </li>
               </ul>
 
@@ -459,8 +467,62 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* SECTION 5B: INTERNATIONAL FRONTIER & DIRECT SUPPORT GATEWAY */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Reveal>
+            <GlassCard
+              interactive
+              onClick={() => navigate('about')}
+              className="p-7 sm:p-8 h-full flex flex-col justify-between group"
+            >
+              <div className="space-y-3">
+                <div className="font-mono text-xs font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+                  {t.nav.about} · International Frontier
+                </div>
+                <h3 className="font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
+                  An online bank built for cross-border clarity
+                </h3>
+                <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
+                  Explore our global clearing hubs across New York, Frankfurt, Amsterdam, and São Paulo, our charter governance, and our partner bank rails.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#0A2342]/10 dark:border-white/10 flex items-center justify-between text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+                <span>{t.nav.about}</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </div>
+            </GlassCard>
+          </Reveal>
+
+          <Reveal delayMs={80}>
+            <GlassCard
+              interactive
+              onClick={() => navigate('contact')}
+              className="p-7 sm:p-8 h-full flex flex-col justify-between group"
+            >
+              <div className="space-y-3">
+                <div className="font-mono text-xs font-medium text-[#921B2D] dark:text-[#EB5B70]">
+                  {t.nav.contact} · 24/7 Global Support
+                </div>
+                <h3 className="font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
+                  Speak with a real BlueOcean banking specialist
+                </h3>
+                <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
+                  Reach our multilingual personal, wire, and commercial treasury desks by phone, encrypted message, or regional office appointment.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#0A2342]/10 dark:border-white/10 flex items-center justify-between text-sm font-medium text-[#921B2D] dark:text-[#EB5B70]">
+                <span>{t.nav.contact}</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </div>
+            </GlassCard>
+          </Reveal>
+        </div>
+      </section>
+
       {/* SECTION 6: CONVERSION BAND */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
+        <Reveal>
         <GlassCard className="p-8 sm:p-12 text-center">
           <h2
             className="font-display text-3xl sm:text-4xl font-semibold text-[#081A33] dark:text-white max-w-2xl mx-auto"
@@ -471,7 +533,7 @@ export const HomePage: React.FC = () => {
           <p className="mt-3 text-base text-[#445A75] dark:text-[#AFC3D8] max-w-xl mx-auto">
             {t.home.ctaDesc}
           </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3.5">
+          <div className="mt-7 grid grid-cols-1 sm:flex sm:flex-wrap items-center justify-center gap-3.5 max-w-md sm:max-w-none mx-auto">
             <button
               type="button"
               onClick={() => openModal({ mode: 'account' })}
@@ -482,12 +544,13 @@ export const HomePage: React.FC = () => {
             <button
               type="button"
               onClick={() => navigate('portal')}
-              className="px-6 h-12 rounded-xl border border-[#0A2342]/16 dark:border-white/20 text-[#0A1D37] dark:text-white hover:bg-[#0A2342]/6 dark:hover:bg-white/10 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer"
+              className="px-6 h-12 rounded-xl bg-white/80 dark:bg-white/10 border border-[#0A2342]/16 dark:border-white/20 text-[#0A1D37] dark:text-white hover:bg-white dark:hover:bg-white/16 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer"
             >
               {t.home.ctaSecondary}
             </button>
           </div>
         </GlassCard>
+        </Reveal>
       </section>
     </div>
   );

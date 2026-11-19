@@ -9,6 +9,8 @@ export type PageRoute =
   | 'loans'
   | 'wealth'
   | 'security'
+  | 'about'
+  | 'contact'
   | 'portal';
 
 export type ThemeMode = 'light' | 'dark';
@@ -53,6 +55,8 @@ const VALID_ROUTES: PageRoute[] = [
   'loans',
   'wealth',
   'security',
+  'about',
+  'contact',
   'portal',
 ];
 

@@ -4,6 +4,7 @@ import { Building2, Globe2, Layers, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { GlassCard } from '../components/GlassCard';
 import { MediaFrame } from '../components/MediaFrame';
+import { Reveal } from '../components/Reveal';
 
 const HQ_IMG = '/src/assets/images/business_treasury_hq_1795099381602.jpg';
 
@@ -21,37 +22,39 @@ export const BusinessTreasuryPage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 flex flex-col justify-center space-y-5"
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-6 flex"
         >
-          <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
-            {t.business.kicker}
-          </p>
-          <h1
-            className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
-            style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.3rem)', textWrap: 'balance' }}
-          >
-            {t.business.title}
-          </h1>
-          <p className="text-base sm:text-lg text-[#435A75] dark:text-[#B4C8DE] leading-relaxed">
-            {t.business.subtitle}
-          </p>
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={() =>
-                openModal({
-                  mode: 'advisor',
-                  defaultProduct: 'Business Operating & Treasury Sweep',
-                  defaultAmount: String(reserves),
-                })
-              }
-              className="inline-flex items-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
+          <GlassCard className="p-7 sm:p-9 flex flex-col justify-center space-y-5 w-full">
+            <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+              {t.business.kicker}
+            </p>
+            <h1
+              className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
+              style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.3rem)', textWrap: 'balance' }}
             >
-              <span>{t.business.scheduleTreasury}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+              {t.business.title}
+            </h1>
+            <p className="text-base sm:text-lg text-[#354E6B] dark:text-[#BDD0E4] leading-relaxed">
+              {t.business.subtitle}
+            </p>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() =>
+                  openModal({
+                    mode: 'advisor',
+                    defaultProduct: 'Business Operating & Treasury Sweep',
+                    defaultAmount: String(reserves),
+                  })
+                }
+                className="inline-flex items-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
+              >
+                <span>{t.business.scheduleTreasury}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </GlassCard>
         </motion.div>
 
         <div className="lg:col-span-6">
@@ -114,6 +117,7 @@ export const BusinessTreasuryPage: React.FC = () => {
       </section>
 
       {/* Corporate Cash Yield Estimator */}
+      <Reveal>
       <section>
         <GlassCard className="p-7 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -180,6 +184,7 @@ export const BusinessTreasuryPage: React.FC = () => {
           </div>
         </GlassCard>
       </section>
+      </Reveal>
     </div>
   );
 };

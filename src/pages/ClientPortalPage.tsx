@@ -22,6 +22,10 @@ import {
   Moon,
   ArrowUpRight,
   ArrowDownLeft,
+  ShieldCheck,
+  Globe2,
+  Send,
+  Sparkles,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { useBanking } from '../context/BankingContext';
@@ -60,6 +64,7 @@ export const ClientPortalPage: React.FC = () => {
 
   // Portal Navigation & Interactive State
   const [activeTab, setActiveTab] = useState<PortalTab>('overview');
+  const [selectedMonthIdx, setSelectedMonthIdx] = useState<number>(5);
 
   // Transfer Form
   const [transferMode, setTransferMode] = useState<'internal' | 'wire' | 'bill'>('internal');
@@ -163,94 +168,146 @@ export const ClientPortalPage: React.FC = () => {
     );
   };
 
-  // DEMO SIGN-IN GATEWAY
+  // ARCHITECTURAL GLASS VAULT CUSTOMER PORTAL SIGN-IN
   if (!isAuthenticated) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-16">
-        <div className="max-w-md mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch"
+        >
+          {/* Left Deep Oceanic Vault Identity Panel */}
+          <GlassCard
+            variant="oceanic"
+            className="lg:col-span-6 p-7 sm:p-9 flex flex-col justify-between gap-8"
           >
-            <GlassCard className="p-7 sm:p-9 space-y-6">
-              <div className="text-center space-y-3">
-                <div className="flex justify-center">
-                  <BlueOceanLogo size={48} variant={theme === 'dark' ? 'light' : 'default'} />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <BlueOceanLogo size={38} variant="light" />
+                <div>
+                  <div className="font-display font-bold text-lg tracking-tight text-white">
+                    BlueOcean
+                  </div>
+                  <div className="text-[11px] font-mono text-[#8FD1FA]">
+                    {t.nav.portal} · TLS 1.3 · FIDO2
+                  </div>
                 </div>
-                <h1 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                  {t.portal.loginTitle}
-                </h1>
-                <p className="text-sm text-[#4A607A] dark:text-[#A9BED6]">
-                  {t.portal.loginSubtitle}
-                </p>
               </div>
 
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  signIn(loginEmail);
-                }}
-                className="space-y-4"
+              <h1
+                className="font-display text-2xl sm:text-3xl font-semibold text-white leading-tight pt-1"
+                style={{ textWrap: 'balance' }}
               >
-                <div>
-                  <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
-                    {t.portal.emailLabel}
-                  </label>
-                  <input
-                    type="email"
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-xl bg-white/85 dark:bg-[#061830]/75 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
-                    required
-                  />
-                </div>
+                {t.portal.loginTitle}
+              </h1>
+              <p className="text-sm text-[#C3DAEE] leading-relaxed">
+                {t.portal.loginSubtitle}
+              </p>
+            </div>
 
-                <div>
-                  <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
-                    {t.portal.passwordLabel}
-                  </label>
-                  <input
-                    type="password"
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                    className="w-full h-11 px-3.5 rounded-xl bg-white/85 dark:bg-[#061830]/75 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
-                    required
-                  />
-                </div>
+            <div className="py-2">
+              <MetalCard3D
+                finish="titanium"
+                title="Titanium Reserve"
+                holder={profile.name.toUpperCase()}
+                maskedNumber="4532  ••••  ••••  4821"
+                compact
+              />
+            </div>
 
-                <button
-                  type="submit"
-                  className="w-full h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg cursor-pointer"
-                >
-                  {t.portal.signInCta}
-                </button>
-              </form>
+            <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/14 text-xs text-[#CFE2F4]">
+              <div className="flex items-start gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
+                <span>Up to $5,000,000 FDIC sweep insurance active</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Globe2 className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
+                <span>38+ international currencies &amp; instant wires</span>
+              </div>
+            </div>
+          </GlassCard>
 
-              <div className="relative flex items-center justify-center">
-                <div className="h-px w-full bg-[#0A2342]/10 dark:bg-white/12" />
+          {/* Right Frosted Glass Sign-In Form */}
+          <GlassCard className="lg:col-span-6 p-7 sm:p-10 flex flex-col justify-center space-y-6">
+            <div className="space-y-1.5">
+              <div className="text-xs font-mono font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+                {t.nav.portal}
+              </div>
+              <h2 className="font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
+                {t.portal.signInCta}
+              </h2>
+              <p className="text-xs sm:text-sm text-[#4A607A] dark:text-[#A9BED6]">
+                Access live balances, wire settlements, savings vaults, and metal card controls.
+              </p>
+            </div>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                signIn(loginEmail);
+              }}
+              className="space-y-4"
+            >
+              <div>
+                <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
+                  {t.portal.emailLabel}
+                </label>
+                <input
+                  type="email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  className="w-full h-12 px-4 rounded-xl bg-white/85 dark:bg-[#061830]/75 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
+                  {t.portal.passwordLabel}
+                </label>
+                <input
+                  type="password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  className="w-full h-12 px-4 rounded-xl bg-white/85 dark:bg-[#061830]/75 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
+                  required
+                />
               </div>
 
               <button
-                type="button"
-                onClick={() => signIn(profile.email)}
-                className="w-full h-11 rounded-xl bg-[#0A5C99]/10 hover:bg-[#0A5C99]/18 dark:bg-white/10 dark:hover:bg-white/16 text-[#0A5C99] dark:text-[#8CD2FA] text-sm font-medium transition-colors cursor-pointer"
+                type="submit"
+                className="w-full h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] active:scale-[0.99] text-white text-sm font-medium transition-all shadow-[0_12px_28px_-8px_rgba(146,27,45,0.5)] cursor-pointer"
               >
-                {t.portal.demoQuickCta}
+                {t.portal.signInCta}
               </button>
+            </form>
 
-              <p className="text-xs text-center text-[#5C6F87] dark:text-[#90AAC7] flex items-center justify-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 shrink-0" />
-                <span>{t.portal.demoNotice}</span>
-              </p>
-            </GlassCard>
-          </motion.div>
-        </div>
+            <div className="relative flex items-center justify-center">
+              <div className="h-px w-full bg-[#0A2342]/10 dark:bg-white/12" />
+            </div>
+
+            <button
+              type="button"
+              onClick={() => signIn(profile.email)}
+              className="w-full h-12 rounded-xl bg-[#0A5C99]/10 hover:bg-[#0A5C99]/18 dark:bg-white/10 dark:hover:bg-white/16 border border-[#0A5C99]/18 dark:border-white/12 text-[#0A5C99] dark:text-[#8CD2FA] text-sm font-medium transition-colors inline-flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>{t.portal.demoQuickCta}</span>
+            </button>
+
+            <p className="text-xs text-center text-[#5C6F87] dark:text-[#90AAC7] flex items-center justify-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 shrink-0" />
+              <span>{t.portal.demoNotice}</span>
+            </p>
+          </GlassCard>
+        </motion.div>
       </div>
     );
   }
 
-  // AUTHENTICATED CLIENT PORTAL WORKSPACE
+  // AUTHENTICATED CUSTOMER PORTAL WORKSPACE
   const portalTabs: { id: PortalTab; label: string; icon: React.ReactNode }[] = [
     { id: 'overview', label: t.portal.tabOverview, icon: <LayoutDashboard className="w-4 h-4" /> },
     { id: 'transfers', label: t.portal.tabTransfers, icon: <ArrowLeftRight className="w-4 h-4" /> },
@@ -357,6 +414,81 @@ export const ClientPortalPage: React.FC = () => {
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'overview' && (
             <div className="space-y-6">
+              {/* Tactile Glass Quick Actions Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('transfers')}
+                  className="glass-panel rounded-2xl p-4 text-left hover:bg-white/90 dark:hover:bg-white/12 transition-all flex items-center gap-3 cursor-pointer"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#921B2D]/12 dark:bg-[#921B2D]/25 text-[#921B2D] dark:text-[#F06D80] flex items-center justify-center shrink-0">
+                    <Send className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold text-[#0A1D37] dark:text-white truncate">
+                      {t.portal.tabTransfers}
+                    </div>
+                    <div className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] truncate">
+                      ACH &amp; SWIFT
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('cards')}
+                  className="glass-panel rounded-2xl p-4 text-left hover:bg-white/90 dark:hover:bg-white/12 transition-all flex items-center gap-3 cursor-pointer"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#0A5C99]/12 dark:bg-[#0A5C99]/25 text-[#0A5C99] dark:text-[#78C7F6] flex items-center justify-center shrink-0">
+                    <CreditCard className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold text-[#0A1D37] dark:text-white truncate">
+                      {t.portal.tabCards}
+                    </div>
+                    <div className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] truncate">
+                      {cards.length} Metal Cards
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('vaults')}
+                  className="glass-panel rounded-2xl p-4 text-left hover:bg-white/90 dark:hover:bg-white/12 transition-all flex items-center gap-3 cursor-pointer"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#0A5C99]/12 dark:bg-[#0A5C99]/25 text-[#0A5C99] dark:text-[#78C7F6] flex items-center justify-center shrink-0">
+                    <PiggyBank className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold text-[#0A1D37] dark:text-white truncate">
+                      {t.portal.tabVaults}
+                    </div>
+                    <div className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] truncate">
+                      4.85% APY
+                    </div>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => exportTransactionsCsv(transactions)}
+                  className="glass-panel rounded-2xl p-4 text-left hover:bg-white/90 dark:hover:bg-white/12 transition-all flex items-center gap-3 cursor-pointer"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#0A2342]/10 dark:bg-white/12 text-[#0A1D37] dark:text-white flex items-center justify-center shrink-0">
+                    <Download className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-semibold text-[#0A1D37] dark:text-white truncate">
+                      {t.portal.exportCsv}
+                    </div>
+                    <div className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] truncate">
+                      {transactions.length} Entries
+                    </div>
+                  </div>
+                </button>
+              </div>
+
               {/* 3 Account Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {accounts.map((acc) => (
@@ -379,51 +511,78 @@ export const ClientPortalPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* 6-Month Cashflow Chart */}
+              {/* Interactive 6-Month Cashflow Chart */}
               <GlassCard className="p-6">
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
                     <h3 className="font-display text-lg font-semibold text-[#0A1D37] dark:text-white">
                       6-Month Cashflow &amp; Treasury Inflows
                     </h3>
                     <p className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">
-                      Inflows vs. Outflows across all linked BlueOcean accounts
+                      Tap any month to inspect inflows, outflows, and net liquidity
                     </p>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-[#4A607A] dark:text-[#B4C7DC]">
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-sm bg-[#0A5C99] dark:bg-[#6BC2F5]" />
-                      Inflow
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-sm bg-[#921B2D] dark:bg-[#E05368]" />
-                      Outflow
-                    </span>
-                  </div>
+                  {cashflowBars[selectedMonthIdx] && (
+                    <div className="flex flex-wrap items-center gap-3 px-3.5 py-2 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 text-xs font-mono tabular-nums">
+                      <span className="font-semibold text-[#0A1D37] dark:text-white">
+                        {cashflowBars[selectedMonthIdx].month}
+                      </span>
+                      <span className="text-[#0A5C99] dark:text-[#78C7F6]">
+                        +{formatCurrency(cashflowBars[selectedMonthIdx].inVal, 0)}
+                      </span>
+                      <span className="text-[#921B2D] dark:text-[#F06D80]">
+                        -{formatCurrency(cashflowBars[selectedMonthIdx].outVal, 0)}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                <div className="grid grid-cols-6 gap-3 sm:gap-5 items-end h-44 pt-4">
-                  {cashflowBars.map((b) => {
+                <div className="grid grid-cols-6 gap-2 sm:gap-5 items-end h-44 pt-4">
+                  {cashflowBars.map((b, idx) => {
                     const inH = Math.round((b.inVal / 28000) * 100);
                     const outH = Math.round((b.outVal / 28000) * 100);
+                    const isSelected = idx === selectedMonthIdx;
                     return (
-                      <div key={b.month} className="flex flex-col items-center h-full justify-end gap-2">
+                      <button
+                        key={b.month}
+                        type="button"
+                        onClick={() => setSelectedMonthIdx(idx)}
+                        className={`flex flex-col items-center h-full justify-end gap-2 rounded-xl p-1.5 transition-colors cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#0A5C99]/10 dark:bg-white/10'
+                            : 'hover:bg-[#0A2342]/4 dark:hover:bg-white/5'
+                        }`}
+                      >
                         <div className="w-full flex items-end justify-center gap-1.5 h-full">
                           <div
                             title={`Inflow: ${formatCurrency(b.inVal, 0)}`}
-                            className="w-3 sm:w-5 rounded-t-md bg-[#0A5C99] dark:bg-[#67C2F5] transition-all duration-300"
+                            className={`w-3 sm:w-5 rounded-t-md transition-all duration-300 ${
+                              isSelected
+                                ? 'bg-[#0A5C99] dark:bg-[#78C7F6]'
+                                : 'bg-[#0A5C99]/75 dark:bg-[#67C2F5]/75'
+                            }`}
                             style={{ height: `${inH}%` }}
                           />
                           <div
                             title={`Outflow: ${formatCurrency(b.outVal, 0)}`}
-                            className="w-3 sm:w-5 rounded-t-md bg-[#921B2D]/80 dark:bg-[#DF5167] transition-all duration-300"
+                            className={`w-3 sm:w-5 rounded-t-md transition-all duration-300 ${
+                              isSelected
+                                ? 'bg-[#921B2D] dark:bg-[#EE5D72]'
+                                : 'bg-[#921B2D]/70 dark:bg-[#DF5167]/70'
+                            }`}
                             style={{ height: `${outH}%` }}
                           />
                         </div>
-                        <span className="font-mono text-xs text-[#5C6F87] dark:text-[#96AFCB]">
+                        <span
+                          className={`font-mono text-xs ${
+                            isSelected
+                              ? 'font-semibold text-[#0A1D37] dark:text-white'
+                              : 'text-[#5C6F87] dark:text-[#96AFCB]'
+                          }`}
+                        >
                           {b.month}
                         </span>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>

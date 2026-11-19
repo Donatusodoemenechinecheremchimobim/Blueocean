@@ -103,6 +103,24 @@ export const Footer: React.FC = () => {
               <li>
                 <button
                   type="button"
+                  onClick={() => navigate('about')}
+                  className="hover:text-[#0A5C99] dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  {t.nav.about}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => navigate('contact')}
+                  className="hover:text-[#0A5C99] dark:hover:text-white transition-colors cursor-pointer"
+                >
+                  {t.nav.contact}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
                   onClick={() => navigate('portal')}
                   className="hover:text-[#0A5C99] dark:hover:text-white transition-colors cursor-pointer"
                 >

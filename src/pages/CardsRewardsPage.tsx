@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 import { CardFinish } from '../context/BankingContext';
 import { GlassCard } from '../components/GlassCard';
 import { MetalCard3D } from '../components/MetalCard3D';
+import { Reveal } from '../components/Reveal';
 
 interface CardTierSpec {
   finish: CardFinish;
@@ -84,25 +85,26 @@ export const CardsRewardsPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 space-y-16">
-      {/* Header */}
+      {/* Glassmorphic Header */}
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-3xl space-y-4"
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p className="text-xs sm:text-sm font-medium text-[#921B2D] dark:text-[#EE6478]">
-          {t.cards.kicker}
-        </p>
-        <h1
-          className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
-          style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.35rem)', textWrap: 'balance' }}
-        >
-          {t.cards.title}
-        </h1>
-        <p className="text-base sm:text-lg text-[#435A75] dark:text-[#B4C8DE] leading-relaxed">
-          {t.cards.subtitle}
-        </p>
+        <GlassCard className="p-7 sm:p-10 max-w-4xl space-y-4">
+          <p className="text-xs sm:text-sm font-medium text-[#921B2D] dark:text-[#EE6478]">
+            {t.cards.kicker}
+          </p>
+          <h1
+            className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
+            style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.35rem)', textWrap: 'balance' }}
+          >
+            {t.cards.title}
+          </h1>
+          <p className="text-base sm:text-lg text-[#354E6B] dark:text-[#BDD0E4] leading-relaxed">
+            {t.cards.subtitle}
+          </p>
+        </GlassCard>
       </motion.section>
 
       {/* Interactive 3D Metal Card Studio */}
@@ -198,6 +200,7 @@ export const CardsRewardsPage: React.FC = () => {
       </section>
 
       {/* Live Annual Rewards Estimator */}
+      <Reveal>
       <section>
         <GlassCard className="p-7 sm:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -288,6 +291,7 @@ export const CardsRewardsPage: React.FC = () => {
           </div>
         </GlassCard>
       </section>
+      </Reveal>
     </div>
   );
 };
