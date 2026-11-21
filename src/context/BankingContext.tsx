@@ -124,7 +124,7 @@ interface BankingContextValue extends PersistedBankingState {
   exportTransactionsCsv: (rows: BankTransaction[]) => void;
 }
 
-const STORAGE_KEY = 'blueocean_banking_portal_v1';
+const STORAGE_KEY = 'blueocean_banking_portal_v2';
 
 const INITIAL_STATE: PersistedBankingState = {
   isAuthenticated: false,

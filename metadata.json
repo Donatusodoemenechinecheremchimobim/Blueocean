@@ -1,6 +1,6 @@
 {
   "name": "BlueOcean Bank",
-  "description": "International digital banking platform and interactive Customer Portal featuring Titanium, Oceanic Blue, and Dark Red glassmorphism, 3D kinetic motion, dedicated banking divisions, About and Contact desks, and 6-language internationalization.",
+  "description": "International online banking platform and interactive Customer Portal featuring instant virtual credit cards, 20+ U.S. subscription payments, live multi-currency exchange calculator, and 6-language support.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

@@ -157,7 +157,7 @@ export const ContactPage: React.FC = () => {
                   Urgent Card Freeze &amp; Fraud Ops
                 </h2>
                 <p className="text-xs text-[#4A607A] dark:text-[#A9BED6] mt-1 leading-relaxed">
-                  Instantly freeze any Titanium, Oceanic, or Crimson card inside the Customer Portal or dial our emergency security line.
+                  Instantly freeze any virtual credit card inside the Customer Portal or contact our 24/7 safety team right away.
                 </p>
                 <button
                   type="button"
@@ -247,11 +247,11 @@ export const ContactPage: React.FC = () => {
                     className="w-full h-11 px-3.5 rounded-xl bg-white/80 dark:bg-[#061830]/70 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
                   >
                     <option>Personal &amp; International Accounts</option>
-                    <option>Business Treasury &amp; Multi-Currency FX</option>
-                    <option>Titanium, Oceanic &amp; Crimson Cards</option>
-                    <option>Mortgages &amp; Lending Desk</option>
-                    <option>Private Wealth Advisory</option>
-                    <option>Security, Deposit Protection &amp; Fraud Ops</option>
+                    <option>Global Business Accounts &amp; FX</option>
+                    <option>Virtual Credit Cards &amp; U.S. Subscriptions</option>
+                    <option>Home &amp; Personal Loans</option>
+                    <option>Personal Investment Guidance</option>
+                    <option>Account Security &amp; 24/7 Support</option>
                   </select>
                 </div>
 
