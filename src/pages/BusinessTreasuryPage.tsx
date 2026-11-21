@@ -44,7 +44,7 @@ export const BusinessTreasuryPage: React.FC = () => {
                 onClick={() =>
                   openModal({
                     mode: 'advisor',
-                    defaultProduct: 'Business Operating & Treasury Sweep',
+                    defaultProduct: 'Global Business Account',
                     defaultAmount: String(reserves),
                   })
                 }
@@ -96,7 +96,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.treasuryDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#8FD1FA]">
-            5.10% APY · Always Accessible · Up to $5M Protected
+            Always Accessible · Clear Monthly Payouts · $0 Account Fee
           </div>
         </GlassCard>
 
@@ -174,10 +174,10 @@ export const BusinessTreasuryPage: React.FC = () => {
               </div>
               <div className="p-5 rounded-2xl bg-[#921B2D]/8 dark:bg-[#921B2D]/20 border border-[#921B2D]/18">
                 <div className="text-xs text-[#5E2D37] dark:text-[#E5B8C0]">
-                  {t.business.fdicSweepCap}
+                  Monthly Account Fee
                 </div>
                 <div className="mt-2 font-mono tabular-nums text-2xl font-semibold text-[#921B2D] dark:text-[#F06D80]">
-                  $5,000,000
+                  $0 / mo
                 </div>
               </div>
             </div>

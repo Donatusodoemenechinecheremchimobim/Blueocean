@@ -73,9 +73,9 @@ export const AboutPage: React.FC = () => {
     },
     {
       year: '2023',
-      title: 'Up to $5M Partner Bank Protection',
+      title: 'Instant Virtual Credit Cards',
       detail:
-        'Partnered with 20 regulated international banks so everyday savers and growing businesses can keep their money safe and easy to reach.',
+        'Launched USD virtual credit cards inside the Customer Portal so customers everywhere can shop online and pay U.S. subscriptions without card declines.',
     },
     {
       year: '2025',
@@ -87,7 +87,7 @@ export const AboutPage: React.FC = () => {
       year: '2026',
       title: '243,000+ Customers & Counting',
       detail:
-        'Brought instant global transfers, high-interest savings vaults, travel-ready metal cards, and biometric security together in one easy Customer Portal.',
+        'Brought instant global transfers, clear savings vaults, virtual credit cards, and biometric security together in one easy Customer Portal.',
     },
   ];
 
@@ -168,9 +168,9 @@ export const AboutPage: React.FC = () => {
               </div>
             </div>
             <div className="lg:pl-6">
-              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Liquid Reserve Ratio</div>
+              <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">U.S. Subscriptions Ready</div>
               <div className="mt-1 font-mono tabular-nums text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                <CountUp end={100} suffix="%" durationMs={1550} />
+                <CountUp end={20} suffix="+" durationMs={1550} />
               </div>
             </div>
           </div>
@@ -263,9 +263,9 @@ export const AboutPage: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="w-4 h-4 text-[#F06D80] shrink-0 mt-1" />
                   <div>
-                    <div className="font-semibold text-white">Conservative Reserve Custody</div>
+                    <div className="font-semibold text-white">Safe, Transparent Protection</div>
                     <p className="mt-0.5 text-xs leading-relaxed">
-                      Customer deposits are never lent into speculative assets—backed 1:1 by G10 sovereign treasury bills and regulated international partner bank sweep networks.
+                      Every account is protected with biometric sign-in, instant virtual credit card freeze controls, and 24/7 real-time transaction monitoring.
                     </p>
                   </div>
                 </div>

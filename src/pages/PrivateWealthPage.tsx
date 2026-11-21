@@ -91,8 +91,8 @@ export const PrivateWealthPage: React.FC = () => {
                 onClick={() =>
                   openModal({
                     mode: 'advisor',
-                    defaultProduct: 'Private Wealth Fiduciary Mandate',
-                    defaultAmount: '500000',
+                    defaultProduct: 'Personal Investment Advisory',
+                    defaultAmount: '50000',
                   })
                 }
                 className="inline-flex items-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
@@ -187,11 +187,11 @@ export const PrivateWealthPage: React.FC = () => {
               <ul className="space-y-2 pt-2 text-xs text-[#DCEAF7]">
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-[#78C7F6]" />
-                  <span>Daily automated tax-loss harvesting</span>
+                  <span>Clear, plain-language updates whenever your plan changes</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-[#78C7F6]" />
-                  <span>Direct custody in client’s legal name</span>
+                  <span>Accounts held directly in your own legal name</span>
                 </li>
               </ul>
             </div>

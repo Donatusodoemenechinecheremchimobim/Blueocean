@@ -46,8 +46,8 @@ export const HomePage: React.FC = () => {
       id: 'personal',
       index: '01',
       title: t.nav.personal,
-      metric: '4.85% Savings · Send & Receive in 38 Currencies',
-      desc: t.personal.savingsDesc,
+      metric: 'Everyday Global Accounts · 38+ Currencies',
+      desc: 'Send and receive money across 42+ countries with clear exchange rates, zero monthly account fees, and simple savings goals.',
       icon: <Wallet className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-7',
     },
@@ -55,17 +55,17 @@ export const HomePage: React.FC = () => {
       id: 'business',
       index: '02',
       title: t.nav.business,
-      metric: '5.10% Savings · Pay Teams & Suppliers Worldwide',
-      desc: t.business.treasuryDesc,
+      metric: 'Global Payments · Teams & Suppliers',
+      desc: 'Get paid by international clients, send fast payouts to overseas teams and suppliers, and manage company spending in one dashboard.',
       icon: <Building2 className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-5',
     },
     {
       id: 'portal',
       index: '03',
-      title: 'Virtual & Metal Cards',
-      metric: 'Buy & Issue Instantly in Customer Portal',
-      desc: 'Order and pay for a virtual Titanium, Oceanic, or Crimson card straight from your Customer Portal balance—ready to use worldwide in seconds.',
+      title: 'Virtual Credit Cards',
+      metric: 'Instant Issue in Customer Portal · 20+ U.S. Subscriptions',
+      desc: 'Buy and activate a USD virtual credit card right inside your Customer Portal—accepted worldwide and across Netflix, Amazon Prime, ChatGPT, and 20+ U.S. services.',
       icon: <CreditCard className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       span: 'lg:col-span-5',
     },
@@ -73,8 +73,8 @@ export const HomePage: React.FC = () => {
       id: 'loans',
       index: '04',
       title: t.nav.loans,
-      metric: 'Home & Personal Loans · Fast 3-Day Decision',
-      desc: t.loans.subtitle,
+      metric: 'Personal & Home Loans · Clear Monthly Payments',
+      desc: 'Estimate monthly payments upfront and apply online with straightforward terms and no surprise paperwork fees.',
       icon: <Landmark className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-7',
     },
@@ -82,8 +82,8 @@ export const HomePage: React.FC = () => {
       id: 'wealth',
       index: '05',
       title: t.nav.wealth,
-      metric: 'Personal Advisors · Simple Global Investing',
-      desc: t.wealth.subtitle,
+      metric: 'Personal Guidance · Long-Term Planning',
+      desc: 'Work with an advisor to plan your long-term savings, retirement, and family financial goals with clear, simple options.',
       icon: <TrendingUp className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-6',
     },
@@ -91,8 +91,8 @@ export const HomePage: React.FC = () => {
       id: 'security',
       index: '06',
       title: t.nav.security,
-      metric: 'Up to $5M Protected · 24/7 Live Help',
-      desc: t.security.subtitle,
+      metric: 'Biometric Sign-In · Instant Card Freeze',
+      desc: 'Keep your account and virtual credit cards protected with device sign-in, instant freeze controls, real-time alerts, and 24/7 support.',
       icon: <ShieldCheck className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       span: 'lg:col-span-6',
     },
@@ -101,17 +101,17 @@ export const HomePage: React.FC = () => {
   const testimonials = [
     {
       quote:
-        'Paying our overseas suppliers in euros and dollars used to take four days and cost a fortune in bank wire fees. With BlueOcean, our transfers arrive the same day and our company savings earned over $163,000 in interest this year.',
+        'Paying our overseas suppliers in euros and dollars used to take four days and cost a fortune in bank wire fees. With BlueOcean, our transfers arrive the same day and we see the exact exchange rate before sending.',
       name: 'David Halvorsen',
       role: 'Finance Director · Northstar Logistics · Zurich & New York',
-      outcome: '+$163K Earned + Same-Day Transfers',
+      outcome: 'Same-Day International Transfers',
     },
     {
       quote:
-        'I send money home to family abroad every month and also refinanced my mortgage through BlueOcean. Everything was clear, approved in under three days, and saved me £340 every month.',
+        'My local bank card kept getting declined on Netflix, ChatGPT, and Amazon. I bought a BlueOcean virtual credit card in the Customer Portal in two minutes and every single subscription works smoothly now.',
       name: 'Dr. Elena Rostova',
-      role: 'Surgeon · London, UK',
-      outcome: 'Saved £340/Month + Fast Transfers',
+      role: 'Doctor · London, UK',
+      outcome: 'Zero Subscription Declines',
     },
     {
       quote:
@@ -189,12 +189,13 @@ export const HomePage: React.FC = () => {
                 className="w-full h-full min-h-[300px] sm:min-h-[380px] lg:min-h-[450px]"
               />
 
-              {/* Floating Translucent Titanium Glass Preview */}
+              {/* Floating Virtual Credit Card Preview */}
               <div className="hidden sm:block absolute -bottom-6 -left-6 w-[280px] z-20">
                 <MetalCard3D
                   finish="titanium"
-                  title="Titanium Reserve"
+                  title="Virtual Credit Card"
                   maskedNumber="4532  ••••  ••••  4821"
+                  network="VIRTUAL CREDIT"
                   compact
                 />
               </div>
@@ -202,40 +203,40 @@ export const HomePage: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Full-Width 4-Column Institutional Metrics Strip below Hero Split */}
+        {/* Full-Width 4-Column Clear Platform Highlights below Hero Split */}
         <Reveal delayMs={80} className="mt-10 lg:mt-14">
           <GlassCard className="p-6 sm:p-7">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 lg:divide-x divide-[#0A2342]/10 dark:divide-white/10">
               <div className="pt-2 sm:pt-0">
                 <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
-                  {t.hero.stat1Label}
-                </div>
-                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
-                  <CountUp end={4.85} decimals={2} suffix="% APY" durationMs={1400} />
-                </div>
-              </div>
-              <div className="pt-2 sm:pt-0 lg:pl-8">
-                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
-                  {t.hero.stat2Label}
-                </div>
-                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                  <CountUp end={5.1} decimals={2} suffix="% APY" durationMs={1550} />
-                </div>
-              </div>
-              <div className="pt-4 sm:pt-0 lg:pl-8">
-                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
-                  {t.hero.stat3Label}
-                </div>
-                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#921B2D] dark:text-[#EC5D72]">
-                  <CountUp end={5.0} decimals={1} prefix="$" suffix="M" durationMs={1650} />
-                </div>
-              </div>
-              <div className="pt-4 sm:pt-0 lg:pl-8">
-                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
                   {t.hero.stat4Label}
                 </div>
                 <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
                   <CountUp end={243} suffix="K+" durationMs={1850} />
+                </div>
+              </div>
+              <div className="pt-2 sm:pt-0 lg:pl-8">
+                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
+                  Countries Supported
+                </div>
+                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
+                  <CountUp end={42} suffix="+" durationMs={1400} />
+                </div>
+              </div>
+              <div className="pt-4 sm:pt-0 lg:pl-8">
+                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
+                  Currencies Available
+                </div>
+                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#921B2D] dark:text-[#EC5D72]">
+                  <CountUp end={38} suffix="+" durationMs={1500} />
+                </div>
+              </div>
+              <div className="pt-4 sm:pt-0 lg:pl-8">
+                <div className="text-xs font-medium text-[#5C6F87] dark:text-[#98B1CC]">
+                  U.S. Subscriptions Ready
+                </div>
+                <div className="mt-1.5 font-mono tabular-nums text-2xl sm:text-3xl font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                  <CountUp end={20} suffix="+" durationMs={1350} />
                 </div>
               </div>
             </div>
@@ -314,7 +315,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 space-y-6">
               <div className="text-xs font-medium text-[#8ECBF6]">
-                Fast Global Transfers · 38+ Currencies · Protected Up to $5M
+                Fast Global Transfers · 38+ Currencies · Instant Virtual Credit Cards
               </div>
               <h2
                 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-white leading-tight"
@@ -333,11 +334,11 @@ export const HomePage: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Your deposits stay protected up to $5,000,000 across 20 regulated partner banks</span>
+                  <span>Pay Netflix, Amazon Prime, ChatGPT, and 20+ U.S. subscriptions with your virtual credit card</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Create virtual cards instantly or freeze your card in one tap inside the Customer Portal</span>
+                  <span>Freeze your virtual card, change spending limits, and get instant alerts inside the Customer Portal</span>
                 </li>
               </ul>
 

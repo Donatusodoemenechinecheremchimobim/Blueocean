@@ -57,38 +57,38 @@ interface VirtualCardTier {
 const VIRTUAL_CARD_TIERS: VirtualCardTier[] = [
   {
     finish: 'titanium',
-    tierName: 'Titanium Virtual Debit',
+    tierName: 'Standard Virtual Credit',
     fee: 15,
-    tagline: 'Everyday online & travel spending',
-    network: 'VISA INFINITE',
+    tagline: 'Everyday online shopping & U.S. subscriptions',
+    network: 'VIRTUAL VISA CREDIT',
     perks: [
-      'Zero foreign transaction fees in 170+ countries',
-      'Instant Apple Pay, Google Pay & online checkout',
+      'Accepted on Netflix, Amazon Prime, ChatGPT, and 20+ U.S. subscriptions',
+      'Instant Apple Pay, Google Pay & online USD checkout',
       'Freeze or adjust spending limits anytime in one tap',
     ],
   },
   {
     finish: 'oceanic',
-    tierName: 'Oceanic Travel Virtual',
+    tierName: 'Oceanic Virtual Credit',
     fee: 49,
-    tagline: 'Multi-currency travel & hotel rewards',
-    network: 'VISA INFINITE',
+    tagline: 'Multi-currency travel & global online payments',
+    network: 'VIRTUAL VISA CREDIT',
     perks: [
-      '4x points on flights & hotels, 3x dining, 2x everywhere else',
-      'Auto-converts across 38 currencies at fair exchange rates',
-      'Built-in trip protection and priority global support',
+      'Spend online in 38+ currencies with clear exchange rates',
+      'Higher daily limit for flights, hotels, and software tools',
+      'Priority 24/7 customer support in 6 languages',
     ],
   },
   {
     finish: 'crimson',
-    tierName: 'Crimson Private Virtual',
+    tierName: 'Crimson Virtual Credit',
     fee: 149,
-    tagline: 'High-limit global & executive spending',
-    network: 'MASTERCARD WORLD ELITE',
+    tagline: 'High-limit global & business online spending',
+    network: 'VIRTUAL MASTERCARD CREDIT',
     perks: [
-      'Up to $75,000 daily spending limit with custom controls',
-      '6x travel rewards, 4x dining, and 2.5x uncapped base rewards',
-      'Dedicated 24/7 private concierge and lounge passes',
+      'Up to $75,000 daily online spending limit with custom controls',
+      'Dedicated virtual cards for ad spend, cloud hosting & travel',
+      '24/7 direct support line and instant replacement if needed',
     ],
   },
 ];
@@ -350,9 +350,10 @@ export const ClientPortalPage: React.FC = () => {
             <div className="py-2">
               <MetalCard3D
                 finish="titanium"
-                title="Titanium Reserve"
+                title="BlueOcean Virtual Credit"
                 holder={profile.name.toUpperCase()}
                 maskedNumber="4532  ••••  ••••  4821"
+                network="VIRTUAL CREDIT"
                 compact
               />
             </div>
@@ -360,7 +361,7 @@ export const ClientPortalPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/14 text-xs text-[#CFE2F4]">
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
-                <span>Deposits protected up to $5,000,000 via partner banks</span>
+                <span>Virtual credit cards accepted on 20+ U.S. subscriptions</span>
               </div>
               <div className="flex items-start gap-2">
                 <Globe2 className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
@@ -660,10 +661,10 @@ export const ClientPortalPage: React.FC = () => {
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div>
                     <h3 className="font-display text-lg font-semibold text-[#0A1D37] dark:text-white">
-                      6-Month Cashflow &amp; Treasury Inflows
+                      6-Month Money In &amp; Out
                     </h3>
                     <p className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">
-                      Tap any month to inspect inflows, outflows, and net liquidity
+                      Tap any month to see your deposits and spending
                     </p>
                   </div>
                   {cashflowBars[selectedMonthIdx] && (
@@ -1114,13 +1115,13 @@ export const ClientPortalPage: React.FC = () => {
                 <GlassCard className="p-6 sm:p-8 space-y-8">
                   <div className="space-y-1.5">
                     <div className="text-xs font-medium text-[#921B2D] dark:text-[#F06D80]">
-                      Instant Virtual Card Issuance · Spend Worldwide Today
+                      Instant Virtual Credit Cards · Accepted Worldwide
                     </div>
                     <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                      Buy &amp; activate a virtual card right from your balance.
+                      Buy &amp; activate a virtual credit card right from your balance.
                     </h2>
                     <p className="text-sm text-[#4A607A] dark:text-[#A9BED6] max-w-2xl">
-                      Pick a card style below, pay the one-time issuance fee directly from your BlueOcean account, and get your working card number and CVV immediately.
+                      Pick a virtual credit card below, pay the one-time issuance fee directly from your BlueOcean account, and get your working card number and CVV immediately for online shopping and U.S. subscriptions.
                     </p>
                   </div>
 

@@ -49,9 +49,9 @@ export const PersonalBankingPage: React.FC = () => {
       legacy: '$35 per occurrence',
     },
     {
-      feature: 'Deposit Protection',
-      blueOcean: 'Up to $5,000,000 via Partner Banks',
-      legacy: 'Single-bank limit only',
+      feature: 'Virtual Credit Cards',
+      blueOcean: 'Instant USD Virtual Credit Cards (20+ U.S. Subscriptions)',
+      legacy: 'Wait 7–10 days for mail delivery',
     },
   ];
 
@@ -84,7 +84,7 @@ export const PersonalBankingPage: React.FC = () => {
         <GlassCard className="p-7 flex flex-col justify-between">
           <div>
             <div className="font-mono tabular-nums text-xs font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
-              01. · 0.50% APY · $0 Fee
+              01 · Everyday Spending · $0 Monthly Fee
             </div>
             <h2 className="mt-2 font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
               {t.personal.checkingTitle}
@@ -98,7 +98,7 @@ export const PersonalBankingPage: React.FC = () => {
             onClick={() =>
               openModal({
                 mode: 'account',
-                defaultProduct: 'Premier Checking + High-Yield Savings',
+                defaultProduct: 'Everyday Global Account + Savings',
                 defaultAmount: '10000',
               })
             }
@@ -112,7 +112,7 @@ export const PersonalBankingPage: React.FC = () => {
         <GlassCard variant="oceanic" className="p-7 flex flex-col justify-between">
           <div>
             <div className="font-mono tabular-nums text-xs font-semibold text-[#8FD1FA]">
-              02. · 4.85% APY · Daily Compound
+              02 · Flexible Savings · No Minimum
             </div>
             <h2 className="mt-2 font-display text-2xl font-semibold text-white">
               {t.personal.savingsTitle}
@@ -126,7 +126,7 @@ export const PersonalBankingPage: React.FC = () => {
             onClick={() =>
               openModal({
                 mode: 'account',
-                defaultProduct: 'Premier Checking + High-Yield Savings',
+                defaultProduct: 'Everyday Global Account + Savings',
                 defaultAmount: String(initialDeposit),
               })
             }
@@ -140,7 +140,7 @@ export const PersonalBankingPage: React.FC = () => {
         <GlassCard className="p-7 flex flex-col justify-between">
           <div>
             <div className="font-mono tabular-nums text-xs font-semibold text-[#921B2D] dark:text-[#EE6478]">
-              03. · Up to 5.05% APY · Fixed
+              03 · Fixed-Term Savings · 6–24 Months
             </div>
             <h2 className="mt-2 font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
               {t.personal.cdTitle}

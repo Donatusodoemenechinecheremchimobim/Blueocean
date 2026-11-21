@@ -16,8 +16,8 @@ const SAFEGUARDS = [
   },
   {
     id: 'sweep',
-    title: 'Up to $5,000,000 Partner Bank Protection',
-    detail: 'Your money is automatically spread across 20 regulated international partner banks for extra peace of mind.',
+    title: '256-Bit Encryption & Segregated Funds',
+    detail: 'Your account balances and personal data are encrypted end-to-end and kept separate from company operating funds.',
   },
   {
     id: 'wire',
@@ -26,8 +26,8 @@ const SAFEGUARDS = [
   },
   {
     id: 'virtual',
-    title: 'Virtual Cards for Safe Online Shopping',
-    detail: 'Create separate virtual cards for subscriptions or online stores and delete or freeze them anytime in one tap.',
+    title: 'Virtual Credit Cards for Safe Online Shopping',
+    detail: 'Create separate virtual credit cards for U.S. subscriptions or online stores and freeze or adjust limits anytime in one tap.',
   },
   {
     id: 'alerts',
@@ -82,8 +82,8 @@ export const SecurityTrustPage: React.FC = () => {
                 onClick={() =>
                   openModal({
                     mode: 'advisor',
-                    defaultProduct: 'Business Operating & Treasury Sweep',
-                    defaultAmount: '250000',
+                    defaultProduct: 'Everyday Global Account + Savings',
+                    defaultAmount: '10000',
                   })
                 }
                 className="px-6 h-12 rounded-xl bg-[#0A5C99] hover:bg-[#0D6CB2] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
@@ -110,10 +110,10 @@ export const SecurityTrustPage: React.FC = () => {
         <GlassCard className="p-7 space-y-3">
           <Landmark className="w-6 h-6 text-[#0A5C99] dark:text-[#78C7F6]" />
           <h2 className="font-display text-xl font-semibold text-[#0A1D37] dark:text-white">
-            Up to $5,000,000 Protected
+            Instant Virtual Card Controls
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Eligible deposits are automatically spread across 20 regulated partner banks across Europe, the UK, and North America—all visible in one simple balance.
+            Freeze any virtual credit card in one tap, set custom daily spending limits, and keep your subscriptions protected from unexpected charges.
           </p>
         </GlassCard>
 
@@ -201,7 +201,7 @@ export const SecurityTrustPage: React.FC = () => {
                 />
               </div>
               <p className="text-xs text-[#C4D8EC] leading-relaxed">
-                {enabledIds.length} of {SAFEGUARDS.length} institutional security controls active on your simulated profile.
+                {enabledIds.length} of {SAFEGUARDS.length} account safety features enabled.
               </p>
             </div>
           </div>

@@ -157,7 +157,7 @@ const INITIAL_STATE: PersistedBankingState = {
     },
     {
       id: 'acc-treasury',
-      name: 'Commercial Treasury Sweep',
+      name: 'Global Business Account',
       type: 'Treasury',
       accountNumberMasked: '•••• 3370',
       routingNumber: '021000842',
@@ -203,13 +203,13 @@ const INITIAL_STATE: PersistedBankingState = {
     {
       id: 'tx-1004',
       date: '2026-11-15',
-      merchant: 'G10 Sovereign 4-Week T-Bill Maturity',
-      category: 'Treasury',
+      merchant: 'International Client Invoice Payout (EUR → USD)',
+      category: 'Business Income',
       accountId: 'acc-treasury',
       type: 'credit',
       status: 'Posted',
       amount: 1338.75,
-      reference: 'BO-TRS-55102',
+      reference: 'BO-INT-55102',
     },
     {
       id: 'tx-1005',
@@ -270,7 +270,7 @@ const INITIAL_STATE: PersistedBankingState = {
   cards: [
     {
       id: 'card-titanium',
-      name: 'Titanium Reserve Debit',
+      name: 'Standard Virtual Credit',
       finish: 'titanium',
       holder: 'ALEXANDRA MERCER',
       last4: '4821',
@@ -283,10 +283,11 @@ const INITIAL_STATE: PersistedBankingState = {
       international: true,
       dailyLimit: 10000,
       monthlySpend: 3420,
+      isVirtual: true,
     },
     {
       id: 'card-oceanic',
-      name: 'Oceanic Sapphire Infinite',
+      name: 'Oceanic Virtual Credit',
       finish: 'oceanic',
       holder: 'ALEXANDRA MERCER',
       last4: '7704',
@@ -299,10 +300,11 @@ const INITIAL_STATE: PersistedBankingState = {
       international: true,
       dailyLimit: 25000,
       monthlySpend: 6810,
+      isVirtual: true,
     },
     {
       id: 'card-crimson',
-      name: 'Crimson Apex Private',
+      name: 'Crimson Virtual Credit',
       finish: 'crimson',
       holder: 'ALEXANDRA MERCER',
       last4: '9026',
@@ -315,6 +317,7 @@ const INITIAL_STATE: PersistedBankingState = {
       international: false,
       dailyLimit: 50000,
       monthlySpend: 11250,
+      isVirtual: true,
     },
   ],
   vaults: [

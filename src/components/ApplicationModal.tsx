@@ -145,20 +145,20 @@ export const ApplicationModal: React.FC = () => {
                       onChange={(e) => setProduct(e.target.value)}
                       className="w-full h-11 px-3 rounded-xl bg-white/80 dark:bg-[#061830]/70 border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
                     >
-                      <option value="Premier Checking + High-Yield Savings">
-                        Premier Checking + Savings (4.85% APY)
+                      <option value="Everyday Global Account + Savings">
+                        Everyday Global Account + Savings
                       </option>
-                      <option value="Business Operating & Treasury Sweep">
-                        Business Treasury Sweep (5.10% APY)
+                      <option value="Global Business Account">
+                        Global Business Account
                       </option>
-                      <option value="Titanium Reserve / Crimson Apex Card">
-                        Machined Metal Card Suite
+                      <option value="Virtual Credit Card">
+                        USD Virtual Credit Card (20+ U.S. Subscriptions)
                       </option>
-                      <option value="Residential / Jumbo Mortgage">
-                        Residential &amp; Jumbo Mortgage
+                      <option value="Home or Personal Loan">
+                        Home or Personal Loan
                       </option>
-                      <option value="Private Wealth Fiduciary Mandate">
-                        Private Wealth Advisory
+                      <option value="Personal Investment Advisory">
+                        Personal Investment Advisory
                       </option>
                     </select>
                   </div>

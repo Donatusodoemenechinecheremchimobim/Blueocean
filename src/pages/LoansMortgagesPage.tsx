@@ -32,8 +32,8 @@ export const LoansMortgagesPage: React.FC = () => {
     {
       icon: <Home className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       title: 'Home Mortgages',
-      rate: 'From 5.95% APR',
-      desc: 'Buy a primary or vacation home up to $5M with a fast 3-day online decision and lower rates for BlueOcean customers.',
+      rate: 'Clear Fixed Rates',
+      desc: 'Buy a primary or vacation home with a simple online application, transparent monthly payments, and no hidden fees.',
     },
     {
       icon: <RefreshCw className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
@@ -230,7 +230,7 @@ export const LoansMortgagesPage: React.FC = () => {
                 onClick={() =>
                   openModal({
                     mode: 'advisor',
-                    defaultProduct: 'Residential / Jumbo Mortgage',
+                    defaultProduct: 'Home or Personal Loan',
                     defaultAmount: String(principal),
                   })
                 }
