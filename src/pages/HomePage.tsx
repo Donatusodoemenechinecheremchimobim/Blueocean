@@ -18,6 +18,7 @@ import { VideoShowcase } from '../components/VideoShowcase';
 import { Reveal } from '../components/Reveal';
 import { PartnerMarquee } from '../components/PartnerMarquee';
 import { CountUp } from '../components/CountUp';
+import { CurrencyConverterSection } from '../components/CurrencyConverterSection';
 
 const HERO_IMG = '/src/assets/images/hero_oceanic_architecture_1795099364980.jpg';
 const HERO_VIDEO = '/blueocean-showcase.mp4';
@@ -245,6 +246,9 @@ export const HomePage: React.FC = () => {
           <PartnerMarquee />
         </Reveal>
       </section>
+
+      {/* SECTION 1B: REAL-TIME CURRENCY CONVERTER & COUNTRIES WE OPERATE IN */}
+      <CurrencyConverterSection />
 
       {/* SECTION 2: ASYMMETRIC 21ST.DEV BENTO GRID FOR ALL 6 BANKING DIVISIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">
