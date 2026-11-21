@@ -14,9 +14,12 @@ export type PageRoute =
 
 export type ThemeMode = 'light' | 'dark';
 
+export type AccountCategory = 'personal' | 'business';
+
 export interface ApplicationModalState {
   open: boolean;
   mode: 'account' | 'advisor';
+  defaultAccountType: AccountCategory;
   defaultProduct: string;
   defaultAmount: string;
 }
@@ -99,8 +102,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [modal, setModal] = useState<ApplicationModalState>({
     open: false,
     mode: 'account',
-    defaultProduct: 'Premier Checking + High-Yield Savings',
-    defaultAmount: '25000',
+    defaultAccountType: 'personal',
+    defaultProduct: 'Personal Global Account + Virtual Credit Card',
+    defaultAmount: '2500',
   });
 
   const [toasts, setToasts] = useState<ToastItem[]>([]);
@@ -199,6 +203,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setModal((prev) => ({
       open: true,
       mode: opts?.mode ?? 'account',
+      defaultAccountType: opts?.defaultAccountType ?? 'personal',
       defaultProduct: opts?.defaultProduct ?? prev.defaultProduct,
       defaultAmount: opts?.defaultAmount ?? prev.defaultAmount,
     }));

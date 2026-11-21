@@ -9,6 +9,7 @@ import {
   TrendingUp,
   ShieldCheck,
   Check,
+  User,
 } from 'lucide-react';
 import { useApp, PageRoute } from '../context/AppContext';
 import { GlassCard } from '../components/GlassCard';
@@ -247,6 +248,154 @@ export const HomePage: React.FC = () => {
         <Reveal delayMs={120} className="mt-6">
           <PartnerMarquee />
         </Reveal>
+      </section>
+
+      {/* SECTION 1A: PERSONAL OR BUSINESS ACCOUNTS — CHOOSE HOW YOU BANK & GET PAID */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6">
+        <Reveal className="max-w-2xl mb-8">
+          <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+            Not Just Personal Banking · Built for Individuals &amp; Global Businesses
+          </p>
+          <h2
+            className="mt-2 font-display text-3xl sm:text-4xl font-semibold tracking-tight text-[#081A33] dark:text-white"
+            style={{ textWrap: 'balance' }}
+          >
+            Open a Personal Account or a Business Account to receive payments worldwide.
+          </h2>
+          <p className="mt-3 text-base text-[#445A75] dark:text-[#AFC3D8]">
+            Whether you are sending money to family abroad or running a company receiving international client invoices, you can open either account online in minutes.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          {/* Personal Account Card */}
+          <Reveal>
+            <GlassCard className="p-7 sm:p-9 h-full flex flex-col justify-between gap-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                    <User className="w-4 h-4" />
+                    <span>Personal Account · $0 / month</span>
+                  </span>
+                  <span className="font-mono text-xs text-[#5C6F87] dark:text-[#96AFCB]">
+                    For Individuals &amp; Families
+                  </span>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
+                  Personal Online Banking
+                </h3>
+
+                <p className="text-sm sm:text-[15px] text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
+                  Send and receive money internationally, keep savings earning steady interest, and pay U.S. subscriptions online with instant virtual credit cards.
+                </p>
+
+                <ul className="space-y-2.5 pt-1 text-sm text-[#2A425E] dark:text-[#CCE0F4]">
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#0A5C99] dark:text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Send &amp; receive money across 42+ countries in 38+ currencies</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#0A5C99] dark:text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Instant USD virtual credit cards accepted on Netflix, Amazon &amp; 20+ U.S. services</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#0A5C99] dark:text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Flexible savings vaults earning 4.85% APY with zero monthly fees</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-4 border-t border-[#0A2342]/10 dark:border-white/10 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    openModal({
+                      mode: 'account',
+                      defaultAccountType: 'personal',
+                      defaultProduct: 'Personal Global Account + Virtual Credit Card',
+                    })
+                  }
+                  className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-xl bg-[#0A5C99] hover:bg-[#0D6DB5] text-white text-sm font-medium transition-colors shadow-md cursor-pointer"
+                >
+                  <span>Open Personal Account</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => navigate('personal')}
+                  className="px-4 h-11 rounded-xl text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6] hover:bg-[#0A5C99]/8 dark:hover:bg-white/8 transition-colors cursor-pointer"
+                >
+                  Learn more
+                </button>
+              </div>
+            </GlassCard>
+          </Reveal>
+
+          {/* Business Account Card */}
+          <Reveal delayMs={80}>
+            <GlassCard variant="oceanic" className="p-7 sm:p-9 h-full flex flex-col justify-between gap-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-[#8FD1FA]">
+                    <Building2 className="w-4 h-4" />
+                    <span>Business Account · Receive Global Payments</span>
+                  </span>
+                  <span className="font-mono text-xs text-[#B6D3EE]">
+                    For Companies &amp; Agencies
+                  </span>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white">
+                  Business Account &amp; Client Payments
+                </h3>
+
+                <p className="text-sm sm:text-[15px] text-[#C8DDF1] leading-relaxed">
+                  Built for businesses, online stores, agencies, and contractors to receive client payments from abroad without high wire fees or slow banks.
+                </p>
+
+                <ul className="space-y-2.5 pt-1 text-sm text-[#E0EEFA]">
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Receive international payments with local USD, EUR &amp; GBP details + SWIFT</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Hold 38+ currencies and pay overseas teams, freelancers, and suppliers fast</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#78C7F6] shrink-0 mt-0.5" />
+                    <span>Issue virtual credit cards for cloud tools, ad spend, and business subscriptions</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-4 border-t border-white/14 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() =>
+                    openModal({
+                      mode: 'account',
+                      defaultAccountType: 'business',
+                      defaultProduct: 'Business Account — Receive Client Payments',
+                    })
+                  }
+                  className="inline-flex items-center justify-center gap-2 px-5 h-11 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg cursor-pointer"
+                >
+                  <span>Open Business Account</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => navigate('business')}
+                  className="px-4 h-11 rounded-xl text-sm font-medium text-[#CFE7FB] hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  Explore Business Banking
+                </button>
+              </div>
+            </GlassCard>
+          </Reveal>
+        </div>
       </section>
 
       {/* SECTION 1B: REAL-TIME CURRENCY CONVERTER & COUNTRIES WE OPERATE IN */}
@@ -561,10 +710,29 @@ export const HomePage: React.FC = () => {
           <div className="mt-7 grid grid-cols-1 sm:flex sm:flex-wrap items-center justify-center gap-3.5 max-w-md sm:max-w-none mx-auto">
             <button
               type="button"
-              onClick={() => openModal({ mode: 'account' })}
+              onClick={() =>
+                openModal({
+                  mode: 'account',
+                  defaultAccountType: 'personal',
+                  defaultProduct: 'Personal Global Account + Virtual Credit Card',
+                })
+              }
+              className="px-6 h-12 rounded-xl bg-[#0A5C99] hover:bg-[#0D6DB5] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
+            >
+              Open Personal Account
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                openModal({
+                  mode: 'account',
+                  defaultAccountType: 'business',
+                  defaultProduct: 'Business Account — Receive Client Payments',
+                })
+              }
               className="px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
             >
-              {t.home.ctaPrimary}
+              Open Business Account
             </button>
             <button
               type="button"

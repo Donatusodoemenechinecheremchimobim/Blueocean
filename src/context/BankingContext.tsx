@@ -3,7 +3,11 @@ import React, { createContext, useContext, useState, useEffect, useCallback, use
 export interface BankAccount {
   id: string;
   name: string;
-  type: 'Checking' | 'Savings' | 'Treasury';
+  type: 'Checking' | 'Savings' | 'Treasury' | 'Business';
+  accountCategory?: 'personal' | 'business';
+  receivingCurrencies?: string;
+  iban?: string;
+  swiftCode?: string;
   accountNumberMasked: string;
   routingNumber: string;
   apy: number;
@@ -79,6 +83,7 @@ interface PersistedBankingState {
   cards: MetalCard[];
   vaults: SavingsVault[];
   activeSubscriptions: ActiveSubscription[];
+  subscriptionAuthorizations: Record<string, string[]>;
   alertsEnabled: {
     largeTransfers: boolean;
     cardInternational: boolean;
@@ -116,9 +121,26 @@ interface BankingContextValue extends PersistedBankingState {
     price: number;
     cardId: string;
     accountId: string;
-  }) => { ok: boolean; error?: 'insufficient' | 'frozen' | 'invalid' };
+  }) => { ok: boolean; error?: 'insufficient' | 'frozen' | 'unauthorized' | 'invalid' };
   toggleSubscriptionAutoPay: (serviceId: string) => void;
   cancelSubscription: (serviceId: string) => void;
+  toggleSubscriptionAuth: (cardId: string, serviceId: string) => boolean;
+  setAllSubscriptionAuths: (cardId: string, serviceIds: string[], authorized: boolean) => void;
+  openNewAccount: (params: {
+    accountCategory: 'personal' | 'business';
+    accountName: string;
+    ownerName: string;
+    email: string;
+    startingDeposit?: number;
+    receivingCurrencies?: string;
+  }) => {
+    ok: boolean;
+    accountId: string;
+    accountNumberMasked: string;
+    routingNumber: string;
+    iban: string;
+    swiftCode: string;
+  };
   toggleAlert: (key: 'largeTransfers' | 'cardInternational' | 'monthlyStatement') => void;
   resetDemoData: () => void;
   exportTransactionsCsv: (rows: BankTransaction[]) => void;
@@ -137,8 +159,12 @@ const INITIAL_STATE: PersistedBankingState = {
   accounts: [
     {
       id: 'acc-checking',
-      name: 'Premier Checking',
+      name: 'Personal Global Account',
       type: 'Checking',
+      accountCategory: 'personal',
+      receivingCurrencies: 'USD · EUR · GBP',
+      iban: 'GB29 BLOC 2048 1900 4821 01',
+      swiftCode: 'BLOCGB2LXXX',
       accountNumberMasked: '•••• 4821',
       routingNumber: '021000842',
       apy: 0.5,
@@ -147,8 +173,12 @@ const INITIAL_STATE: PersistedBankingState = {
     },
     {
       id: 'acc-savings',
-      name: 'Oceanic High-Yield Savings',
+      name: 'Personal High-Yield Savings',
       type: 'Savings',
+      accountCategory: 'personal',
+      receivingCurrencies: 'USD',
+      iban: 'GB29 BLOC 2048 1900 9104 02',
+      swiftCode: 'BLOCGB2LXXX',
       accountNumberMasked: '•••• 9104',
       routingNumber: '021000842',
       apy: 4.85,
@@ -158,7 +188,11 @@ const INITIAL_STATE: PersistedBankingState = {
     {
       id: 'acc-treasury',
       name: 'Global Business Account',
-      type: 'Treasury',
+      type: 'Business',
+      accountCategory: 'business',
+      receivingCurrencies: 'USD · EUR · GBP · 38+ Currencies',
+      iban: 'GB44 BLOC 2048 1900 3370 88',
+      swiftCode: 'BLOCGB2LXXX',
       accountNumberMasked: '•••• 3370',
       routingNumber: '021000842',
       apy: 5.1,
@@ -369,6 +403,11 @@ const INITIAL_STATE: PersistedBankingState = {
       nextBillingDate: '2026-12-15',
     },
   ],
+  subscriptionAuthorizations: {
+    'card-titanium': ['netflix', 'chatgpt-plus', 'amazon-prime', 'spotify', 'apple-icloud', 'youtube-premium'],
+    'card-oceanic': ['youtube-premium', 'uber-one', 'google-one', 'audible', 'dropbox-plus'],
+    'card-crimson': ['adobe-cc', 'github-copilot', 'figma-pro', 'zoom-pro', 'notion-plus', 'microsoft-365'],
+  },
   alertsEnabled: {
     largeTransfers: true,
     cardInternational: true,
@@ -384,12 +423,34 @@ function loadInitialState(): PersistedBankingState {
     if (!Array.isArray(parsed.accounts) || !Array.isArray(parsed.cards)) {
       return INITIAL_STATE;
     }
+    const normalizedAccounts: BankAccount[] = parsed.accounts.map((acc) => {
+      const inferredCategory: 'personal' | 'business' =
+        acc.accountCategory ??
+        (acc.type === 'Treasury' || acc.type === 'Business' || acc.name.toLowerCase().includes('business')
+          ? 'business'
+          : 'personal');
+      const digits = acc.accountNumberMasked.replace(/\D/g, '').slice(-4) || '4821';
+      return {
+        ...acc,
+        accountCategory: inferredCategory,
+        receivingCurrencies:
+          acc.receivingCurrencies ??
+          (inferredCategory === 'business' ? 'USD · EUR · GBP · 38+ Currencies' : 'USD · EUR · GBP'),
+        iban: acc.iban ?? `GB29 BLOC 2048 1900 ${digits} ${inferredCategory === 'business' ? '88' : '01'}`,
+        swiftCode: acc.swiftCode ?? 'BLOCGB2LXXX',
+      };
+    });
     return {
       ...INITIAL_STATE,
       ...parsed,
+      accounts: normalizedAccounts,
       activeSubscriptions: Array.isArray(parsed.activeSubscriptions)
         ? parsed.activeSubscriptions
         : INITIAL_STATE.activeSubscriptions,
+      subscriptionAuthorizations:
+        parsed.subscriptionAuthorizations && typeof parsed.subscriptionAuthorizations === 'object'
+          ? parsed.subscriptionAuthorizations
+          : INITIAL_STATE.subscriptionAuthorizations,
     };
   } catch {
     return INITIAL_STATE;
@@ -578,6 +639,10 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
             : acc
         ),
         cards: [newCard, ...prev.cards],
+        subscriptionAuthorizations: {
+          ...prev.subscriptionAuthorizations,
+          [cardId]: ['netflix', 'amazon-prime', 'chatgpt-plus', 'spotify', 'apple-icloud'],
+        },
         transactions: [
           {
             id: `tx-vcd-${Date.now()}`,
@@ -664,7 +729,7 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       price: number;
       cardId: string;
       accountId: string;
-    }): { ok: boolean; error?: 'insufficient' | 'frozen' | 'invalid' } => {
+    }): { ok: boolean; error?: 'insufficient' | 'frozen' | 'unauthorized' | 'invalid' } => {
       const card = state.cards.find((c) => c.id === params.cardId);
       const source = state.accounts.find((a) => a.id === params.accountId);
       if (!card || !source || params.price <= 0) {
@@ -672,6 +737,10 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
       if (card.frozen) {
         return { ok: false, error: 'frozen' };
+      }
+      const cardAuthList = state.subscriptionAuthorizations[card.id] ?? [];
+      if (!cardAuthList.includes(params.serviceId)) {
+        return { ok: false, error: 'unauthorized' };
       }
       if (source.balance < params.price) {
         return { ok: false, error: 'insufficient' };
@@ -734,7 +803,7 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
       return { ok: true };
     },
-    [state.accounts, state.cards]
+    [state.accounts, state.cards, state.subscriptionAuthorizations]
   );
 
   const toggleSubscriptionAutoPay = useCallback((serviceId: string) => {
@@ -752,6 +821,126 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       activeSubscriptions: prev.activeSubscriptions.filter((sub) => sub.serviceId !== serviceId),
     }));
   }, []);
+
+  const toggleSubscriptionAuth = useCallback(
+    (cardId: string, serviceId: string): boolean => {
+      const currentList = state.subscriptionAuthorizations[cardId] ?? [];
+      const willAuthorize = !currentList.includes(serviceId);
+      setState((prev) => {
+        const prevList = prev.subscriptionAuthorizations[cardId] ?? [];
+        const nextList = prevList.includes(serviceId)
+          ? prevList.filter((id) => id !== serviceId)
+          : [...prevList, serviceId];
+        return {
+          ...prev,
+          subscriptionAuthorizations: {
+            ...prev.subscriptionAuthorizations,
+            [cardId]: nextList,
+          },
+        };
+      });
+      return willAuthorize;
+    },
+    [state.subscriptionAuthorizations]
+  );
+
+  const setAllSubscriptionAuths = useCallback(
+    (cardId: string, serviceIds: string[], authorized: boolean) => {
+      setState((prev) => {
+        const prevSet = new Set(prev.subscriptionAuthorizations[cardId] ?? []);
+        if (authorized) {
+          serviceIds.forEach((id) => prevSet.add(id));
+        } else {
+          serviceIds.forEach((id) => prevSet.delete(id));
+        }
+        return {
+          ...prev,
+          subscriptionAuthorizations: {
+            ...prev.subscriptionAuthorizations,
+            [cardId]: Array.from(prevSet),
+          },
+        };
+      });
+    },
+    []
+  );
+
+  const openNewAccount = useCallback(
+    (params: {
+      accountCategory: 'personal' | 'business';
+      accountName: string;
+      ownerName: string;
+      email: string;
+      startingDeposit?: number;
+      receivingCurrencies?: string;
+    }) => {
+      const last4 = String(Math.floor(1000 + Math.random() * 9000));
+      const check2 = String(Math.floor(10 + Math.random() * 89));
+      const accountId = `acc-${params.accountCategory}-${Date.now()}`;
+      const accountNumberMasked = `•••• ${last4}`;
+      const routingNumber = '021000842';
+      const iban = `GB${check2} BLOC 2048 1900 ${last4} ${params.accountCategory === 'business' ? '88' : '01'}`;
+      const swiftCode = 'BLOCGB2LXXX';
+      const deposit = Number.isFinite(params.startingDeposit) && (params.startingDeposit ?? 0) > 0
+        ? Number((params.startingDeposit ?? 0).toFixed(2))
+        : 0;
+      const today = new Date().toISOString().slice(0, 10);
+
+      const created: BankAccount = {
+        id: accountId,
+        name: params.accountName.trim() || (params.accountCategory === 'business' ? 'Global Business Account' : 'Personal Global Account'),
+        type: params.accountCategory === 'business' ? 'Business' : 'Checking',
+        accountCategory: params.accountCategory,
+        receivingCurrencies:
+          params.receivingCurrencies?.trim() ||
+          (params.accountCategory === 'business' ? 'USD · EUR · GBP · 38+ Currencies' : 'USD · EUR · GBP'),
+        iban,
+        swiftCode,
+        accountNumberMasked,
+        routingNumber,
+        apy: params.accountCategory === 'business' ? 5.1 : 4.85,
+        balance: deposit,
+        pending: 0,
+      };
+
+      setState((prev) => ({
+        ...prev,
+        profile: {
+          ...prev.profile,
+          name: params.ownerName.trim() || prev.profile.name,
+          email: params.email.trim() || prev.profile.email,
+        },
+        accounts: [created, ...prev.accounts],
+        transactions:
+          deposit > 0
+            ? [
+                {
+                  id: `tx-open-${Date.now()}`,
+                  date: today,
+                  merchant: `Opening Deposit — ${created.name}`,
+                  category: params.accountCategory === 'business' ? 'Business Income' : 'Opening Deposit',
+                  accountId,
+                  type: 'credit',
+                  status: 'Posted',
+                  amount: deposit,
+                  reference: `BO-NEW-${last4}`,
+                },
+                ...prev.transactions,
+              ]
+            : prev.transactions,
+      }));
+
+      return {
+        ok: true,
+        accountId,
+        accountNumberMasked,
+        routingNumber,
+        iban,
+        swiftCode,
+      };
+    },
+    []
+  );
 
   const toggleAlert = useCallback(
     (key: 'largeTransfers' | 'cardInternational' | 'monthlyStatement') => {
@@ -815,6 +1004,9 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       paySubscription,
       toggleSubscriptionAutoPay,
       cancelSubscription,
+      toggleSubscriptionAuth,
+      setAllSubscriptionAuths,
+      openNewAccount,
       toggleAlert,
       resetDemoData,
       exportTransactionsCsv,
@@ -832,6 +1024,9 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       paySubscription,
       toggleSubscriptionAutoPay,
       cancelSubscription,
+      toggleSubscriptionAuth,
+      setAllSubscriptionAuths,
+      openNewAccount,
       toggleAlert,
       resetDemoData,
       exportTransactionsCsv,

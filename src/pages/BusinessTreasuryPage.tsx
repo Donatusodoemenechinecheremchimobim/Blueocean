@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Building2, Globe2, Layers, ArrowRight } from 'lucide-react';
+import { Building2, Globe2, Layers, ArrowRight, CheckCircle2, ArrowDownLeft } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { GlassCard } from '../components/GlassCard';
 import { MediaFrame } from '../components/MediaFrame';
@@ -38,20 +38,35 @@ export const BusinessTreasuryPage: React.FC = () => {
             <p className="text-base sm:text-lg text-[#354E6B] dark:text-[#BDD0E4] leading-relaxed">
               {t.business.subtitle}
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={() =>
                   openModal({
-                    mode: 'advisor',
-                    defaultProduct: 'Global Business Account',
-                    defaultAmount: String(reserves),
+                    mode: 'account',
+                    defaultAccountType: 'business',
+                    defaultProduct: 'Business Account — Receive Client Payments',
+                    defaultAmount: '25000',
                   })
                 }
                 className="inline-flex items-center gap-2 px-6 h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-sm font-medium transition-colors shadow-lg whitespace-nowrap cursor-pointer"
               >
                 <span>{t.business.scheduleTreasury}</span>
                 <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  openModal({
+                    mode: 'advisor',
+                    defaultAccountType: 'business',
+                    defaultProduct: 'Business Account — Receive Client Payments',
+                    defaultAmount: String(reserves),
+                  })
+                }
+                className="inline-flex items-center gap-2 px-5 h-12 rounded-xl bg-white/80 dark:bg-white/10 border border-[#0A2342]/14 dark:border-white/16 text-[#0A1D37] dark:text-white hover:bg-white dark:hover:bg-white/16 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer"
+              >
+                <span>Talk to Business Team</span>
               </button>
             </div>
           </GlassCard>
@@ -115,6 +130,64 @@ export const BusinessTreasuryPage: React.FC = () => {
           </div>
         </GlassCard>
       </section>
+
+      {/* Receive Client Payments Worldwide Strip */}
+      <Reveal>
+        <section>
+          <GlassCard className="p-7 sm:p-9">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                  <ArrowDownLeft className="w-4 h-4" />
+                  <span>Receive International Business Payments</span>
+                </div>
+                <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
+                  Get paid by overseas clients like a local business.
+                </h2>
+                <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
+                  Every BlueOcean Business Account comes with ready-to-share receiving details for USD, EUR, GBP, and global SWIFT wires—so clients, marketplaces, and payment platforms can pay you directly without losing money on bad rates.
+                </p>
+              </div>
+
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  {
+                    currency: 'USD Account Details',
+                    detail: 'ACH & Wire Routing',
+                    note: 'Receive U.S. client invoices, Stripe & marketplace payouts',
+                  },
+                  {
+                    currency: 'EUR & GBP Details',
+                    detail: 'SEPA & Faster Payments IBAN',
+                    note: 'Get paid by European and UK customers with zero incoming fee',
+                  },
+                  {
+                    currency: 'Global SWIFT Ready',
+                    detail: 'BIC: BLOCGB2LXXX',
+                    note: 'Accept incoming wires in 38+ currencies from 42+ countries',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.currency}
+                    className="p-4 rounded-2xl bg-[#0A2342]/4 dark:bg-white/6 border border-[#0A2342]/10 dark:border-white/10 space-y-2"
+                  >
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[#0A5C99] dark:text-[#78C7F6]">
+                      <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                      <span>{item.currency}</span>
+                    </div>
+                    <div className="font-mono text-xs font-semibold text-[#0A1D37] dark:text-white">
+                      {item.detail}
+                    </div>
+                    <p className="text-xs text-[#546B86] dark:text-[#A4BBD4] leading-relaxed">
+                      {item.note}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </GlassCard>
+        </section>
+      </Reveal>
 
       {/* Corporate Cash Yield Estimator */}
       <Reveal>
