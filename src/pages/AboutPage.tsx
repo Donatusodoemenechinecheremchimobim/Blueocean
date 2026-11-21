@@ -26,36 +26,36 @@ const CORRIDORS: Corridor[] = [
     region: 'Europe & UK',
     hubs: 'London · Frankfurt · Amsterdam · Zurich · Madrid',
     currencies: 'EUR · GBP · CHF · SEK',
-    settlement: 'SEPA Instant & UK Faster Payments',
+    settlement: 'Instant Euro & UK Bank Transfers',
     summary:
-      'Local euro, sterling, and franc settlement corridors engineered for international professionals, exporters, and borderless families across Europe and the UK.',
+      'Send and receive euros, pounds, and francs in seconds—ideal for sending money home, paying rent abroad, or getting paid by European clients.',
   },
   {
     id: 'apac',
     region: 'Asia-Pacific & Middle East',
     hubs: 'Singapore · Tokyo · Sydney · Dubai',
     currencies: 'SGD · JPY · AUD · AED',
-    settlement: '24/7 SWIFT GPI & Multi-Currency Wallets',
+    settlement: 'Fast Same-Day Global Transfers',
     summary:
-      'Hold, convert, and disburse across 38 currencies inside one unified Customer Portal with real-time clearing visibility and interbank FX spreads.',
+      'Hold, convert, and send money across 38 currencies inside one simple Customer Portal with fair exchange rates shown upfront before you hit send.',
   },
   {
     id: 'americas',
     region: 'Americas & Atlantic',
     hubs: 'New York · Toronto · São Paulo · Mexico City',
     currencies: 'USD · CAD · BRL · MXN',
-    settlement: 'FedNow · Wire · Regional Instant Rails',
+    settlement: 'Instant Local & Cross-Border Transfers',
     summary:
-      'Full cross-border USD, CAD, and LatAm liquidity—so North and South American customers bank seamlessly alongside European and APAC peers.',
+      'Move USD, CAD, BRL, and MXN smoothly between North and South America, Europe, and Asia without paying steep traditional wire fees.',
   },
   {
     id: 'global',
-    region: 'Global Expat & Remote',
-    hubs: '42+ Approved International Corridors',
-    currencies: '38 Currencies · Zero Hidden FX Markup',
-    settlement: 'Multi-Rail Instant Smart Routing',
+    region: 'Living & Working Abroad',
+    hubs: '42+ Supported Countries',
+    currencies: '38 Currencies · No Hidden Markup',
+    settlement: 'Fast Smart Routing Worldwide',
     summary:
-      'One global IBAN & multi-rail account with 55,000+ fee-free ATMs worldwide, instant virtual cards, and 24/7 multilingual specialists.',
+      'One global account with local receiving details, 55,000+ fee-free ATMs worldwide, instant virtual cards, and 24/7 support in 6 languages.',
   },
 ];
 
@@ -67,27 +67,27 @@ export const AboutPage: React.FC = () => {
   const milestones = [
     {
       year: '2021',
-      title: 'Built for Borderless Online Banking',
+      title: 'Built to Make International Money Simple',
       detail:
-        'Founded by international banking engineers and global treasury specialists to eliminate opaque branch fees and slow cross-border wires.',
+        'Started by a team tired of slow 5-day bank wires and hidden currency markups, with a mission to make sending and receiving money abroad easy for everyone.',
     },
     {
       year: '2023',
-      title: 'Multi-Jurisdiction $5M Sweep Architecture',
+      title: 'Up to $5M Partner Bank Protection',
       detail:
-        'Launched automated overnight liquidity distribution across 20 regulated international partner banks, delivering institutional safety worldwide.',
+        'Partnered with 20 regulated international banks so everyday savers and growing businesses can keep their money safe and easy to reach.',
     },
     {
       year: '2025',
-      title: 'International Frontier Expansion',
+      title: '38 Currencies & 6 Languages',
       detail:
-        'Opened multi-currency corridors across 38 currencies with native support in English, German, Russian, Dutch, Spanish, and Portuguese.',
+        'Expanded across 42+ countries with live human support in English, German, Russian, Dutch, Spanish, and Portuguese.',
     },
     {
       year: '2026',
-      title: 'BlueOcean Next-Gen Customer Portal',
+      title: '243,000+ Customers & Counting',
       detail:
-        'Unified real-time SWIFT GPI, SEPA Instant, FedNow, machined Titanium & Crimson metal cards, savings vaults, and biometric passkeys in one digital bank.',
+        'Brought instant global transfers, high-interest savings vaults, travel-ready metal cards, and biometric security together in one easy Customer Portal.',
     },
   ];
 
@@ -103,16 +103,16 @@ export const AboutPage: React.FC = () => {
         >
           <GlassCard className="p-6 sm:p-8 space-y-5">
             <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
-              About BlueOcean Bank · International Digital Frontier
+              About BlueOcean Bank · International Online Banking
             </p>
             <h1
               className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
               style={{ fontSize: 'clamp(2rem, 3.8vw, 3.25rem)', textWrap: 'balance' }}
             >
-              An online bank engineered for people and companies who live beyond one border.
+              An online bank made for sending, receiving, and saving money across borders.
             </h1>
             <p className="text-base text-[#3D536E] dark:text-[#B9CBE0] leading-relaxed">
-              BlueOcean International Bank operates on the global online banking frontier—combining multi-jurisdiction deposit safeguards with instant 38-currency accounts for customers across Europe, the UK, Asia-Pacific, Latin America, and North America.
+              Whether you are sending money to family, getting paid by international clients, or traveling the world, BlueOcean gives you one clear online account across 42+ countries and 38 currencies—without confusing bank talk or surprise fees.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <button
@@ -137,9 +137,9 @@ export const AboutPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={HQ_IMG}
-            alt="BlueOcean International Bank architectural glass hub"
+            alt="BlueOcean International Bank hub"
             aspectClass="aspect-[4/3] lg:h-full"
-            caption="Global digital clearing hubs spanning London, Frankfurt, Singapore, New York, and São Paulo."
+            caption="Support teams and partner offices across London, Frankfurt, Singapore, New York, and São Paulo."
             priority
           />
         </div>
@@ -183,10 +183,10 @@ export const AboutPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
             <div>
               <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
-                Operating Across the International Banking Frontier
+                Where You Can Send &amp; Receive Money
               </h2>
               <p className="mt-1.5 text-sm text-[#4A607A] dark:text-[#A9BED6]">
-                Select a corridor to inspect local settlement rails, currencies, and regional coverage.
+                Choose a region to see supported currencies, transfer speeds, and coverage.
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 self-start">

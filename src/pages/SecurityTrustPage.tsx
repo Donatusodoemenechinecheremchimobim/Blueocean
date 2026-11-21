@@ -11,28 +11,28 @@ const SECURITY_IMG = '/src/assets/images/security_titanium_vault_1795099379522.j
 const SAFEGUARDS = [
   {
     id: 'passkey',
-    title: 'FIDO2 Hardware Passkey & Biometric Sign-In',
-    detail: 'Eliminates SMS phishing risk by binding login cryptography directly to your device.',
+    title: 'Face ID, Fingerprint & Passkey Sign-In',
+    detail: 'Sign in quickly with your phone or security key—far safer than regular passwords or text codes.',
   },
   {
     id: 'sweep',
-    title: 'Multi-Jurisdiction $5,000,000 Partner Bank Sweep Shield',
-    detail: 'Automatically distributes balances across 20 regulated international partner banks spanning EU DGS, UK FSCS, and U.S. FDIC corridors.',
+    title: 'Up to $5,000,000 Partner Bank Protection',
+    detail: 'Your money is automatically spread across 20 regulated international partner banks for extra peace of mind.',
   },
   {
     id: 'wire',
-    title: 'Dual-Approval Outbound Cross-Border Wire Verification',
-    detail: 'Requires out-of-band biometric confirmation on any SWIFT GPI, SEPA, or Fedwire release exceeding your custom threshold.',
+    title: 'Extra Approval for Big Transfers',
+    detail: 'Set your own limit so any large international transfer needs your direct confirmation before it leaves your account.',
   },
   {
     id: 'virtual',
-    title: 'Single-Merchant Virtual Titanium Cards',
-    detail: 'Isolate recurring subscriptions and online vendors with instantly revocable card numbers.',
+    title: 'Virtual Cards for Safe Online Shopping',
+    detail: 'Create separate virtual cards for subscriptions or online stores and delete or freeze them anytime in one tap.',
   },
   {
     id: 'alerts',
-    title: 'Sub-Second Card & Account Anomaly Alerts',
-    detail: 'Instant push and SMS confirmation on every international or high-value authorization.',
+    title: 'Instant Transfer & Card Alerts',
+    detail: 'Get a real-time notification the second money enters, leaves, or is spent on your card anywhere in the world.',
   },
 ];
 
@@ -97,9 +97,9 @@ export const SecurityTrustPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={SECURITY_IMG}
-            alt="BlueOcean titanium and sapphire cryptographic vault prism"
+            alt="BlueOcean security vault visual"
             aspectClass="aspect-[4/3] lg:h-full"
-            caption="AES-256 encryption at rest, TLS 1.3 in transit, and continuous independent penetration audits."
+            caption="Bank-grade encryption, instant alerts, and regular independent security checks."
             priority
           />
         </div>
@@ -110,30 +110,30 @@ export const SecurityTrustPage: React.FC = () => {
         <GlassCard className="p-7 space-y-3">
           <Landmark className="w-6 h-6 text-[#0A5C99] dark:text-[#78C7F6]" />
           <h2 className="font-display text-xl font-semibold text-[#0A1D37] dark:text-white">
-            Up to $5,000,000 Multi-Jurisdiction Shield
+            Up to $5,000,000 Protected
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Eligible deposits sweep automatically across our 20-bank international partner network (including EU DGS, UK FSCS, and U.S. FDIC institutions) with unified daily reporting.
+            Eligible deposits are automatically spread across 20 regulated partner banks across Europe, the UK, and North America—all visible in one simple balance.
           </p>
         </GlassCard>
 
         <GlassCard className="p-7 space-y-3">
           <Fingerprint className="w-6 h-6 text-[#921B2D] dark:text-[#EE6478]" />
           <h2 className="font-display text-xl font-semibold text-[#0A1D37] dark:text-white">
-            Zero-Trust Passkey Custody
+            Biometric Sign-In &amp; Transfer Checks
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Hardware security keys and device biometrics safeguard every session, cross-border transfer release, and card limit modification.
+            Your fingerprint, Face ID, or device passkey confirms logins, large international transfers, and card limit changes so only you stay in control.
           </p>
         </GlassCard>
 
         <GlassCard className="p-7 space-y-3">
           <Lock className="w-6 h-6 text-[#0A5C99] dark:text-[#78C7F6]" />
           <h2 className="font-display text-xl font-semibold text-[#0A1D37] dark:text-white">
-            Zero Liability Fraud Guarantee
+            Zero Fraud Responsibility
           </h2>
           <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-            Customers are never held financially responsible for verified unauthorized card charges or electronic transfers, backed by 24/7 multilingual global specialists.
+            You never pay for unauthorized card charges or transfers, and our live safety team is available 24/7 in 6 languages to help immediately.
           </p>
         </GlassCard>
       </section>

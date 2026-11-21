@@ -9,7 +9,7 @@ interface PartnerItem {
 const PARTNERS: PartnerItem[] = [
   {
     name: 'ClearRail ACH',
-    role: 'Domestic Settlement',
+    role: 'Fast Bank Transfers',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M4 8H16L20 12L16 16H4L8 12L4 8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
@@ -18,7 +18,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'HarborGrid Clearing',
-    role: 'FDIC Sweep Network',
+    role: 'Deposit Protection Network',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" stroke="currentColor" strokeWidth="1.8" />
@@ -30,7 +30,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'NordicFX Desk',
-    role: 'Multi-Currency Liquidity',
+    role: '38-Currency Exchange',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
@@ -40,7 +40,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'Aegis Passkey',
-    role: 'FIDO2 Auth Infrastructure',
+    role: 'Biometric Sign-In Security',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M12 3L19 6.5V12.5C19 16.8 15.8 20.1 12 21C8.2 20.1 5 16.8 5 12.5V6.5L12 3Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
@@ -50,7 +50,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'Veridian Custody',
-    role: 'Treasury Safekeeping',
+    role: 'Protected Partner Banks',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M4 6L12 19L20 6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
@@ -60,7 +60,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'Solstice Payroll',
-    role: 'Direct Deposit Rail',
+    role: 'Early Direct Deposit',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.8" />
@@ -70,7 +70,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'Kestrel Wire',
-    role: 'Cross-Border SWIFT',
+    role: 'Global Money Transfers',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M4 17L11 10L15 14L20 7" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,7 +80,7 @@ const PARTNERS: PartnerItem[] = [
   },
   {
     name: 'Meridian Ledger',
-    role: 'Audit & Reconciliation',
+    role: 'Instant Statements',
     mark: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path d="M5 18V8L12 13L19 8V18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -105,10 +105,10 @@ interface PartnerMarqueeProps {
 
 /**
  * Pure GPU-composited infinite rotating partner marquee featuring realistic
- * mid-market banking infrastructure, clearing, FX, custody, and payroll partners.
+ * mid-market transfer, FX, security, and ATM partners.
  */
 export const PartnerMarquee: React.FC<PartnerMarqueeProps> = ({
-  heading = 'Connected across independent clearing rails, custody desks & fintech infrastructure',
+  heading = 'Trusted transfer networks & banking partners helping move your money worldwide',
 }) => {
   const track = [...PARTNERS, ...PARTNERS];
 

@@ -44,7 +44,7 @@ export const HomePage: React.FC = () => {
       id: 'personal',
       index: '01',
       title: t.nav.personal,
-      metric: '4.85% APY · $0 Monthly Fees',
+      metric: '4.85% Savings · Send & Receive in 38 Currencies',
       desc: t.personal.savingsDesc,
       icon: <Wallet className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-7',
@@ -53,7 +53,7 @@ export const HomePage: React.FC = () => {
       id: 'business',
       index: '02',
       title: t.nav.business,
-      metric: '5.10% APY · $5M FDIC Sweep',
+      metric: '5.10% Savings · Pay Teams & Suppliers Worldwide',
       desc: t.business.treasuryDesc,
       icon: <Building2 className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-5',
@@ -62,7 +62,7 @@ export const HomePage: React.FC = () => {
       id: 'cards',
       index: '03',
       title: t.nav.cards,
-      metric: '18g Brushed Titanium & Crimson Metal',
+      metric: 'Spend in 170+ Countries · Zero Foreign Fees',
       desc: t.cards.subtitle,
       icon: <CreditCard className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       span: 'lg:col-span-5',
@@ -71,7 +71,7 @@ export const HomePage: React.FC = () => {
       id: 'loans',
       index: '04',
       title: t.nav.loans,
-      metric: 'Fixed & Jumbo · 72h Digital Underwriting',
+      metric: 'Home & Personal Loans · Fast 3-Day Decision',
       desc: t.loans.subtitle,
       icon: <Landmark className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-7',
@@ -80,7 +80,7 @@ export const HomePage: React.FC = () => {
       id: 'wealth',
       index: '05',
       title: t.nav.wealth,
-      metric: 'Fiduciary CFA Advisors · Direct Indexing',
+      metric: 'Personal Advisors · Simple Global Investing',
       desc: t.wealth.subtitle,
       icon: <TrendingUp className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       span: 'lg:col-span-6',
@@ -89,7 +89,7 @@ export const HomePage: React.FC = () => {
       id: 'security',
       index: '06',
       title: t.nav.security,
-      metric: 'Hardware Passkeys · 24/7 Global Fraud Ops',
+      metric: 'Up to $5M Protected · 24/7 Live Help',
       desc: t.security.subtitle,
       icon: <ShieldCheck className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
       span: 'lg:col-span-6',
@@ -99,24 +99,24 @@ export const HomePage: React.FC = () => {
   const testimonials = [
     {
       quote:
-        'Moving our $3.2M operating reserve into BlueOcean Treasury Sweep generated $163,200 in annualized yield while keeping funds liquid and protected across our European and North American partner bank network.',
+        'Paying our overseas suppliers in euros and dollars used to take four days and cost a fortune in bank wire fees. With BlueOcean, our transfers arrive the same day and our company savings earned over $163,000 in interest this year.',
       name: 'David Halvorsen',
-      role: 'Chief Financial Officer · Northstar Logistics · Zurich & New York',
-      outcome: '+$163.2K Annualized Treasury Return',
+      role: 'Finance Director · Northstar Logistics · Zurich & New York',
+      outcome: '+$163K Earned + Same-Day Transfers',
     },
     {
       quote:
-        'We locked a 15-year cross-border property refinance in 68 hours with zero origination surprises and saved over $420 per month compared to our previous high-street lender.',
+        'I send money home to family abroad every month and also refinanced my mortgage through BlueOcean. Everything was clear, approved in under three days, and saved me £340 every month.',
       name: 'Dr. Elena Rostova',
-      role: 'Cardiothoracic Surgeon · London, UK',
-      outcome: 'Closed in 14 Business Days',
+      role: 'Surgeon · London, UK',
+      outcome: 'Saved £340/Month + Fast Transfers',
     },
     {
       quote:
-        'Consolidating our personal savings, business expenses, and monthly EUR, GBP, and USD supplier wires into BlueOcean eliminated over $1,900 a year in foreign exchange spreads and wire fees.',
+        'Our clients pay us in EUR, GBP, and USD, and we receive every payment straight into one account without losing money on bad exchange rates. It saved us over $1,900 in bank fees last year.',
       name: 'Marcus & Sofia Delgado',
-      role: 'Architectural Studio Principals · Madrid & São Paulo',
-      outcome: '$1,900+ Saved Annually on FX & Wires',
+      role: 'Design Studio Owners · Madrid & São Paulo',
+      outcome: '$1,900+ Saved on Transfers & FX',
     },
   ];
 
@@ -306,7 +306,7 @@ export const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-6 space-y-6">
               <div className="text-xs font-medium text-[#8ECBF6]">
-                SWIFT GPI · SEPA Instant · FedNow · ISO 27001 · SOC 2 Type II
+                Fast Global Transfers · 38+ Currencies · Protected Up to $5M
               </div>
               <h2
                 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-white leading-tight"
@@ -321,15 +321,15 @@ export const HomePage: React.FC = () => {
               <ul className="space-y-3 text-sm text-[#DCEAF7]">
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Multi-jurisdiction deposit protection up to $5,000,000 across 20 regulated international partner banks</span>
+                  <span>Send and receive money across 42+ countries with real exchange rates and upfront fees</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Hardware passkey authentication with biometric cross-border transfer verification</span>
+                  <span>Your deposits stay protected up to $5,000,000 across 20 regulated partner banks</span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-[#6EC2F5] shrink-0 mt-0.5" />
-                  <span>Instant virtual card generation and single-tap freeze inside the Customer Portal</span>
+                  <span>Create virtual cards instantly or freeze your card in one tap inside the Customer Portal</span>
                 </li>
               </ul>
 
@@ -348,9 +348,9 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-6">
               <MediaFrame
                 src={SECURITY_IMG}
-                alt="Brushed titanium and sapphire optical glass security vault prism with dark crimson core"
+                alt="BlueOcean security vault visual"
                 aspectClass="aspect-[4/3]"
-                caption="Multi-layer cryptographic custody and real-time Fedwire anomaly screening."
+                caption="24/7 account monitoring and instant alerts every time money moves."
               />
             </div>
           </div>
@@ -410,7 +410,7 @@ export const HomePage: React.FC = () => {
                   {formatCurrency(annualBlueOcean, 0)}
                 </div>
                 <div className="mt-2 text-xs text-[#546D88] dark:text-[#98B4D0]">
-                  4.85% APY · Compounded Daily
+                  4.85% APY · Interest added daily
                 </div>
               </div>
 
@@ -422,7 +422,7 @@ export const HomePage: React.FC = () => {
                   +{formatCurrency(extraYield, 0)}
                 </div>
                 <div className="mt-2 text-xs text-[#6B414A] dark:text-[#D5A3AC]">
-                  Compared to 0.45% traditional legacy bank avg
+                  Compared to 0.45% average at regular banks
                 </div>
               </div>
             </div>
@@ -494,13 +494,13 @@ export const HomePage: React.FC = () => {
             >
               <div className="space-y-3">
                 <div className="font-mono text-xs font-medium text-[#0A5C99] dark:text-[#78C7F6]">
-                  {t.nav.about} · International Frontier
+                  {t.nav.about} · Worldwide Online Banking
                 </div>
                 <h3 className="font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
-                  An online bank built for cross-border clarity
+                  Built for people who send and receive money across borders
                 </h3>
                 <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-                  Explore our global clearing hubs across New York, Frankfurt, Amsterdam, and São Paulo, our charter governance, and our partner bank rails.
+                  See how BlueOcean connects 42+ countries and 38 currencies so sending money home, getting paid abroad, and saving feels effortless.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-[#0A2342]/10 dark:border-white/10 flex items-center justify-between text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
@@ -518,13 +518,13 @@ export const HomePage: React.FC = () => {
             >
               <div className="space-y-3">
                 <div className="font-mono text-xs font-medium text-[#921B2D] dark:text-[#EB5B70]">
-                  {t.nav.contact} · 24/7 Global Support
+                  {t.nav.contact} · 24/7 Human Support
                 </div>
                 <h3 className="font-display text-2xl font-semibold text-[#0A1D37] dark:text-white">
-                  Speak with a real BlueOcean banking specialist
+                  Talk to a real person anytime, in your language
                 </h3>
                 <p className="text-sm text-[#445A75] dark:text-[#B4C7DC] leading-relaxed">
-                  Reach our multilingual personal, wire, and commercial treasury desks by phone, encrypted message, or regional office appointment.
+                  Message or call our friendly team in English, German, Russian, Dutch, Spanish, or Portuguese whenever you need help with an account or transfer.
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-[#0A2342]/10 dark:border-white/10 flex items-center justify-between text-sm font-medium text-[#921B2D] dark:text-[#EB5B70]">

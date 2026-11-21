@@ -191,7 +191,7 @@ export const ClientPortalPage: React.FC = () => {
                     BlueOcean
                   </div>
                   <div className="text-[11px] font-mono text-[#8FD1FA]">
-                    {t.nav.portal} · TLS 1.3 · FIDO2
+                    {t.nav.portal} · Protected Sign-In
                   </div>
                 </div>
               </div>
@@ -220,11 +220,11 @@ export const ClientPortalPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/14 text-xs text-[#CFE2F4]">
               <div className="flex items-start gap-2">
                 <ShieldCheck className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
-                <span>Up to $5,000,000 multi-jurisdiction deposit protection</span>
+                <span>Deposits protected up to $5,000,000 via partner banks</span>
               </div>
               <div className="flex items-start gap-2">
                 <Globe2 className="w-4 h-4 text-[#7AC8F8] shrink-0 mt-0.5" />
-                <span>38+ international currencies &amp; instant wires</span>
+                <span>Send &amp; receive money in 38+ currencies</span>
               </div>
             </div>
           </GlassCard>
@@ -239,7 +239,7 @@ export const ClientPortalPage: React.FC = () => {
                 {t.portal.signInCta}
               </h2>
               <p className="text-xs sm:text-sm text-[#4A607A] dark:text-[#A9BED6]">
-                Access live balances, wire settlements, savings vaults, and metal card controls.
+                Check your balances, send or receive money internationally, manage your cards, and grow your savings vaults.
               </p>
             </div>
 

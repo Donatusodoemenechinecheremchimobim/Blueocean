@@ -31,27 +31,27 @@ export const LoansMortgagesPage: React.FC = () => {
   const loanProducts = [
     {
       icon: <Home className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
-      title: 'Fixed & Jumbo Mortgages',
+      title: 'Home Mortgages',
       rate: 'From 5.95% APR',
-      desc: 'Primary, secondary, and coastal residences up to $5M with 72-hour digital underwriting and relationship pricing.',
+      desc: 'Buy a primary or vacation home up to $5M with a fast 3-day online decision and lower rates for BlueOcean customers.',
     },
     {
       icon: <RefreshCw className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
-      title: 'Rate-Term Refinance',
-      rate: 'Zero Lender Origination Fee',
-      desc: 'Lower your monthly obligation or shorten your term with transparent closing disclosures and automated title coordination.',
+      title: 'Simple Refinancing',
+      rate: '$0 Lender Setup Fee',
+      desc: 'Lower your monthly payment or pay off your home sooner with clear closing costs shown upfront from day one.',
     },
     {
       icon: <Car className="w-5 h-5 text-[#921B2D] dark:text-[#EB5B70]" />,
-      title: 'Auto & EV Financing',
+      title: 'Auto & EV Loans',
       rate: 'From 5.29% APR',
-      desc: 'Direct dealer or private-party financing up to $180,000 with same-day funding approval inside the Customer Portal.',
+      desc: 'Finance a new, used, or electric vehicle up to $180,000 with same-day approval right inside your Customer Portal.',
     },
     {
       icon: <Briefcase className="w-5 h-5 text-[#0A5C99] dark:text-[#78C7F6]" />,
       title: 'Personal Credit Lines',
       rate: 'From 7.45% APR',
-      desc: 'Unsecured liquidity from $15,000 to $150,000 with zero prepayment penalties and flexible draw schedules.',
+      desc: 'Borrow between $15,000 and $150,000 when you need it, pay back early anytime with zero penalties.',
     },
   ];
 

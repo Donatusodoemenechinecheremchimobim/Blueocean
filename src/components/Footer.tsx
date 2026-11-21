@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
               {t.footer.tagline}
             </p>
             <div className="text-xs font-mono tabular-nums text-[#5C6F87] dark:text-[#8BA4C2]">
-              SWIFT/BIC: BLOCGB2LXXX · Global IBAN &amp; Multi-Rail Clearing
+              SWIFT/BIC: BLOCGB2LXXX · Send &amp; Receive in 38+ Currencies
             </div>
           </div>
 

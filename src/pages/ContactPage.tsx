@@ -7,47 +7,47 @@ import { Reveal } from '../components/Reveal';
 
 const OFFICES = [
   {
-    city: 'London — Global Clearing Hub',
+    city: 'London — UK & Global Support',
     address: '22 Bishopsgate, Level 31, London EC2N 4BQ, UK',
-    hours: '24/7 Digital & FX Operations',
+    hours: '24/7 Phone & Transfer Support',
     phone: '+44 20 7946 0842',
   },
   {
-    city: 'Frankfurt — EU Corridor Desk',
+    city: 'Frankfurt — Europe Office',
     address: 'Taunusanlage 18, 60325 Frankfurt am Main, Germany',
     hours: 'Mon–Sat · 07:00–22:00 CET',
     phone: '+49 69 5550 1920',
   },
   {
-    city: 'Singapore — APAC & Trade Desk',
+    city: 'Singapore — Asia-Pacific Office',
     address: '10 Marina Boulevard, Tower 2, Singapore 018983',
-    hours: '24/7 Asia-Pacific Settlement',
+    hours: '24/7 Asia-Pacific Support',
     phone: '+65 6555 0194',
   },
   {
-    city: 'New York — Americas Desk',
+    city: 'New York — Americas Office',
     address: '425 Hudson River Plaza, Suite 2800, New York, NY 10014',
-    hours: '24/7 EN / ES / PT Customer Desk',
+    hours: '24/7 English, Spanish & Portuguese Support',
     phone: '+1 (212) 555-0184',
   },
 ];
 
 const FAQS = [
   {
-    q: 'Who can open a BlueOcean international online banking account?',
-    a: 'BlueOcean welcomes individual customers, expats, and global operating companies across 42+ approved countries across Europe, the UK, Asia-Pacific, Latin America, and North America via digital verification.',
+    q: 'Who can open a BlueOcean account?',
+    a: 'Individuals, travelers, expats, and businesses across 42+ countries in Europe, the UK, Asia-Pacific, Latin America, and North America can open an account online in just a few minutes.',
   },
   {
-    q: 'How fast do international wire transfers and multi-currency payouts settle?',
-    a: 'SEPA Instant, UK Faster Payments, and FedNow settle within seconds. Cross-border SWIFT GPI transfers across 38 currencies include real-time settlement tracking inside the Customer Portal.',
+    q: 'How fast can I send and receive money internationally?',
+    a: 'Most euro, UK, and local bank transfers arrive within seconds. International transfers across 38 currencies arrive the same day or next business day, with live tracking inside your Customer Portal.',
   },
   {
-    q: 'How do I report a lost Titanium card or suspected unauthorized activity?',
-    a: 'Freeze your card immediately in one tap inside the Customer Portal, or contact our 24/7 Global Fraud Operations Desk directly at +44 20 7946 0899 / +1 (800) 555-0199 for instant virtual replacement.',
+    q: 'What should I do if I lose my card or notice something strange?',
+    a: 'Freeze your card right away in one tap inside the Customer Portal, or call our 24/7 safety team at +44 20 7946 0899 / +1 (800) 555-0199 for an instant virtual replacement.',
   },
   {
-    q: 'How are deposits protected across international jurisdictions?',
-    a: 'Eligible balances receive up to $5,000,000 in combined pass-through deposit protection across our network of 20 regulated partner banks spanning EU DGS, UK FSCS, and U.S. FDIC corridors.',
+    q: 'How is my money kept safe across countries?',
+    a: 'Eligible balances are protected up to $5,000,000 through our network of 20 regulated partner banks across Europe, the UK, and North America.',
   },
 ];
 
@@ -92,16 +92,16 @@ export const ContactPage: React.FC = () => {
       >
         <GlassCard className="p-6 sm:p-8 space-y-3.5">
           <p className="text-xs sm:text-sm font-medium text-[#0A5C99] dark:text-[#78C7F6]">
-            Contact BlueOcean · 24/7 Global Customer Desk
+            Contact BlueOcean · 24/7 Human Support
           </p>
           <h1
             className="font-display font-bold tracking-tight text-[#081A33] dark:text-white leading-tight"
             style={{ fontSize: 'clamp(2rem, 3.8vw, 3.25rem)', textWrap: 'balance' }}
           >
-            Direct human specialists across every time zone and language.
+            Real people ready to help, in your language and time zone.
           </h1>
           <p className="text-base text-[#3D536E] dark:text-[#B9CBE0] leading-relaxed">
-            Reach our banking, international wire, mortgage, or 24/7 security teams in English, German, Russian, Dutch, Spanish, or Portuguese—with zero automated phone mazes.
+            Questions about sending money abroad, receiving a payment, opening an account, or your card? Reach our friendly team in English, German, Russian, Dutch, Spanish, or Portuguese—with no endless phone menus.
           </p>
         </GlassCard>
       </motion.section>

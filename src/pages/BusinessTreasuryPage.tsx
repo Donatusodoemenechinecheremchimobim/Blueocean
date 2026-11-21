@@ -60,9 +60,9 @@ export const BusinessTreasuryPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={HQ_IMG}
-            alt="BlueOcean international commercial treasury glass headquarters"
+            alt="BlueOcean international business banking office"
             aspectClass="aspect-[4/3] lg:h-full"
-            caption="Dedicated international treasury desks in London, Frankfurt, Singapore, and New York."
+            caption="Business support teams across London, Frankfurt, Singapore, and New York."
             priority
           />
         </div>
@@ -81,7 +81,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.operatingDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#5C6F87] dark:text-[#96AFCB]">
-            SEPA Instant · SWIFT GPI · Fedwire · Dual Approval
+            Fast Global Transfers · Team Permissions · Accounting Sync
           </div>
         </GlassCard>
 
@@ -96,7 +96,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.treasuryDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#8FD1FA]">
-            5.10% APY · G10 Sovereign Bills · $5M Shield
+            5.10% APY · Always Accessible · Up to $5M Protected
           </div>
         </GlassCard>
 
@@ -111,7 +111,7 @@ export const BusinessTreasuryPage: React.FC = () => {
             {t.business.fxDesc}
           </p>
           <div className="pt-2 font-mono text-xs text-[#5C6F87] dark:text-[#96AFCB]">
-            38 Currencies · SWIFT · 0.15% Interbank Spread
+            38 Currencies · Fair Exchange Rates · No Hidden Markup
           </div>
         </GlassCard>
       </section>

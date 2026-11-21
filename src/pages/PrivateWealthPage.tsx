@@ -20,39 +20,39 @@ const PORTFOLIOS: Record<
   }
 > = {
   conservative: {
-    targetRange: '5.2% – 6.8% Annualized',
-    fee: '0.35% Fiduciary Advisory',
+    targetRange: '5.2% – 6.8% Yearly Target',
+    fee: '0.35% Simple Annual Fee',
     description:
-      'Prioritizes principal preservation and tax-efficient G10 Sovereign & Treasury bond ladders with low multi-currency volatility.',
+      'Focused on protecting what you have built using steady government bonds, safe interest-bearing cash, and reliable dividend companies.',
     allocations: [
-      { label: 'G10 Sovereign & Treasury Ladders', pct: 62, color: 'bg-[#0A5C99]' },
-      { label: 'Global Investment-Grade Credit', pct: 18, color: 'bg-[#2995D9]' },
-      { label: 'Dividend Quality Global Equities', pct: 12, color: 'bg-[#921B2D]' },
-      { label: 'Liquid Multi-Currency Sweep Cash', pct: 8, color: 'bg-[#8799B0]' },
+      { label: 'Government Savings Bonds', pct: 62, color: 'bg-[#0A5C99]' },
+      { label: 'Stable Corporate Bonds', pct: 18, color: 'bg-[#2995D9]' },
+      { label: 'Global Dividend Stocks', pct: 12, color: 'bg-[#921B2D]' },
+      { label: 'Multi-Currency Cash Reserve', pct: 8, color: 'bg-[#8799B0]' },
     ],
   },
   balanced: {
-    targetRange: '7.4% – 9.6% Annualized',
-    fee: '0.45% Fiduciary Advisory',
+    targetRange: '7.4% – 9.6% Yearly Target',
+    fee: '0.45% Simple Annual Fee',
     description:
-      'Combines tax-efficient global direct indexing across Europe, North America, and APAC with high-grade sovereign fixed income.',
+      'A healthy mix of global companies across Europe, the Americas, and Asia paired with steady bonds to balance growth and peace of mind.',
     allocations: [
-      { label: 'Tax-Managed Global Direct Equities', pct: 48, color: 'bg-[#0A5C99]' },
-      { label: 'Sovereign & Investment-Grade Bonds', pct: 32, color: 'bg-[#2995D9]' },
-      { label: 'Private Credit & Real Assets', pct: 14, color: 'bg-[#921B2D]' },
-      { label: 'Liquid Multi-Currency Sweep Cash', pct: 6, color: 'bg-[#8799B0]' },
+      { label: 'Global Stock Mix', pct: 48, color: 'bg-[#0A5C99]' },
+      { label: 'Government & Quality Bonds', pct: 32, color: 'bg-[#2995D9]' },
+      { label: 'Real Estate & Income Funds', pct: 14, color: 'bg-[#921B2D]' },
+      { label: 'Multi-Currency Cash Reserve', pct: 6, color: 'bg-[#8799B0]' },
     ],
   },
   growth: {
-    targetRange: '9.2% – 12.1% Annualized',
-    fee: '0.50% Fiduciary Advisory',
+    targetRange: '9.2% – 12.1% Yearly Target',
+    fee: '0.50% Simple Annual Fee',
     description:
-      'Long-horizon capital appreciation anchored in global public equities, international private co-investments, and active currency hedging.',
+      'Designed for long-term goals like retirement or family wealth, leaning more into global stocks with built-in currency balance.',
     allocations: [
-      { label: 'Global Direct Index Equities', pct: 66, color: 'bg-[#0A5C99]' },
-      { label: 'Institutional Private Equity & Credit', pct: 18, color: 'bg-[#921B2D]' },
-      { label: 'Short-Duration Sovereign Bills', pct: 12, color: 'bg-[#2995D9]' },
-      { label: 'Liquid Multi-Currency Sweep Cash', pct: 4, color: 'bg-[#8799B0]' },
+      { label: 'Global Growth Stocks', pct: 66, color: 'bg-[#0A5C99]' },
+      { label: 'Private & Growth Funds', pct: 18, color: 'bg-[#921B2D]' },
+      { label: 'Short-Term Safe Bonds', pct: 12, color: 'bg-[#2995D9]' },
+      { label: 'Multi-Currency Cash Reserve', pct: 4, color: 'bg-[#8799B0]' },
     ],
   },
 };
@@ -107,9 +107,9 @@ export const PrivateWealthPage: React.FC = () => {
         <div className="lg:col-span-6">
           <MediaFrame
             src={WEALTH_IMG}
-            alt="BlueOcean minimalist coastal glass and brushed titanium private wealth pavilion"
+            alt="BlueOcean advisory office overlooking the ocean"
             aspectClass="aspect-[16/10] lg:h-full"
-            caption="Global fiduciary advisory offices serving families, executives, and endowments across Europe, the Americas, UK, and APAC."
+            caption="Personal investment advisors helping families and professionals across Europe, the UK, the Americas, and Asia."
             priority
           />
         </div>

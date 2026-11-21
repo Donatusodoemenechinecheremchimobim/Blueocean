@@ -24,12 +24,12 @@ export const PersonalBankingPage: React.FC = () => {
 
   const comparisonRows = [
     {
-      feature: 'High-Yield Savings APY',
+      feature: 'Savings Interest Rate',
       blueOcean: '4.85% APY',
       legacy: '0.01% – 0.45% APY',
     },
     {
-      feature: 'Monthly Maintenance Fee',
+      feature: 'Monthly Account Fee',
       blueOcean: '$0 (No minimum balance)',
       legacy: '$12 – $25 / month',
     },
@@ -39,19 +39,19 @@ export const PersonalBankingPage: React.FC = () => {
       legacy: 'Local branch network only',
     },
     {
-      feature: 'Multi-Currency & Early Payouts',
-      blueOcean: '38+ Currencies · Instant Clearing',
-      legacy: '3% FX markup · 3–5 day wires',
+      feature: 'Sending & Receiving Abroad',
+      blueOcean: '38+ Currencies · Fast Transfers',
+      legacy: '3% hidden markup · 3–5 day waits',
     },
     {
       feature: 'Overdraft Penalty Fees',
-      blueOcean: '$0 with automated savings bridge',
+      blueOcean: '$0 with automatic savings backup',
       legacy: '$35 per occurrence',
     },
     {
-      feature: 'Partner Bank Deposit Shield',
-      blueOcean: 'Up to $5,000,000 Multi-Jurisdiction',
-      legacy: 'Single-country cap',
+      feature: 'Deposit Protection',
+      blueOcean: 'Up to $5,000,000 via Partner Banks',
+      legacy: 'Single-bank limit only',
     },
   ];
 
