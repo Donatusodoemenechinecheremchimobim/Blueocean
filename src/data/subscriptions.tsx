@@ -18,7 +18,7 @@ import {
   siDropbox,
 } from 'simple-icons';
 
-export type SubscriptionCategory = 'streaming' | 'software' | 'lifestyle';
+export type SubscriptionCategory = 'entertainment' | 'software' | 'utility';
 
 export interface SubscriptionService {
   id: string;
@@ -26,7 +26,7 @@ export interface SubscriptionService {
   plan: string;
   price: number;
   category: SubscriptionCategory;
-  categoryLabel: string;
+  categoryLabel: 'Entertainment' | 'Software' | 'Utility';
   brandColor: string;
   renderLogo: (size?: number) => React.ReactNode;
 }
@@ -57,8 +57,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Netflix',
     plan: 'Standard Monthly',
     price: 15.49,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#E50914',
     renderLogo: (size = 22) => renderSimpleIcon(siNetflix, '#E50914', size),
   },
@@ -67,8 +67,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Amazon Prime',
     plan: 'Prime Membership',
     price: 14.99,
-    category: 'lifestyle',
-    categoryLabel: 'Shopping & Cloud',
+    category: 'utility',
+    categoryLabel: 'Utility',
     brandColor: '#FF9900',
     renderLogo: (size = 22) => (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-label="Amazon Prime">
@@ -92,8 +92,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Apple / iCloud+',
     plan: '2TB Cloud & Media',
     price: 9.99,
-    category: 'lifestyle',
-    categoryLabel: 'Shopping & Cloud',
+    category: 'utility',
+    categoryLabel: 'Utility',
     brandColor: '#111111',
     renderLogo: (size = 22) => renderSimpleIcon(siApple, '#000000', size, true),
   },
@@ -102,8 +102,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'YouTube Premium',
     plan: 'Ad-Free + Music',
     price: 13.99,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#FF0000',
     renderLogo: (size = 22) => renderSimpleIcon(siYoutube, '#FF0000', size),
   },
@@ -113,7 +113,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'OpenAI Monthly',
     price: 20.0,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#10A37F',
     renderLogo: (size = 22) => (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="#10A37F" role="img" aria-label="ChatGPT OpenAI">
@@ -126,8 +126,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Spotify',
     plan: 'Individual Premium',
     price: 11.99,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#1ED760',
     renderLogo: (size = 22) => renderSimpleIcon(siSpotify, '#1ED760', size),
   },
@@ -136,8 +136,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Max (HBO)',
     plan: 'Ad-Free Streaming',
     price: 16.99,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#002BE7',
     renderLogo: (size = 22) => renderSimpleIcon(siHbo, '#002BE7', size),
   },
@@ -146,8 +146,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Paramount+',
     plan: 'With SHOWTIME',
     price: 11.99,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#0064FF',
     renderLogo: (size = 22) => renderSimpleIcon(siParamountplus, '#0064FF', size),
   },
@@ -156,8 +156,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Audible',
     plan: 'Premium Plus',
     price: 14.95,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#F8991C',
     renderLogo: (size = 22) => renderSimpleIcon(siAudible, '#F8991C', size),
   },
@@ -166,8 +166,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Twitch Turbo',
     plan: 'Ad-Free Live Video',
     price: 11.99,
-    category: 'streaming',
-    categoryLabel: 'Streaming & Media',
+    category: 'entertainment',
+    categoryLabel: 'Entertainment',
     brandColor: '#9146FF',
     renderLogo: (size = 22) => renderSimpleIcon(siTwitch, '#9146FF', size),
   },
@@ -177,7 +177,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'All Apps Monthly',
     price: 59.99,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#FF0000',
     renderLogo: (size = 22) => (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="#FA0F00" role="img" aria-label="Adobe Creative Cloud">
@@ -191,7 +191,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'Personal Suite + 1TB',
     price: 9.99,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#00A4EF',
     renderLogo: (size = 22) => (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" role="img" aria-label="Microsoft 365">
@@ -207,8 +207,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Google One',
     plan: '2TB Cloud + AI',
     price: 9.99,
-    category: 'lifestyle',
-    categoryLabel: 'Shopping & Cloud',
+    category: 'utility',
+    categoryLabel: 'Utility',
     brandColor: '#4285F4',
     renderLogo: (size = 22) => renderSimpleIcon(siGoogle, '#4285F4', size),
   },
@@ -218,7 +218,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'HD Streaming & Perks',
     price: 9.99,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#5865F2',
     renderLogo: (size = 22) => renderSimpleIcon(siDiscord, '#5865F2', size),
   },
@@ -228,7 +228,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'Workspace & AI',
     price: 10.0,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#111111',
     renderLogo: (size = 22) => renderSimpleIcon(siNotion, '#000000', size, true),
   },
@@ -238,7 +238,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'Design Seat Monthly',
     price: 15.0,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#F24E1E',
     renderLogo: (size = 22) => renderSimpleIcon(siFigma, '#F24E1E', size),
   },
@@ -248,7 +248,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'Individual AI Plan',
     price: 10.0,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#181717',
     renderLogo: (size = 22) => renderSimpleIcon(siGithub, '#181717', size, true),
   },
@@ -258,7 +258,7 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     plan: 'Unlimited Meetings',
     price: 15.99,
     category: 'software',
-    categoryLabel: 'AI & Software',
+    categoryLabel: 'Software',
     brandColor: '#0B5CFF',
     renderLogo: (size = 22) => renderSimpleIcon(siZoom, '#0B5CFF', size),
   },
@@ -267,8 +267,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Uber One',
     plan: 'Rides & Delivery Pass',
     price: 9.99,
-    category: 'lifestyle',
-    categoryLabel: 'Shopping & Cloud',
+    category: 'utility',
+    categoryLabel: 'Utility',
     brandColor: '#111111',
     renderLogo: (size = 22) => renderSimpleIcon(siUber, '#000000', size, true),
   },
@@ -277,8 +277,8 @@ export const US_SUBSCRIPTIONS: SubscriptionService[] = [
     name: 'Dropbox Plus',
     plan: '2TB Cloud Backup',
     price: 11.99,
-    category: 'lifestyle',
-    categoryLabel: 'Shopping & Cloud',
+    category: 'utility',
+    categoryLabel: 'Utility',
     brandColor: '#0061FF',
     renderLogo: (size = 22) => renderSimpleIcon(siDropbox, '#0061FF', size),
   },

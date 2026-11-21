@@ -3,6 +3,7 @@ import {
   CreditCard,
   Plus,
   Search,
+  X,
   ShieldCheck,
   ShieldOff,
   CheckCircle2,
@@ -10,6 +11,10 @@ import {
   Trash2,
   Snowflake,
   Lock,
+  Tv,
+  Laptop,
+  Cloud,
+  LayoutGrid,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { useBanking } from '../context/BankingContext';
@@ -25,7 +30,8 @@ interface SubscriptionManagerProps {
   onBuyVirtualCard: () => void;
 }
 
-type ManagerFilter = 'all' | 'authorized' | 'blocked' | SubscriptionCategory;
+type CategoryFilter = 'all' | SubscriptionCategory;
+type AuthStatusFilter = 'all' | 'authorized' | 'blocked';
 
 export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
   initialCardId,
@@ -52,7 +58,8 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
   const [fundingAccountId, setFundingAccountId] = useState<string>(
     accounts[0]?.id ?? 'acc-checking'
   );
-  const [filter, setFilter] = useState<ManagerFilter>('all');
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('all');
+  const [statusFilter, setStatusFilter] = useState<AuthStatusFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -69,6 +76,16 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
 
   const authorizedCount = authorizedIds.length;
 
+  const categoryCounts = useMemo(
+    () => ({
+      all: US_SUBSCRIPTIONS.length,
+      entertainment: US_SUBSCRIPTIONS.filter((s) => s.category === 'entertainment').length,
+      software: US_SUBSCRIPTIONS.filter((s) => s.category === 'software').length,
+      utility: US_SUBSCRIPTIONS.filter((s) => s.category === 'utility').length,
+    }),
+    []
+  );
+
   const monthlySubsTotal = useMemo(
     () => activeSubscriptions.reduce((sum, s) => sum + s.price, 0),
     [activeSubscriptions]
@@ -78,14 +95,9 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
     const q = searchQuery.trim().toLowerCase();
     return US_SUBSCRIPTIONS.filter((service) => {
       const isAuth = authorizedIds.includes(service.id);
-      if (filter === 'authorized' && !isAuth) return false;
-      if (filter === 'blocked' && isAuth) return false;
-      if (
-        (filter === 'streaming' || filter === 'software' || filter === 'lifestyle') &&
-        service.category !== filter
-      ) {
-        return false;
-      }
+      if (categoryFilter !== 'all' && service.category !== categoryFilter) return false;
+      if (statusFilter === 'authorized' && !isAuth) return false;
+      if (statusFilter === 'blocked' && isAuth) return false;
       if (
         q &&
         !service.name.toLowerCase().includes(q) &&
@@ -96,7 +108,16 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
       }
       return true;
     });
-  }, [filter, searchQuery, authorizedIds]);
+  }, [categoryFilter, statusFilter, searchQuery, authorizedIds]);
+
+  const hasActiveFilters =
+    categoryFilter !== 'all' || statusFilter !== 'all' || searchQuery.trim().length > 0;
+
+  const handleResetFilters = () => {
+    setCategoryFilter('all');
+    setStatusFilter('all');
+    setSearchQuery('');
+  };
 
   const handleToggleAuth = (service: SubscriptionService) => {
     if (!selectedCard) return;
@@ -160,6 +181,18 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
   };
 
   if (!selectedCard) return null;
+
+  const categoryButtons: {
+    id: CategoryFilter;
+    label: string;
+    count: number;
+    icon: React.ReactNode;
+  }[] = [
+    { id: 'all', label: 'All Services', count: categoryCounts.all, icon: <LayoutGrid className="w-3.5 h-3.5" /> },
+    { id: 'entertainment', label: 'Entertainment', count: categoryCounts.entertainment, icon: <Tv className="w-3.5 h-3.5" /> },
+    { id: 'software', label: 'Software', count: categoryCounts.software, icon: <Laptop className="w-3.5 h-3.5" /> },
+    { id: 'utility', label: 'Utility', count: categoryCounts.utility, icon: <Cloud className="w-3.5 h-3.5" /> },
+  ];
 
   return (
     <div className="space-y-6">
@@ -304,27 +337,47 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
         </div>
       </GlassCard>
 
-      {/* Main 20 U.S. Subscriptions Authorization Grid */}
+      {/* Main 20 U.S. Subscriptions Search, Category Filter & Authorization Grid */}
       <GlassCard className="p-6 space-y-5">
-        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3">
-          {/* Category & Authorization Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 w-fit">
+        {/* Dedicated Search + Authorization Status Row */}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-3">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 text-[#5C6F87] dark:text-[#96AFCB] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by service, plan, or category (e.g., Netflix, Software, Utility)..."
+              aria-label="Search 20 U.S. subscription services"
+              className="w-full h-11 pl-10 pr-10 rounded-xl bg-white/90 dark:bg-[#061830]/80 border border-[#0A2342]/16 dark:border-white/16 text-sm text-[#0A1D37] dark:text-white placeholder:text-[#6E8299] dark:placeholder:text-[#849FBC] focus:outline-none focus:border-[#0A5C99]"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-lg flex items-center justify-center text-[#5C6F87] hover:bg-[#0A2342]/8 dark:hover:bg-white/10 cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+
+          {/* Authorization Status Filter */}
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 shrink-0">
             {(
               [
-                ['all', `All (${US_SUBSCRIPTIONS.length})`],
+                ['all', 'All Status'],
                 ['authorized', `Authorized (${authorizedCount})`],
                 ['blocked', `Blocked (${US_SUBSCRIPTIONS.length - authorizedCount})`],
-                ['streaming', 'Streaming'],
-                ['software', 'AI & Software'],
-                ['lifestyle', 'Shopping & Cloud'],
               ] as const
-            ).map(([key, label]) => (
+            ).map(([statusKey, label]) => (
               <button
-                key={key}
+                key={statusKey}
                 type="button"
-                onClick={() => setFilter(key)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap cursor-pointer ${
-                  filter === key
+                onClick={() => setStatusFilter(statusKey)}
+                className={`px-3 h-9 rounded-lg text-xs font-medium transition-colors whitespace-nowrap cursor-pointer ${
+                  statusFilter === statusKey
                     ? 'bg-[#0A5C99] text-white shadow-xs'
                     : 'text-[#3C5370] dark:text-[#BDD0E4] hover:text-[#0A1D37] dark:hover:text-white'
                 }`}
@@ -333,31 +386,68 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
               </button>
             ))}
           </div>
+        </div>
 
-          {/* Search & Bulk Actions */}
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative flex-1 sm:w-56">
-              <Search className="w-4 h-4 text-[#5C6F87] absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search 20 U.S. services..."
-                className="w-full h-9 pl-9 pr-3 rounded-xl bg-white/85 dark:bg-[#061830]/75 border border-[#0A2342]/14 dark:border-white/15 text-xs text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
-              />
-            </div>
+        {/* Category Filter Tabs (Entertainment, Software, Utility) + Bulk Controls */}
+        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-3 pt-1 border-t border-[#0A2342]/8 dark:border-white/10">
+          <div className="flex flex-wrap items-center gap-2 pt-2">
+            {categoryButtons.map((cat) => {
+              const active = categoryFilter === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setCategoryFilter(cat.id)}
+                  className={`inline-flex items-center gap-1.5 px-3.5 h-9 rounded-xl text-xs font-semibold border transition-all whitespace-nowrap cursor-pointer ${
+                    active
+                      ? 'bg-[#0A5C99] text-white border-[#0A5C99] shadow-xs'
+                      : 'bg-white/75 dark:bg-white/6 border-[#0A2342]/12 dark:border-white/12 text-[#2E4662] dark:text-[#C5D8EC] hover:border-[#0A5C99]/40'
+                  }`}
+                >
+                  {cat.icon}
+                  <span>{cat.label}</span>
+                  <span
+                    className={`font-mono text-[11px] px-1.5 py-0.5 rounded-md ${
+                      active
+                        ? 'bg-white/20 text-white'
+                        : 'bg-[#0A2342]/6 dark:bg-white/10 text-[#5C6F87] dark:text-[#96AFCB]'
+                    }`}
+                  >
+                    {cat.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between xl:justify-end gap-2 pt-1">
+            <span className="text-xs font-mono tabular-nums text-[#5C6F87] dark:text-[#96AFCB] mr-1">
+              Showing {filteredServices.length} of {US_SUBSCRIPTIONS.length}
+            </span>
+
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="px-2.5 h-8 rounded-lg text-xs font-medium text-[#921B2D] dark:text-[#F06D80] hover:bg-[#921B2D]/10 transition-colors cursor-pointer"
+              >
+                Reset
+              </button>
+            )}
 
             <button
               type="button"
               onClick={() => handleBulkToggle(true)}
-              className="px-3 h-9 rounded-xl bg-[#0A5C99]/10 hover:bg-[#0A5C99]/18 dark:bg-white/10 dark:hover:bg-white/16 text-[#0A5C99] dark:text-[#78C7F6] text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
+              disabled={filteredServices.length === 0}
+              className="px-3 h-8 rounded-lg bg-[#0A5C99]/10 hover:bg-[#0A5C99]/18 disabled:opacity-40 dark:bg-white/10 dark:hover:bg-white/16 text-[#0A5C99] dark:text-[#78C7F6] text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
             >
               Authorize Shown
             </button>
             <button
               type="button"
               onClick={() => handleBulkToggle(false)}
-              className="px-3 h-9 rounded-xl bg-[#0A2342]/6 hover:bg-[#0A2342]/12 dark:bg-white/8 dark:hover:bg-white/14 text-[#4A607A] dark:text-[#B8CCE0] text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
+              disabled={filteredServices.length === 0}
+              className="px-3 h-8 rounded-lg bg-[#0A2342]/6 hover:bg-[#0A2342]/12 disabled:opacity-40 dark:bg-white/8 dark:hover:bg-white/14 text-[#4A607A] dark:text-[#B8CCE0] text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer"
             >
               Block Shown
             </button>
@@ -376,17 +466,14 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
         {filteredServices.length === 0 ? (
           <div className="py-12 text-center space-y-2">
             <p className="text-sm font-medium text-[#0A1D37] dark:text-white">
-              No subscription services match this filter.
+              No subscription services match your search or category filter.
             </p>
             <button
               type="button"
-              onClick={() => {
-                setFilter('all');
-                setSearchQuery('');
-              }}
+              onClick={handleResetFilters}
               className="text-xs font-semibold text-[#0A5C99] dark:text-[#78C7F6] hover:underline cursor-pointer"
             >
-              Reset filter to show all 20 U.S. subscriptions
+              Clear filters and show all 20 U.S. subscriptions
             </button>
           </div>
         ) : (
@@ -406,7 +493,7 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
                       : 'bg-white/55 dark:bg-[#05152A]/55 border-[#0A2342]/10 dark:border-white/10'
                   }`}
                 >
-                  {/* Top Row: Official Logo, Service Name & Price */}
+                  {/* Top Row: Official Logo, Service Name, Category & Price */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3 min-w-0">
                       <div
@@ -423,7 +510,7 @@ export const SubscriptionManager: React.FC<SubscriptionManagerProps> = ({
                           {service.name}
                         </div>
                         <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB] truncate">
-                          {service.plan}
+                          {service.categoryLabel} · {service.plan}
                         </div>
                       </div>
                     </div>

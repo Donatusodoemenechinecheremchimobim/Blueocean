@@ -117,8 +117,8 @@ export const MetalCard3D: React.FC<MetalCard3DProps> = ({
         ref={cardRef}
         className={`relative aspect-[1.586/1] w-full rounded-[22px] border ${style.border} ${style.bg} overflow-hidden shadow-[0_24px_54px_-18px_rgba(7,28,54,0.42)] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] preserve-3d will-change-transform`}
       >
-        {/* Brushed Metallic Grain Overlay (separate layer so it never overrides card gradient) */}
-        <div className="pointer-events-none absolute inset-0 brushed-titanium opacity-80" />
+        {/* Subtle Digital Glass Sheen Overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/14 opacity-80" />
 
         {/* Dynamic specular glare */}
         <div

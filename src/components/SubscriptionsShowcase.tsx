@@ -16,9 +16,9 @@ export const SubscriptionsShowcase: React.FC = () => {
 
   const tabs: { id: 'all' | SubscriptionCategory; label: string }[] = [
     { id: 'all', label: `All ${US_SUBSCRIPTIONS.length} Subscriptions` },
-    { id: 'streaming', label: 'Streaming & Media' },
-    { id: 'software', label: 'AI & Software' },
-    { id: 'lifestyle', label: 'Shopping & Cloud' },
+    { id: 'entertainment', label: 'Entertainment' },
+    { id: 'software', label: 'Software' },
+    { id: 'utility', label: 'Utility' },
   ];
 
   return (

@@ -13,12 +13,12 @@
   --color-ocean-600: #1376BA;
   --color-ocean-500: #2995D9;
 
-  --color-titanium-50: #F4F7FB;
-  --color-titanium-100: #E8EFF6;
-  --color-titanium-200: #D2DCE8;
-  --color-titanium-300: #B4C3D4;
-  --color-titanium-400: #8799B0;
-  --color-titanium-500: #5C6F87;
+  --color-slate-50: #F4F7FB;
+  --color-slate-100: #E8EFF6;
+  --color-slate-200: #D2DCE8;
+  --color-slate-300: #B4C3D4;
+  --color-slate-400: #8799B0;
+  --color-slate-500: #5C6F87;
 
   --color-crimson-900: #5E111D;
   --color-crimson-800: #7B1625;
@@ -145,17 +145,6 @@
 
 .preserve-3d {
   transform-style: preserve-3d;
-}
-
-.brushed-titanium {
-  background-image:
-    repeating-linear-gradient(
-      115deg,
-      rgba(255, 255, 255, 0.05) 0px,
-      rgba(255, 255, 255, 0.05) 1px,
-      transparent 1px,
-      transparent 4px
-    );
 }
 
 /* Pure GPU-Composited 3D Ambient Background Motion */

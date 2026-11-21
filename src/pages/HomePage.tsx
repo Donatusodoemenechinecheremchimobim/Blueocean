@@ -10,11 +10,14 @@ import {
   ShieldCheck,
   Check,
   User,
+  Lock,
+  Snowflake,
+  Bell,
+  Headphones,
 } from 'lucide-react';
 import { useApp, PageRoute } from '../context/AppContext';
 import { GlassCard } from '../components/GlassCard';
 import { MetalCard3D } from '../components/MetalCard3D';
-import { MediaFrame } from '../components/MediaFrame';
 import { VideoShowcase } from '../components/VideoShowcase';
 import { Reveal } from '../components/Reveal';
 import { PartnerMarquee } from '../components/PartnerMarquee';
@@ -24,7 +27,6 @@ import { SubscriptionsShowcase } from '../components/SubscriptionsShowcase';
 
 const HERO_IMG = '/src/assets/images/hero_oceanic_architecture_1795099364980.jpg';
 const HERO_VIDEO = '/blueocean-showcase.mp4';
-const SECURITY_IMG = '/src/assets/images/security_titanium_vault_1795099379522.jpg';
 
 export const HomePage: React.FC = () => {
   const { t, navigate, openModal, formatCurrency } = useApp();
@@ -503,13 +505,44 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-6">
-              <MediaFrame
-                src={SECURITY_IMG}
-                alt="BlueOcean security vault visual"
-                aspectClass="aspect-[4/3]"
-                caption="24/7 account monitoring and instant alerts every time money moves."
-              />
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                {
+                  icon: <Lock className="w-5 h-5 text-[#78C7F6]" />,
+                  title: '256-Bit Encryption',
+                  desc: 'Your personal and business account details stay encrypted around the clock.',
+                },
+                {
+                  icon: <Snowflake className="w-5 h-5 text-[#78C7F6]" />,
+                  title: 'One-Tap Card Freeze',
+                  desc: 'Pause any virtual credit card or block specific subscription merchants instantly.',
+                },
+                {
+                  icon: <Bell className="w-5 h-5 text-[#78C7F6]" />,
+                  title: 'Real-Time Alerts',
+                  desc: 'See every incoming client payment, transfer, and card purchase the second it happens.',
+                },
+                {
+                  icon: <Headphones className="w-5 h-5 text-[#78C7F6]" />,
+                  title: '24/7 Human Support',
+                  desc: 'Reach our support specialists anytime in 6 languages whenever you need help.',
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="p-5 rounded-2xl bg-white/8 border border-white/12 space-y-2.5"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#C4D8EC] leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

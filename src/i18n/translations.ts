@@ -489,7 +489,7 @@ export const TRANSLATIONS: Record<Locale, TranslationDictionary> = {
     footer: {
       tagline: 'Simple international online banking to send, receive, and spend globally with instant virtual credit cards across 42+ countries.',
       fdicNotice:
-        'BlueOcean International Bank provides online multi-currency accounts and virtual credit cards across 42+ countries with bank-grade encryption and 24/7 customer support.',
+        'BlueOcean International Bank provides online multi-currency accounts and virtual credit cards across 42+ countries with 256-bit encryption and 24/7 customer support.',
       rights: '© 2026 BlueOcean International Bank. All rights reserved.',
       bankingCol: 'Accounts & Loans',
       institutionalCol: 'Company',
