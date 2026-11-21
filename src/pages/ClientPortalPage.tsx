@@ -26,15 +26,64 @@ import {
   Globe2,
   Send,
   Sparkles,
+  Check,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { useBanking } from '../context/BankingContext';
+import { useBanking, CardFinish } from '../context/BankingContext';
 import { GlassCard } from '../components/GlassCard';
 import { MetalCard3D } from '../components/MetalCard3D';
 import { BlueOceanLogo } from '../components/BlueOceanLogo';
 import { SUPPORTED_LOCALES } from '../i18n/translations';
 
 type PortalTab = 'overview' | 'transfers' | 'cards' | 'vaults' | 'ledger' | 'settings';
+
+interface VirtualCardTier {
+  finish: CardFinish;
+  tierName: string;
+  fee: number;
+  tagline: string;
+  network: string;
+  perks: string[];
+}
+
+const VIRTUAL_CARD_TIERS: VirtualCardTier[] = [
+  {
+    finish: 'titanium',
+    tierName: 'Titanium Virtual Debit',
+    fee: 15,
+    tagline: 'Everyday online & travel spending',
+    network: 'VISA INFINITE',
+    perks: [
+      'Zero foreign transaction fees in 170+ countries',
+      'Instant Apple Pay, Google Pay & online checkout',
+      'Freeze or adjust spending limits anytime in one tap',
+    ],
+  },
+  {
+    finish: 'oceanic',
+    tierName: 'Oceanic Travel Virtual',
+    fee: 49,
+    tagline: 'Multi-currency travel & hotel rewards',
+    network: 'VISA INFINITE',
+    perks: [
+      '4x points on flights & hotels, 3x dining, 2x everywhere else',
+      'Auto-converts across 38 currencies at fair exchange rates',
+      'Built-in trip protection and priority global support',
+    ],
+  },
+  {
+    finish: 'crimson',
+    tierName: 'Crimson Private Virtual',
+    fee: 149,
+    tagline: 'High-limit global & executive spending',
+    network: 'MASTERCARD WORLD ELITE',
+    perks: [
+      'Up to $75,000 daily spending limit with custom controls',
+      '6x travel rewards, 4x dining, and 2.5x uncapped base rewards',
+      'Dedicated 24/7 private concierge and lounge passes',
+    ],
+  },
+];
 
 export const ClientPortalPage: React.FC = () => {
   const { t, locale, setLocale, theme, setTheme, formatCurrency, formatDate, pushToast } = useApp();
@@ -51,6 +100,7 @@ export const ClientPortalPage: React.FC = () => {
     executeTransfer,
     toggleCardSetting,
     updateCardLimit,
+    issueVirtualCard,
     fundVault,
     createVault,
     toggleAlert,
@@ -74,9 +124,14 @@ export const ClientPortalPage: React.FC = () => {
   const [transferAmount, setTransferAmount] = useState('1250');
   const [transferMemo, setTransferMemo] = useState('');
 
-  // Card Management
+  // Card Management & Virtual Card Purchase Studio
   const [selectedCardId, setSelectedCardId] = useState(cards[0]?.id ?? 'card-titanium');
   const [revealedCardIds, setRevealedCardIds] = useState<string[]>([]);
+  const [cardsSubView, setCardsSubView] = useState<'manage' | 'buy'>('manage');
+  const [buyFinish, setBuyFinish] = useState<CardFinish>('titanium');
+  const [buyPayAccountId, setBuyPayAccountId] = useState(accounts[0]?.id ?? 'acc-checking');
+  const [buyCustomLabel, setBuyCustomLabel] = useState('');
+  const [buyDailyLimit, setBuyDailyLimit] = useState(5000);
 
   // Vault Creation
   const [newVaultName, setNewVaultName] = useState('');
@@ -165,6 +220,35 @@ export const ClientPortalPage: React.FC = () => {
   const toggleRevealCard = (cardId: string) => {
     setRevealedCardIds((prev) =>
       prev.includes(cardId) ? prev.filter((id) => id !== cardId) : [...prev, cardId]
+    );
+  };
+
+  const selectedBuyTier =
+    VIRTUAL_CARD_TIERS.find((tier) => tier.finish === buyFinish) ?? VIRTUAL_CARD_TIERS[0];
+
+  const handleBuyVirtualCard = (e: React.FormEvent) => {
+    e.preventDefault();
+    const res = issueVirtualCard({
+      finish: selectedBuyTier.finish,
+      tierName: selectedBuyTier.tierName,
+      customLabel: buyCustomLabel,
+      fromAccountId: buyPayAccountId,
+      fee: selectedBuyTier.fee,
+      dailyLimit: buyDailyLimit,
+    });
+    if (!res.ok) {
+      pushToast(t.portal.insufficientFunds, 'alert');
+      return;
+    }
+    if (res.cardId) {
+      setSelectedCardId(res.cardId);
+      setRevealedCardIds((prev) => [...prev, res.cardId!]);
+    }
+    setBuyCustomLabel('');
+    setCardsSubView('manage');
+    pushToast(
+      `Virtual card issued! Paid ${formatCurrency(selectedBuyTier.fee, 0)} and activated immediately.`,
+      'success'
     );
   };
 
@@ -385,7 +469,7 @@ export const ClientPortalPage: React.FC = () => {
           <div className="rounded-2xl bg-gradient-to-r from-[#071D38] via-[#0B305C] to-[#0E4479] text-white p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-white/14 shadow-xl">
             <div>
               <div className="text-xs text-[#9CC5E8]">
-                {t.portal.totalLiquidity} · Global Multi-Currency Sweep Active
+                {t.portal.totalLiquidity} · 38+ Currencies Ready
               </div>
               <div className="mt-1 font-mono tabular-nums text-3xl sm:text-4xl font-semibold">
                 {formatCurrency(totalLiquidity)}
@@ -436,7 +520,10 @@ export const ClientPortalPage: React.FC = () => {
 
                 <button
                   type="button"
-                  onClick={() => setActiveTab('cards')}
+                  onClick={() => {
+                    setActiveTab('cards');
+                    setCardsSubView('buy');
+                  }}
                   className="glass-panel rounded-2xl p-4 text-left hover:bg-white/90 dark:hover:bg-white/12 transition-all flex items-center gap-3 cursor-pointer"
                 >
                   <div className="w-9 h-9 rounded-xl bg-[#0A5C99]/12 dark:bg-[#0A5C99]/25 text-[#0A5C99] dark:text-[#78C7F6] flex items-center justify-center shrink-0">
@@ -444,10 +531,10 @@ export const ClientPortalPage: React.FC = () => {
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-[#0A1D37] dark:text-white truncate">
-                      {t.portal.tabCards}
+                      Buy Virtual Card
                     </div>
                     <div className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] truncate">
-                      {cards.length} Metal Cards
+                      {cards.length} Active · Issue Now
                     </div>
                   </div>
                 </button>
@@ -768,142 +855,374 @@ export const ClientPortalPage: React.FC = () => {
             </GlassCard>
           )}
 
-          {/* TAB 3: METAL CARDS */}
+          {/* TAB 3: MY CARDS & BUY VIRTUAL CARD STUDIO */}
           {activeTab === 'cards' && activeCard && (
-            <GlassCard className="p-6 sm:p-8 space-y-8">
-              <div className="flex flex-wrap gap-2">
-                {cards.map((card) => (
+            <div className="space-y-6">
+              {/* Sub-mode Switcher: Manage Active Cards vs Buy & Pay for a Virtual Card */}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="inline-flex items-center gap-1.5 p-1 rounded-xl bg-white/75 dark:bg-white/8 border border-[#0A2342]/12 dark:border-white/12">
                   <button
-                    key={card.id}
                     type="button"
-                    onClick={() => setSelectedCardId(card.id)}
-                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-                      card.id === activeCard.id
-                        ? 'bg-[#0A5C99] text-white'
-                        : 'bg-[#0A2342]/6 dark:bg-white/8 text-[#29415E] dark:text-[#C5D6E8]'
+                    onClick={() => setCardsSubView('manage')}
+                    className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                      cardsSubView === 'manage'
+                        ? 'bg-[#0A5C99] text-white shadow-sm'
+                        : 'text-[#39516E] dark:text-[#BDD0E4] hover:text-[#0A1D37] dark:hover:text-white'
                     }`}
                   >
-                    {card.name} · {card.last4}
+                    My Active Cards ({cards.length})
                   </button>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-6 space-y-4">
-                  <MetalCard3D
-                    finish={activeCard.finish}
-                    title={activeCard.name}
-                    holder={activeCard.holder}
-                    maskedNumber={
-                      revealedCardIds.includes(activeCard.id)
-                        ? activeCard.fullNumber
-                        : `${activeCard.fullNumber.slice(0, 4)}  ••••  ••••  ${activeCard.last4}`
-                    }
-                    expiry={activeCard.expiry}
-                    network={activeCard.network.toUpperCase()}
-                    frozen={activeCard.frozen}
-                  />
-                  <div className="flex justify-center">
-                    <button
-                      type="button"
-                      onClick={() => toggleRevealCard(activeCard.id)}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 text-xs font-medium text-[#0A1D37] dark:text-white cursor-pointer"
-                    >
-                      {revealedCardIds.includes(activeCard.id) ? (
-                        <>
-                          <EyeOff className="w-3.5 h-3.5" />
-                          <span>
-                            {t.portal.hideNumber} (CVV: {activeCard.cvv})
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>{t.portal.revealNumber}</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setCardsSubView('buy')}
+                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                      cardsSubView === 'buy'
+                        ? 'bg-[#921B2D] text-white shadow-sm'
+                        : 'text-[#921B2D] dark:text-[#F06D80] hover:bg-[#921B2D]/8 dark:hover:bg-[#921B2D]/20'
+                    }`}
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>Buy Virtual Card</span>
+                  </button>
                 </div>
 
-                <div className="lg:col-span-6 space-y-5">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#0A2342]/10 dark:border-white/10">
-                    <div>
-                      <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Card Status</div>
-                      <div
-                        className={`text-sm font-semibold mt-0.5 ${
-                          activeCard.frozen
-                            ? 'text-[#921B2D] dark:text-[#F06D80]'
-                            : 'text-[#0A5C99] dark:text-[#78C7F6]'
+                {cardsSubView === 'manage' && (
+                  <button
+                    type="button"
+                    onClick={() => setCardsSubView('buy')}
+                    className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-[#921B2D] hover:bg-[#A82236] text-white text-xs sm:text-sm font-medium shadow-md transition-colors cursor-pointer"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Order New Virtual Card</span>
+                  </button>
+                )}
+              </div>
+
+              {cardsSubView === 'manage' ? (
+                <GlassCard className="p-6 sm:p-8 space-y-8">
+                  <div className="flex flex-wrap gap-2">
+                    {cards.map((card) => (
+                      <button
+                        key={card.id}
+                        type="button"
+                        onClick={() => setSelectedCardId(card.id)}
+                        className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+                          card.id === activeCard.id
+                            ? 'bg-[#0A5C99] text-white'
+                            : 'bg-[#0A2342]/6 dark:bg-white/8 text-[#29415E] dark:text-[#C5D6E8]'
                         }`}
                       >
-                        {activeCard.frozen ? t.portal.cardFrozen : t.portal.cardActive}
+                        {card.name} · {card.last4}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div className="lg:col-span-6 space-y-4">
+                      <MetalCard3D
+                        finish={activeCard.finish}
+                        title={activeCard.name}
+                        holder={activeCard.holder}
+                        maskedNumber={
+                          revealedCardIds.includes(activeCard.id)
+                            ? activeCard.fullNumber
+                            : `${activeCard.fullNumber.slice(0, 4)}  ••••  ••••  ${activeCard.last4}`
+                        }
+                        expiry={activeCard.expiry}
+                        network={activeCard.network.toUpperCase()}
+                        frozen={activeCard.frozen}
+                      />
+                      <div className="flex flex-wrap justify-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => toggleRevealCard(activeCard.id)}
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0A2342]/6 dark:bg-white/8 text-xs font-medium text-[#0A1D37] dark:text-white cursor-pointer"
+                        >
+                          {revealedCardIds.includes(activeCard.id) ? (
+                            <>
+                              <EyeOff className="w-3.5 h-3.5" />
+                              <span>
+                                {t.portal.hideNumber} (CVV: {activeCard.cvv})
+                              </span>
+                            </>
+                          ) : (
+                            <>
+                              <Eye className="w-3.5 h-3.5" />
+                              <span>{t.portal.revealNumber}</span>
+                            </>
+                          )}
+                        </button>
+                        {activeCard.isVirtual && (
+                          <span className="inline-flex items-center px-3 py-2 rounded-xl bg-[#0A5C99]/10 dark:bg-[#0A5C99]/25 text-xs font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+                            Instant Virtual Card
+                          </span>
+                        )}
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => toggleCardSetting(activeCard.id, 'frozen')}
-                      className={`inline-flex items-center gap-2 px-4 h-10 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
-                        activeCard.frozen
-                          ? 'bg-[#0A5C99] text-white'
-                          : 'bg-[#921B2D] text-white'
-                      }`}
-                    >
-                      <Snowflake className="w-3.5 h-3.5" />
-                      <span>{t.portal.freezeCard}</span>
-                    </button>
-                  </div>
 
-                  {/* Toggles */}
-                  <div className="space-y-3">
-                    <label className="flex items-center justify-between text-sm cursor-pointer">
-                      <span className="text-[#0A1D37] dark:text-white font-medium">
-                        {t.portal.contactless}
-                      </span>
-                      <input
-                        type="checkbox"
-                        checked={activeCard.contactless}
-                        onChange={() => toggleCardSetting(activeCard.id, 'contactless')}
-                        className="w-4 h-4 accent-[#0A5C99]"
-                      />
-                    </label>
+                    <div className="lg:col-span-6 space-y-5">
+                      <div className="flex items-center justify-between pb-3 border-b border-[#0A2342]/10 dark:border-white/10">
+                        <div>
+                          <div className="text-xs text-[#5C6F87] dark:text-[#96AFCB]">Card Status</div>
+                          <div
+                            className={`text-sm font-semibold mt-0.5 ${
+                              activeCard.frozen
+                                ? 'text-[#921B2D] dark:text-[#F06D80]'
+                                : 'text-[#0A5C99] dark:text-[#78C7F6]'
+                            }`}
+                          >
+                            {activeCard.frozen ? t.portal.cardFrozen : t.portal.cardActive}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => toggleCardSetting(activeCard.id, 'frozen')}
+                          className={`inline-flex items-center gap-2 px-4 h-10 rounded-xl text-xs font-medium transition-colors cursor-pointer ${
+                            activeCard.frozen
+                              ? 'bg-[#0A5C99] text-white'
+                              : 'bg-[#921B2D] text-white'
+                          }`}
+                        >
+                          <Snowflake className="w-3.5 h-3.5" />
+                          <span>{t.portal.freezeCard}</span>
+                        </button>
+                      </div>
 
-                    <label className="flex items-center justify-between text-sm cursor-pointer">
-                      <span className="text-[#0A1D37] dark:text-white font-medium">
-                        {t.portal.international}
-                      </span>
-                      <input
-                        type="checkbox"
-                        checked={activeCard.international}
-                        onChange={() => toggleCardSetting(activeCard.id, 'international')}
-                        className="w-4 h-4 accent-[#0A5C99]"
-                      />
-                    </label>
-                  </div>
+                      {/* Toggles */}
+                      <div className="space-y-3">
+                        <label className="flex items-center justify-between text-sm cursor-pointer">
+                          <span className="text-[#0A1D37] dark:text-white font-medium">
+                            {t.portal.contactless}
+                          </span>
+                          <input
+                            type="checkbox"
+                            checked={activeCard.contactless}
+                            onChange={() => toggleCardSetting(activeCard.id, 'contactless')}
+                            className="w-4 h-4 accent-[#0A5C99]"
+                          />
+                        </label>
 
-                  {/* Daily Spend Limit Slider */}
-                  <div className="pt-2 space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-[#3C5370] dark:text-[#BDD0E4] font-medium">
-                        {t.portal.dailyLimit}
-                      </span>
-                      <span className="font-mono tabular-nums font-semibold text-[#0A1D37] dark:text-white">
-                        {formatCurrency(activeCard.dailyLimit, 0)}
-                      </span>
+                        <label className="flex items-center justify-between text-sm cursor-pointer">
+                          <span className="text-[#0A1D37] dark:text-white font-medium">
+                            {t.portal.international}
+                          </span>
+                          <input
+                            type="checkbox"
+                            checked={activeCard.international}
+                            onChange={() => toggleCardSetting(activeCard.id, 'international')}
+                            className="w-4 h-4 accent-[#0A5C99]"
+                          />
+                        </label>
+                      </div>
+
+                      {/* Daily Spend Limit Slider */}
+                      <div className="pt-2 space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-[#3C5370] dark:text-[#BDD0E4] font-medium">
+                            {t.portal.dailyLimit}
+                          </span>
+                          <span className="font-mono tabular-nums font-semibold text-[#0A1D37] dark:text-white">
+                            {formatCurrency(activeCard.dailyLimit, 0)}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min={1000}
+                          max={75000}
+                          step={1000}
+                          value={activeCard.dailyLimit}
+                          onChange={(e) => updateCardLimit(activeCard.id, Number(e.target.value))}
+                          className="w-full bo-slider"
+                        />
+                      </div>
                     </div>
-                    <input
-                      type="range"
-                      min={1000}
-                      max={75000}
-                      step={1000}
-                      value={activeCard.dailyLimit}
-                      onChange={(e) => updateCardLimit(activeCard.id, Number(e.target.value))}
-                      className="w-full bo-slider"
-                    />
                   </div>
-                </div>
-              </div>
-            </GlassCard>
+                </GlassCard>
+              ) : (
+                /* BUY & PAY FOR A VIRTUAL CARD STUDIO (Inside Customer Portal) */
+                <GlassCard className="p-6 sm:p-8 space-y-8">
+                  <div className="space-y-1.5">
+                    <div className="text-xs font-medium text-[#921B2D] dark:text-[#F06D80]">
+                      Instant Virtual Card Issuance · Spend Worldwide Today
+                    </div>
+                    <h2 className="font-display text-2xl sm:text-3xl font-semibold text-[#0A1D37] dark:text-white">
+                      Buy &amp; activate a virtual card right from your balance.
+                    </h2>
+                    <p className="text-sm text-[#4A607A] dark:text-[#A9BED6] max-w-2xl">
+                      Pick a card style below, pay the one-time issuance fee directly from your BlueOcean account, and get your working card number and CVV immediately.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    {/* Left: Live 3D Preview & Tier Selector */}
+                    <div className="lg:col-span-6 space-y-6">
+                      <div className="rounded-2xl bg-gradient-to-br from-[#071D38] via-[#0B2D56] to-[#081E3B] p-6 sm:p-7 border border-white/14 shadow-xl space-y-6">
+                        <MetalCard3D
+                          finish={selectedBuyTier.finish}
+                          title={
+                            buyCustomLabel.trim()
+                              ? `${buyCustomLabel.trim()} · Virtual`
+                              : selectedBuyTier.tierName
+                          }
+                          holder={profile.name.toUpperCase()}
+                          maskedNumber={
+                            selectedBuyTier.finish === 'crimson'
+                              ? '5412  ••••  ••••  NEW'
+                              : '4532  ••••  ••••  NEW'
+                          }
+                          expiry="11/30"
+                          network={selectedBuyTier.network}
+                        />
+
+                        <div className="space-y-2.5">
+                          <div className="text-xs font-medium text-[#9AC9ED]">
+                            Choose Your Virtual Card
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            {VIRTUAL_CARD_TIERS.map((tier) => {
+                              const active = buyFinish === tier.finish;
+                              return (
+                                <button
+                                  key={tier.finish}
+                                  type="button"
+                                  onClick={() => setBuyFinish(tier.finish)}
+                                  className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
+                                    active
+                                      ? 'bg-white text-[#081A33] border-white shadow-md'
+                                      : 'bg-white/8 text-white border-white/14 hover:bg-white/14'
+                                  }`}
+                                >
+                                  <div className="text-xs font-semibold leading-snug">
+                                    {tier.tierName}
+                                  </div>
+                                  <div
+                                    className={`mt-1 font-mono tabular-nums text-xs font-semibold ${
+                                      active ? 'text-[#921B2D]' : 'text-[#8FD1FA]'
+                                    }`}
+                                  >
+                                    {formatCurrency(tier.fee, 0)} once
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2.5 px-1">
+                        <div className="text-xs font-semibold text-[#0A1D37] dark:text-white">
+                          Included with {selectedBuyTier.tierName}
+                        </div>
+                        <ul className="space-y-2">
+                          {selectedBuyTier.perks.map((perk) => (
+                            <li
+                              key={perk}
+                              className="flex items-start gap-2.5 text-xs sm:text-sm text-[#3D536E] dark:text-[#BDD0E4]"
+                            >
+                              <Check className="w-4 h-4 text-[#0A5C99] dark:text-[#78C7F6] shrink-0 mt-0.5" />
+                              <span>{perk}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Right: Checkout & Instant Payment Form */}
+                    <form
+                      onSubmit={handleBuyVirtualCard}
+                      className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-white/70 dark:bg-[#061830]/70 border border-[#0A2342]/12 dark:border-white/14 space-y-5"
+                    >
+                      <div>
+                        <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
+                          Pay From Account
+                        </label>
+                        <select
+                          value={buyPayAccountId}
+                          onChange={(e) => setBuyPayAccountId(e.target.value)}
+                          className="w-full h-11 px-3.5 rounded-xl bg-white/90 dark:bg-[#081E3B] border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
+                        >
+                          {accounts.map((acc) => (
+                            <option key={acc.id} value={acc.id}>
+                              {acc.name} — {formatCurrency(acc.balance)}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-medium text-[#3C5370] dark:text-[#BDD0E4] mb-1.5">
+                          Card Nickname (Optional)
+                        </label>
+                        <input
+                          type="text"
+                          value={buyCustomLabel}
+                          onChange={(e) => setBuyCustomLabel(e.target.value)}
+                          placeholder="e.g. Online Shopping, Europe Trip, Subscriptions"
+                          maxLength={28}
+                          className="w-full h-11 px-3.5 rounded-xl bg-white/90 dark:bg-[#081E3B] border border-[#0A2342]/14 dark:border-white/15 text-sm text-[#0A1D37] dark:text-white focus:outline-none focus:border-[#0A5C99]"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-xs sm:text-sm">
+                          <span className="font-medium text-[#3C5370] dark:text-[#BDD0E4]">
+                            Starting Daily Limit
+                          </span>
+                          <span className="font-mono tabular-nums font-semibold text-[#0A1D37] dark:text-white">
+                            {formatCurrency(buyDailyLimit, 0)}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min={500}
+                          max={25000}
+                          step={500}
+                          value={buyDailyLimit}
+                          onChange={(e) => setBuyDailyLimit(Number(e.target.value))}
+                          className="w-full bo-slider"
+                        />
+                      </div>
+
+                      {/* Transparent Payment Summary */}
+                      <div className="p-4 rounded-xl bg-[#0A5C99]/7 dark:bg-[#0A5C99]/20 border border-[#0A5C99]/18 space-y-2 text-xs sm:text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-[#4A607A] dark:text-[#B4CCE4]">Selected Card</span>
+                          <span className="font-medium text-[#0A1D37] dark:text-white">
+                            {selectedBuyTier.tierName}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-[#4A607A] dark:text-[#B4CCE4]">Activation</span>
+                          <span className="font-medium text-[#0A5C99] dark:text-[#78C7F6]">
+                            Instant virtual number &amp; CVV
+                          </span>
+                        </div>
+                        <div className="h-px bg-[#0A2342]/10 dark:bg-white/10 my-1" />
+                        <div className="flex justify-between items-baseline">
+                          <span className="font-medium text-[#0A1D37] dark:text-white">
+                            One-Time Issuance Fee
+                          </span>
+                          <span className="font-mono tabular-nums text-lg font-semibold text-[#921B2D] dark:text-[#F06D80]">
+                            {formatCurrency(selectedBuyTier.fee, 2)}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full h-12 rounded-xl bg-[#921B2D] hover:bg-[#A82236] active:scale-[0.99] text-white text-sm font-semibold shadow-lg transition-all cursor-pointer"
+                      >
+                        Pay {formatCurrency(selectedBuyTier.fee, 0)} &amp; Issue Virtual Card
+                      </button>
+
+                      <p className="text-[11px] text-[#5C6F87] dark:text-[#96AFCB] text-center">
+                        The fee is deducted from your chosen account and logged immediately in your Activity history.
+                      </p>
+                    </form>
+                  </div>
+                </GlassCard>
+              )}
+            </div>
           )}
 
           {/* TAB 4: SAVINGS VAULTS */}

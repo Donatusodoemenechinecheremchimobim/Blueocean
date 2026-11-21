@@ -40,6 +40,7 @@ export interface MetalCard {
   international: boolean;
   dailyLimit: number;
   monthlySpend: number;
+  isVirtual?: boolean;
 }
 
 export interface SavingsVault {
@@ -84,6 +85,14 @@ interface BankingContextValue extends PersistedBankingState {
   }) => { ok: boolean; error?: string };
   toggleCardSetting: (cardId: string, key: 'frozen' | 'contactless' | 'international') => void;
   updateCardLimit: (cardId: string, limit: number) => void;
+  issueVirtualCard: (params: {
+    finish: CardFinish;
+    tierName: string;
+    customLabel?: string;
+    fromAccountId: string;
+    fee: number;
+    dailyLimit: number;
+  }) => { ok: boolean; cardId?: string; error?: string };
   fundVault: (vaultId: string, amount: number) => { ok: boolean };
   createVault: (name: string, target: number) => void;
   toggleAlert: (key: 'largeTransfers' | 'cardInternational' | 'monthlyStatement') => void;
@@ -462,6 +471,78 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }));
   }, []);
 
+  const issueVirtualCard = useCallback(
+    (params: {
+      finish: CardFinish;
+      tierName: string;
+      customLabel?: string;
+      fromAccountId: string;
+      fee: number;
+      dailyLimit: number;
+    }): { ok: boolean; cardId?: string; error?: string } => {
+      const source = state.accounts.find((a) => a.id === params.fromAccountId);
+      if (!source || source.balance < params.fee) {
+        return { ok: false, error: 'insufficient' };
+      }
+
+      const rand4 = () => String(Math.floor(1000 + Math.random() * 9000));
+      const prefix = params.finish === 'crimson' ? '5412' : '4532';
+      const last4 = rand4();
+      const fullNumber = `${prefix}  ${rand4()}  ${rand4()}  ${last4}`;
+      const cvv = String(Math.floor(100 + Math.random() * 900));
+      const cardId = `card-virtual-${Date.now()}`;
+      const cleanLabel = params.customLabel?.trim();
+      const displayName = cleanLabel ? `${cleanLabel} (${params.tierName})` : params.tierName;
+      const today = new Date().toISOString().slice(0, 10);
+      const refNum = `BO-VCD-${Math.floor(10000 + Math.random() * 89999)}`;
+
+      const newCard: MetalCard = {
+        id: cardId,
+        name: displayName,
+        finish: params.finish,
+        holder: state.profile.name.toUpperCase(),
+        last4,
+        fullNumber,
+        expiry: '11/30',
+        cvv,
+        network: params.finish === 'crimson' ? 'Mastercard World Elite' : 'Visa Infinite',
+        frozen: false,
+        contactless: true,
+        international: true,
+        dailyLimit: params.dailyLimit,
+        monthlySpend: 0,
+        isVirtual: true,
+      };
+
+      setState((prev) => ({
+        ...prev,
+        accounts: prev.accounts.map((acc) =>
+          acc.id === params.fromAccountId
+            ? { ...acc, balance: Number((acc.balance - params.fee).toFixed(2)) }
+            : acc
+        ),
+        cards: [newCard, ...prev.cards],
+        transactions: [
+          {
+            id: `tx-vcd-${Date.now()}`,
+            date: today,
+            merchant: `Virtual Card Issuance — ${displayName}`,
+            category: 'Virtual Card',
+            accountId: params.fromAccountId,
+            type: 'debit',
+            status: 'Posted',
+            amount: params.fee,
+            reference: refNum,
+          },
+          ...prev.transactions,
+        ],
+      }));
+
+      return { ok: true, cardId };
+    },
+    [state.accounts, state.profile.name]
+  );
+
   const fundVault = useCallback(
     (vaultId: string, amount: number): { ok: boolean } => {
       const checking = state.accounts.find((a) => a.id === 'acc-checking');
@@ -575,6 +656,7 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       executeTransfer,
       toggleCardSetting,
       updateCardLimit,
+      issueVirtualCard,
       fundVault,
       createVault,
       toggleAlert,
@@ -588,6 +670,7 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       executeTransfer,
       toggleCardSetting,
       updateCardLimit,
+      issueVirtualCard,
       fundVault,
       createVault,
       toggleAlert,

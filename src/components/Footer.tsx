@@ -58,15 +58,6 @@ export const Footer: React.FC = () => {
               <li>
                 <button
                   type="button"
-                  onClick={() => navigate('cards')}
-                  className="hover:text-[#0A5C99] dark:hover:text-white transition-colors cursor-pointer"
-                >
-                  {t.nav.cards}
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
                   onClick={() => navigate('loans')}
                   className="hover:text-[#0A5C99] dark:hover:text-white transition-colors cursor-pointer"
                 >

@@ -12,7 +12,6 @@ import { ToastStack } from './components/ToastStack';
 import { HomePage } from './pages/HomePage';
 import { PersonalBankingPage } from './pages/PersonalBankingPage';
 import { BusinessTreasuryPage } from './pages/BusinessTreasuryPage';
-import { CardsRewardsPage } from './pages/CardsRewardsPage';
 import { LoansMortgagesPage } from './pages/LoansMortgagesPage';
 import { PrivateWealthPage } from './pages/PrivateWealthPage';
 import { SecurityTrustPage } from './pages/SecurityTrustPage';
@@ -29,8 +28,6 @@ const PageRouter: React.FC = () => {
         return <PersonalBankingPage />;
       case 'business':
         return <BusinessTreasuryPage />;
-      case 'cards':
-        return <CardsRewardsPage />;
       case 'loans':
         return <LoansMortgagesPage />;
       case 'wealth':

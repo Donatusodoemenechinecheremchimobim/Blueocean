@@ -5,7 +5,6 @@ export type PageRoute =
   | 'home'
   | 'personal'
   | 'business'
-  | 'cards'
   | 'loans'
   | 'wealth'
   | 'security'
@@ -51,7 +50,6 @@ const VALID_ROUTES: PageRoute[] = [
   'home',
   'personal',
   'business',
-  'cards',
   'loans',
   'wealth',
   'security',
@@ -65,8 +63,9 @@ const THEME_STORAGE_KEY = 'blueocean_theme_v1';
 
 function readRouteFromHash(): PageRoute {
   if (typeof window === 'undefined') return 'home';
-  const raw = window.location.hash.replace(/^#\/?/, '').toLowerCase() as PageRoute;
-  return VALID_ROUTES.includes(raw) ? raw : 'home';
+  const raw = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+  if (raw === 'cards') return 'portal';
+  return VALID_ROUTES.includes(raw as PageRoute) ? (raw as PageRoute) : 'home';
 }
 
 const AppContext = createContext<AppContextValue | null>(null);

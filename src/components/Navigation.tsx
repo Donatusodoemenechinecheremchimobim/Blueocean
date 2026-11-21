@@ -7,7 +7,6 @@ import {
   Moon,
   Home,
   Wallet,
-  CreditCard,
   Lock,
   Compass,
   X,
@@ -58,8 +57,8 @@ export const Navigation: React.FC = () => {
   const primaryDesktopLinks: { id: PageRoute; label: string }[] = [
     { id: 'personal', label: t.nav.personal },
     { id: 'business', label: t.nav.business },
-    { id: 'cards', label: t.nav.cards },
     { id: 'loans', label: t.nav.loans },
+    { id: 'security', label: t.nav.security },
   ];
 
   const allDestinations: {
@@ -71,7 +70,6 @@ export const Navigation: React.FC = () => {
     { id: 'home', label: t.nav.home, icon: <Home className="w-4 h-4" /> },
     { id: 'personal', label: t.nav.personal, icon: <Wallet className="w-4 h-4" /> },
     { id: 'business', label: t.nav.business, icon: <Building2 className="w-4 h-4" /> },
-    { id: 'cards', label: t.nav.cards, icon: <CreditCard className="w-4 h-4" /> },
     { id: 'loans', label: t.nav.loans, icon: <Landmark className="w-4 h-4" /> },
     { id: 'wealth', label: t.nav.wealth, icon: <TrendingUp className="w-4 h-4" /> },
     { id: 'security', label: t.nav.security, icon: <ShieldCheck className="w-4 h-4" /> },
@@ -86,7 +84,7 @@ export const Navigation: React.FC = () => {
   const quickRailItems: { id: PageRoute; label: string; icon: React.ReactNode }[] = [
     { id: 'home', label: t.nav.home, icon: <Home className="w-[18px] h-[18px]" /> },
     { id: 'personal', label: t.nav.personal, icon: <Wallet className="w-[18px] h-[18px]" /> },
-    { id: 'cards', label: t.nav.cards, icon: <CreditCard className="w-[18px] h-[18px]" /> },
+    { id: 'business', label: t.nav.business, icon: <Building2 className="w-[18px] h-[18px]" /> },
   ];
 
   return (
