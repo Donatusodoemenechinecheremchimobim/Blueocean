@@ -19,6 +19,7 @@ import { Reveal } from '../components/Reveal';
 import { PartnerMarquee } from '../components/PartnerMarquee';
 import { CountUp } from '../components/CountUp';
 import { CurrencyConverterSection } from '../components/CurrencyConverterSection';
+import { SubscriptionsShowcase } from '../components/SubscriptionsShowcase';
 
 const HERO_IMG = '/src/assets/images/hero_oceanic_architecture_1795099364980.jpg';
 const HERO_VIDEO = '/blueocean-showcase.mp4';
@@ -249,6 +250,9 @@ export const HomePage: React.FC = () => {
 
       {/* SECTION 1B: REAL-TIME CURRENCY CONVERTER & COUNTRIES WE OPERATE IN */}
       <CurrencyConverterSection />
+
+      {/* SECTION 1C: 20+ U.S. SUBSCRIPTIONS ACCEPTED WITH VIRTUAL CARDS */}
+      <SubscriptionsShowcase />
 
       {/* SECTION 2: ASYMMETRIC 21ST.DEV BENTO GRID FOR ALL 6 BANKING DIVISIONS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6">

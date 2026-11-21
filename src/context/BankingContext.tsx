@@ -58,6 +58,19 @@ export interface ClientProfile {
   memberSince: string;
 }
 
+export interface ActiveSubscription {
+  serviceId: string;
+  name: string;
+  plan: string;
+  price: number;
+  cardId: string;
+  cardLast4: string;
+  accountId: string;
+  autoPay: boolean;
+  lastPaidDate: string;
+  nextBillingDate: string;
+}
+
 interface PersistedBankingState {
   isAuthenticated: boolean;
   profile: ClientProfile;
@@ -65,6 +78,7 @@ interface PersistedBankingState {
   transactions: BankTransaction[];
   cards: MetalCard[];
   vaults: SavingsVault[];
+  activeSubscriptions: ActiveSubscription[];
   alertsEnabled: {
     largeTransfers: boolean;
     cardInternational: boolean;
@@ -95,6 +109,16 @@ interface BankingContextValue extends PersistedBankingState {
   }) => { ok: boolean; cardId?: string; error?: string };
   fundVault: (vaultId: string, amount: number) => { ok: boolean };
   createVault: (name: string, target: number) => void;
+  paySubscription: (params: {
+    serviceId: string;
+    name: string;
+    plan: string;
+    price: number;
+    cardId: string;
+    accountId: string;
+  }) => { ok: boolean; error?: 'insufficient' | 'frozen' | 'invalid' };
+  toggleSubscriptionAutoPay: (serviceId: string) => void;
+  cancelSubscription: (serviceId: string) => void;
   toggleAlert: (key: 'largeTransfers' | 'cardInternational' | 'monthlyStatement') => void;
   resetDemoData: () => void;
   exportTransactionsCsv: (rows: BankTransaction[]) => void;
@@ -316,6 +340,32 @@ const INITIAL_STATE: PersistedBankingState = {
       apy: 4.85,
     },
   ],
+  activeSubscriptions: [
+    {
+      serviceId: 'netflix',
+      name: 'Netflix',
+      plan: 'Standard Monthly',
+      price: 15.49,
+      cardId: 'card-titanium',
+      cardLast4: '4821',
+      accountId: 'acc-checking',
+      autoPay: true,
+      lastPaidDate: '2026-11-12',
+      nextBillingDate: '2026-12-12',
+    },
+    {
+      serviceId: 'chatgpt-plus',
+      name: 'ChatGPT Plus',
+      plan: 'OpenAI Monthly',
+      price: 20.0,
+      cardId: 'card-titanium',
+      cardLast4: '4821',
+      accountId: 'acc-checking',
+      autoPay: true,
+      lastPaidDate: '2026-11-15',
+      nextBillingDate: '2026-12-15',
+    },
+  ],
   alertsEnabled: {
     largeTransfers: true,
     cardInternational: true,
@@ -334,6 +384,9 @@ function loadInitialState(): PersistedBankingState {
     return {
       ...INITIAL_STATE,
       ...parsed,
+      activeSubscriptions: Array.isArray(parsed.activeSubscriptions)
+        ? parsed.activeSubscriptions
+        : INITIAL_STATE.activeSubscriptions,
     };
   } catch {
     return INITIAL_STATE;
@@ -600,6 +653,103 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }));
   }, []);
 
+  const paySubscription = useCallback(
+    (params: {
+      serviceId: string;
+      name: string;
+      plan: string;
+      price: number;
+      cardId: string;
+      accountId: string;
+    }): { ok: boolean; error?: 'insufficient' | 'frozen' | 'invalid' } => {
+      const card = state.cards.find((c) => c.id === params.cardId);
+      const source = state.accounts.find((a) => a.id === params.accountId);
+      if (!card || !source || params.price <= 0) {
+        return { ok: false, error: 'invalid' };
+      }
+      if (card.frozen) {
+        return { ok: false, error: 'frozen' };
+      }
+      if (source.balance < params.price) {
+        return { ok: false, error: 'insufficient' };
+      }
+
+      const now = new Date();
+      const today = now.toISOString().slice(0, 10);
+      const nextMonth = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+      const refNum = `BO-SUB-${Math.floor(10000 + Math.random() * 89999)}`;
+
+      setState((prev) => {
+        const nextAccounts = prev.accounts.map((acc) =>
+          acc.id === params.accountId
+            ? { ...acc, balance: Number((acc.balance - params.price).toFixed(2)) }
+            : acc
+        );
+        const nextCards = prev.cards.map((c) =>
+          c.id === params.cardId
+            ? { ...c, monthlySpend: Number((c.monthlySpend + params.price).toFixed(2)) }
+            : c
+        );
+        const updatedEntry: ActiveSubscription = {
+          serviceId: params.serviceId,
+          name: params.name,
+          plan: params.plan,
+          price: params.price,
+          cardId: card.id,
+          cardLast4: card.last4,
+          accountId: params.accountId,
+          autoPay: true,
+          lastPaidDate: today,
+          nextBillingDate: nextMonth,
+        };
+        const exists = prev.activeSubscriptions.some((s) => s.serviceId === params.serviceId);
+        const nextSubs = exists
+          ? prev.activeSubscriptions.map((s) => (s.serviceId === params.serviceId ? updatedEntry : s))
+          : [updatedEntry, ...prev.activeSubscriptions];
+
+        return {
+          ...prev,
+          accounts: nextAccounts,
+          cards: nextCards,
+          activeSubscriptions: nextSubs,
+          transactions: [
+            {
+              id: `tx-sub-${Date.now()}`,
+              date: today,
+              merchant: `${params.name} — ${params.plan} (Card •••• ${card.last4})`,
+              category: 'Subscriptions',
+              accountId: params.accountId,
+              type: 'debit',
+              status: 'Posted',
+              amount: params.price,
+              reference: refNum,
+            },
+            ...prev.transactions,
+          ],
+        };
+      });
+
+      return { ok: true };
+    },
+    [state.accounts, state.cards]
+  );
+
+  const toggleSubscriptionAutoPay = useCallback((serviceId: string) => {
+    setState((prev) => ({
+      ...prev,
+      activeSubscriptions: prev.activeSubscriptions.map((sub) =>
+        sub.serviceId === serviceId ? { ...sub, autoPay: !sub.autoPay } : sub
+      ),
+    }));
+  }, []);
+
+  const cancelSubscription = useCallback((serviceId: string) => {
+    setState((prev) => ({
+      ...prev,
+      activeSubscriptions: prev.activeSubscriptions.filter((sub) => sub.serviceId !== serviceId),
+    }));
+  }, []);
+
   const toggleAlert = useCallback(
     (key: 'largeTransfers' | 'cardInternational' | 'monthlyStatement') => {
       setState((prev) => ({
@@ -659,6 +809,9 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       issueVirtualCard,
       fundVault,
       createVault,
+      paySubscription,
+      toggleSubscriptionAutoPay,
+      cancelSubscription,
       toggleAlert,
       resetDemoData,
       exportTransactionsCsv,
@@ -673,6 +826,9 @@ export const BankingProvider: React.FC<{ children: React.ReactNode }> = ({ child
       issueVirtualCard,
       fundVault,
       createVault,
+      paySubscription,
+      toggleSubscriptionAutoPay,
+      cancelSubscription,
       toggleAlert,
       resetDemoData,
       exportTransactionsCsv,
